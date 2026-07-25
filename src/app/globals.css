@@ -1,0 +1,714 @@
+@import "tailwindcss";
+
+/* -------------------------------------------------------------------------- */
+/*  NURONE — Design tokens                                                     */
+/*  Art direction: an engineered, mission-control canvas. A true near-black    */
+/*  void, restrained glass surfaces, and a single signal-lime accent that      */
+/*  reads as "execution / energy". Cold signal-blue appears once, sparingly.   */
+/*  Accent touches < 10% of any viewport — it is a highlight, not a wash.      */
+/* -------------------------------------------------------------------------- */
+
+@theme {
+  /* Base canvas + surfaces — the darkest degree of the primary blue */
+  --color-void: #06070f;
+  --color-surface: #0d0f1e;
+  --color-surface-2: #141833;
+
+  /* Text — cool off-white on the blue-black canvas */
+  --color-ink: #f3f5fc;
+  --color-muted: #9a9db4;
+  --color-faint: #595d76;
+
+  /* Hairlines */
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-line-strong: rgba(255, 255, 255, 0.14);
+
+  /* Signature accent — NURONE signal blue (official #557bff) */
+  --color-accent: #557bff;
+  --color-accent-dim: #3f5fd6;
+
+  /* Secondary accent — light periwinkle */
+  --color-accent-2: #a5b4fc;
+
+  /* Utility */
+  --color-success: #6fe3a0;
+  --color-danger: #ff6b5e;
+
+  /* Fluid type scale (clamp, not fixed px) — tuned for the wider mono display */
+  --text-display: clamp(2.1rem, 4vw + 0.4rem, 4.1rem);
+  --text-display--line-height: 1;
+  --text-h2: clamp(1.6rem, 2.4vw + 0.9rem, 2.7rem);
+  --text-h2--line-height: 1.06;
+  --text-h3: clamp(1.25rem, 1.5vw + 1rem, 1.75rem);
+  --text-h3--line-height: 1.14;
+  --text-fluid: clamp(0.95rem, 0.5vw + 0.85rem, 1.05rem);
+  --text-fluid--line-height: 1.7;
+
+  /* Hand-tuned easing — never default ease / ease-in-out */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --radius-4xl: 2rem;
+}
+
+/* Runtime glow / motion vars (not utility tokens) */
+:root {
+  --accent-glow: rgba(85, 123, 255, 0.22);
+  --scroll: 0;
+  --scroll-velocity: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Lenis smooth scroll — disable native smooth-scroll so the two never fight   */
+/* -------------------------------------------------------------------------- */
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Font tokens reference runtime next/font vars → must be inline */
+@theme inline {
+  --font-sans: var(--font-space-grotesk);
+  --font-display: var(--font-jetbrains-mono);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Base                                                                       */
+/* -------------------------------------------------------------------------- */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5.5rem;
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-void);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.02;
+    text-wrap: balance;
+    color: var(--color-ink);
+    font-feature-settings: "ss01", "ss02";
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-void);
+  }
+
+  /* Keep focus visible — styled with the accent, never removed */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-line-strong) transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #24262c;
+    border-radius: 999px;
+    border: 3px solid var(--color-void);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #33363d;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Utilities & primitives                                                     */
+/* -------------------------------------------------------------------------- */
+
+@layer components {
+  /* Page shell with fluid horizontal padding */
+  .shell {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 5vw, 3rem);
+  }
+
+  /* Mono, letter-spaced editorial label */
+  .overline {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  /* Bordered pill label */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    padding: 0.25rem 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    color: var(--color-muted);
+  }
+
+  /* Animated editorial underline for text links */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s var(--ease-out-expo);
+  }
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+
+  /* Mono numerals for stats / nav numbers */
+  .numeral {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-variant-numeric: lining-nums tabular-nums;
+    letter-spacing: -0.01em;
+  }
+
+  /* -------- Dark glass — restrained, used on 2–3 key surfaces only -------- */
+  .glass-panel {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.02)
+    );
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid var(--color-line);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.06) inset,
+      0 20px 60px -20px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Off-center directional glow — one soft radial light source per section     */
+/* -------------------------------------------------------------------------- */
+
+.glow {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 999px;
+  filter: blur(130px);
+  background: var(--accent-glow);
+  opacity: 0.9;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Film grain — one full-bleed inline SVG noise overlay                       */
+/* -------------------------------------------------------------------------- */
+
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Custom cursor (rendered only on fine pointers w/ motion allowed)           */
+/* -------------------------------------------------------------------------- */
+
+html[data-cursor="on"],
+html[data-cursor="on"] a,
+html[data-cursor="on"] button,
+html[data-cursor="on"] [data-hover="link"] {
+  cursor: none;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  pointer-events: none;
+  border-radius: 999px;
+  will-change: transform;
+}
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: var(--color-accent);
+}
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1px solid var(--color-line-strong);
+  transition:
+    width 0.25s var(--ease-out-expo),
+    height 0.25s var(--ease-out-expo),
+    margin 0.25s var(--ease-out-expo),
+    background-color 0.25s var(--ease-out-expo),
+    border-color 0.25s var(--ease-out-expo);
+}
+.cursor-ring[data-active="true"] {
+  width: 56px;
+  height: 56px;
+  margin: -28px 0 0 -28px;
+  background: var(--accent-glow);
+  border-color: transparent;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Reveal-on-scroll (IntersectionObserver toggles .is-visible)                */
+/* -------------------------------------------------------------------------- */
+
+.reveal {
+  opacity: 0;
+  transform: translate3d(var(--reveal-x, 0), var(--reveal-y, 22px), 0);
+  transition:
+    opacity 0.7s var(--ease-out-expo),
+    transform 0.7s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Scroll-driven parallax layers — read the single global `--scroll` var      */
+/* -------------------------------------------------------------------------- */
+
+.parallax-back {
+  transform: translateY(calc(var(--scroll) * -0.06px));
+}
+.parallax-mid {
+  transform: translateY(calc(var(--scroll) * -0.03px));
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Keyframes                                                                  */
+/* -------------------------------------------------------------------------- */
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 52s linear infinite;
+}
+
+@keyframes marquee-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.animate-marquee-reverse {
+  animation: marquee-reverse 64s linear infinite;
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(78vh);
+    opacity: 0;
+  }
+}
+.scanline {
+  animation: scan 9s var(--ease-in-out-quart) infinite;
+  will-change: transform;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Intro preloader — counter + curtain reveal                                 */
+/* -------------------------------------------------------------------------- */
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  background: var(--color-void);
+  overflow: hidden;
+}
+.preloader__bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: var(--color-accent);
+}
+.preloader__curtain {
+  position: absolute;
+  inset: 0;
+  background: var(--color-void);
+  transform: translateY(0);
+  will-change: transform;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Kinetic / editorial type — outlined ghost numerals + stroke text           */
+/* -------------------------------------------------------------------------- */
+
+.chapter-ghost {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-line-strong);
+  letter-spacing: -0.03em;
+  user-select: none;
+}
+
+.stroke-text {
+  color: transparent;
+  -webkit-text-stroke: 1px currentColor;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Horizontal-pinned track (GSAP) + progress rail                             */
+/* -------------------------------------------------------------------------- */
+
+.hx-rail {
+  height: 2px;
+  width: 100%;
+  background: var(--color-line);
+  overflow: hidden;
+}
+.hx-rail__fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform: scaleX(var(--hx, 0));
+  transform-origin: left;
+  background: var(--color-accent);
+}
+
+/* Clip-reveal for kinetic headline lines */
+.clip-line {
+  display: block;
+  overflow: hidden;
+}
+.clip-line > span {
+  display: block;
+  will-change: transform;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  "How it works" deep-scroll — sticky console + scrubbed scenes              */
+/* -------------------------------------------------------------------------- */
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+.float-slow {
+  animation: float 7s var(--ease-in-out-quart) infinite;
+  will-change: transform;
+}
+
+@keyframes hiw-sweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.hiw-sweep {
+  animation: hiw-sweep 4s linear infinite;
+  transform-origin: center;
+}
+
+/* window-chrome dots */
+.win-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--color-line-strong);
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Immersive / futuristic primitives — hero + cross-site depth                */
+/* -------------------------------------------------------------------------- */
+
+/* Animated gradient accent text — a slow signal sweep across the glyphs */
+.text-shimmer {
+  background: linear-gradient(
+    100deg,
+    var(--color-accent) 0%,
+    var(--color-accent-2) 30%,
+    #eaf0ff 48%,
+    var(--color-accent-2) 66%,
+    var(--color-accent) 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: text-shimmer 7s linear infinite;
+}
+@keyframes text-shimmer {
+  to {
+    background-position: -220% 0;
+  }
+}
+
+/* Drifting aurora orb — organic parallax light source */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(4%, -6%, 0) scale(1.09);
+  }
+  66% {
+    transform: translate3d(-5%, 4%, 0) scale(0.95);
+  }
+}
+.orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+  animation: drift 24s var(--ease-in-out-quart) infinite;
+}
+
+/* Rotating conic beam — a "reactor" light cast behind the 3D mark */
+@keyframes beam-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.beam {
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(85, 123, 255, 0.16) 42deg,
+    transparent 90deg,
+    transparent 180deg,
+    rgba(165, 180, 252, 0.12) 222deg,
+    transparent 270deg,
+    transparent 360deg
+  );
+  mask-image: radial-gradient(closest-side, transparent 34%, black 42%, black 62%, transparent 78%);
+  -webkit-mask-image: radial-gradient(closest-side, transparent 34%, black 42%, black 62%, transparent 78%);
+  animation: beam-spin 20s linear infinite;
+  will-change: transform;
+}
+
+/* Perspective floor grid — recedes into the horizon, masked to a soft fade */
+.floor-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 3.4rem 3.4rem;
+  mask-image: linear-gradient(to top, black, transparent 82%);
+  -webkit-mask-image: linear-gradient(to top, black, transparent 82%);
+}
+
+/* Varied float cadences so grouped chips never bob in lockstep */
+.float-slower {
+  animation: float 9s var(--ease-in-out-quart) infinite;
+  will-change: transform;
+}
+.float-slowest {
+  animation: float 11s var(--ease-in-out-quart) infinite;
+  will-change: transform;
+}
+
+/* Hover shine sweep — a diagonal specular pass over glass surfaces / buttons */
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+.shine::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.14) 48%,
+    transparent 66%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.9s var(--ease-out-expo);
+  pointer-events: none;
+}
+.shine:hover::before {
+  transform: translateX(120%);
+}
+
+/* Orbital ring rotation (opposite directions for parallax depth) */
+@keyframes orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes orbit-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+.orbit {
+  animation: orbit 30s linear infinite;
+  transform-origin: center;
+}
+.orbit-reverse {
+  animation: orbit-reverse 44s linear infinite;
+  transform-origin: center;
+}
+
+/* Live status console line — a soft blink for "operational" telemetry */
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.pulse-soft {
+  animation: pulse-soft 2.6s var(--ease-in-out-quart) infinite;
+}
+
+/* Vertical marquee for the hero console readout */
+@keyframes ticker-up {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+.ticker-up {
+  animation: ticker-up 14s linear infinite;
+}
+
+/* Elevated glass — a touch brighter, for the hero console / feature cards */
+.glass-strong {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.025)
+  );
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid var(--color-line-strong);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 30px 80px -30px rgba(0, 0, 0, 0.75);
+}
+
+/* Accent hairline gradient divider */
+.rule-accent {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-accent) 45%,
+    var(--color-accent-2) 55%,
+    transparent
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Accessibility — respect reduced motion                                     */
+/* -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
