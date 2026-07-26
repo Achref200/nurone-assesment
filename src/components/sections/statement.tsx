@@ -1,8 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
-import { Check } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { CheckCircle2 } from "lucide-react";
 
 const statement =
   "Ambition rarely dies in the idea. It breaks in the system behind it.";
@@ -14,28 +14,6 @@ const principles = [
   "Transparent weekly sprint logs. Full visibility into every line & hour.",
 ];
 
-function Word({
-  progress,
-  range,
-  children,
-  accent,
-}: {
-  progress: MotionValue<number>;
-  range: [number, number];
-  children: string;
-  accent: boolean;
-}) {
-  const opacity = useTransform(progress, range, [0.15, 1]);
-  return (
-    <motion.span
-      style={{ opacity }}
-      className={accent ? "font-serif italic text-accent font-normal" : undefined}
-    >
-      {children}{" "}
-    </motion.span>
-  );
-}
-
 export function Statement() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -46,45 +24,39 @@ export function Statement() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden border-y border-line bg-surface"
+      className="relative overflow-hidden border-y border-line/60 bg-surface/30 py-24 md:py-32"
     >
-      <div
-        aria-hidden
-        className="glow left-[-6rem] top-1/2 h-[26rem] w-[26rem] -translate-y-1/2 opacity-70"
-        style={{ background: "rgba(85,123,255,0.18)" }}
-      />
-
-      <div className="shell relative py-20 md:py-28">
+      <div className="shell relative">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-accent" />
-          <span className="overline text-accent">Our Core Bias</span>
+          <span className="font-mono text-xs tracking-wider uppercase text-accent font-medium">
+            Our Core Principle
+          </span>
         </div>
 
-        <p className="mt-8 max-w-4xl font-display text-[clamp(1.9rem,4.4vw,3.6rem)] leading-[1.1] tracking-[-0.025em] text-ink [text-wrap:balance]">
+        <p className="mt-8 max-w-4xl font-display text-[clamp(2.2rem,4.8vw,3.8rem)] font-semibold leading-[1.1] tracking-tight text-ink [text-wrap:balance]">
           {words.map((word, i) => {
             const start = i / words.length;
             const end = start + 1 / words.length;
+            const opacity = useTransform(scrollYProgress, [start, end], [0.2, 1]);
             const isAccent = word.toLowerCase().includes("system");
             return (
-              <Word
+              <motion.span
                 key={`${word}-${i}`}
-                progress={scrollYProgress}
-                range={[start, end]}
-                accent={isAccent}
+                style={{ opacity }}
+                className={isAccent ? "text-accent font-semibold" : undefined}
               >
-                {word}
-              </Word>
+                {word}{" "}
+              </motion.span>
             );
           })}
         </p>
 
-        <ul className="mt-14 grid gap-5 border-t border-line pt-8 md:grid-cols-3">
+        <ul className="mt-14 grid gap-6 border-t border-line/60 pt-10 md:grid-cols-3">
           {principles.map((p) => (
-            <li key={p} className="flex items-start gap-3 rounded-2xl border border-line bg-white/[0.02] p-4 backdrop-blur-sm">
-              <span className="mt-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
-                <Check className="size-3.5" strokeWidth={2.5} />
-              </span>
-              <span className="text-[0.92rem] leading-relaxed text-muted">{p}</span>
+            <li key={p} className="flex items-start gap-3.5 rounded-2xl border border-line/60 bg-surface/50 p-5 backdrop-blur-sm">
+              <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-accent" />
+              <span className="text-base leading-relaxed text-muted font-normal">{p}</span>
             </li>
           ))}
         </ul>

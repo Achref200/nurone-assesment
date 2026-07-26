@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, JetBrains_Mono, Newsreader } from "next/font/google";
+import { Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/content";
 import { Cursor } from "@/components/motion/cursor";
@@ -7,30 +7,23 @@ import { ScrollProgress } from "@/components/motion/scroll-progress";
 import { Preloader } from "@/components/motion/preloader";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
   display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
-  style: ["normal", "italic"],
-});
-
-const newsreader = Newsreader({
-  variable: "--font-serif",
-  subsets: ["latin"],
-  style: ["italic"],
-  display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — AI-Powered Tech & Growth Lab`,
+    default: `${siteConfig.name} — AI-Augmented Operating Team`,
     template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -41,7 +34,6 @@ export const metadata: Metadata = {
     "MVP rebuild",
     "growth infrastructure",
     "agentic operations",
-    "SaaS",
   ],
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
@@ -70,7 +62,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#06070f",
+  themeColor: "#050711",
   colorScheme: "dark",
 };
 
@@ -81,14 +73,6 @@ const jsonLd = {
   url: siteConfig.url,
   description: siteConfig.description,
   slogan: siteConfig.tagline,
-  foundingDate: "2024",
-  knowsAbout: [
-    "AI product engineering",
-    "Fractional CTO",
-    "MVP rebuild",
-    "Growth infrastructure",
-    "Agentic operations",
-  ],
 };
 
 export default function RootLayout({
@@ -99,7 +83,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${newsreader.variable}`}
+      className={`${outfit.variable} ${jetbrainsMono.variable}`}
     >
       <body className="grain min-h-dvh antialiased">
         <script

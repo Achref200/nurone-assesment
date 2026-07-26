@@ -8,13 +8,12 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { ArrowRight, ArrowUpRight, MoveDown } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Rocket, ShieldCheck, TrendingUp, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { Magnetic } from "@/components/motion/magnetic";
-import { CountUp } from "@/components/motion/count-up";
 import { Mark } from "@/components/brand/logo";
-import { hero, stats } from "@/lib/content";
+import { hero } from "@/lib/content";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -44,7 +43,7 @@ function Line({ i, children }: { i: number; children: React.ReactNode }) {
       <motion.span
         custom={i}
         variants={lineVariant}
-        className="block pb-[0.1em] leading-[0.98]"
+        className="block pb-[0.08em] leading-[1.02]"
       >
         {children}
       </motion.span>
@@ -60,138 +59,125 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -40]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
 
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[100svh] flex-col overflow-hidden pt-28 md:pt-36"
+      className="relative flex min-h-[100svh] flex-col items-center justify-between overflow-hidden pt-32 pb-20 md:pt-40"
     >
-      {/* Subtle ambient light gradient background */}
+      {/* Background ambient light */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
       >
         <span
-          className="orb h-[40rem] w-[40rem] bg-[radial-gradient(circle,rgba(85,123,255,0.18),transparent_70%)]"
-          style={{ top: "-10rem", right: "-10rem" }}
-        />
-        <span
-          className="orb h-[32rem] w-[32rem] bg-[radial-gradient(circle,rgba(165,180,252,0.12),transparent_70%)]"
-          style={{ bottom: "2rem", left: "-8rem", animationDelay: "-8s" }}
+          className="orb h-[42rem] w-[42rem] bg-[radial-gradient(circle,rgba(59,130,246,0.18),transparent_70%)]"
+          style={{ top: "-10rem", left: "50%", transform: "translateX(-50%)" }}
         />
       </div>
 
-      {/* Main hero grid */}
+      {/* Vertical Hero Layout Container */}
       <motion.div
-        className="shell relative flex flex-1 items-center py-8 lg:py-12"
+        className="shell relative flex flex-col items-center text-center"
         style={reduce ? undefined : { y: contentY, opacity: contentOpacity }}
       >
-        <div className="grid w-full items-center gap-y-12 lg:grid-cols-12 lg:gap-x-12">
-          {/* Editorial Copy Column */}
-          <div className="lg:col-span-7">
-            <Reveal>
-              <div className="inline-flex items-center gap-2.5 rounded-full border border-line bg-white/[0.03] px-3.5 py-1.5 backdrop-blur-md">
-                <span className="size-2 rounded-full bg-accent" />
-                <span className="font-mono text-xs tracking-wider uppercase text-muted">
-                  {hero.eyebrow}
-                </span>
-              </div>
-            </Reveal>
-
-            <motion.h1
-              initial="hidden"
-              animate="show"
-              className="mt-8 text-[clamp(2.6rem,5.6vw,5.2rem)] font-medium tracking-[-0.04em] text-ink"
-            >
-              <Line i={0}>You bring the ambition.</Line>
-              <Line i={1}>
-                We build the{" "}
-                <span className="font-serif italic font-normal text-accent">
-                  system
-                </span>
-              </Line>
-              <Line i={2}>to scale it.</Line>
-            </motion.h1>
-
-            <Reveal delay={0.12}>
-              <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted font-normal">
-                {hero.body}
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.18}>
-              <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
-                <Magnetic>
-                  <Button href={hero.primaryCta.href} size="lg" className="shine px-8 py-4 text-base">
-                    {hero.primaryCta.label}
-                    <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
-                  </Button>
-                </Magnetic>
-                <a
-                  href={hero.secondaryCta.href}
-                  data-hover="link"
-                  className="group inline-flex items-center gap-2 text-base font-medium text-ink/90 transition-colors hover:text-ink"
-                >
-                  <span className="link-underline">{hero.secondaryCta.label}</span>
-                  <ArrowUpRight className="size-4 text-accent transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </a>
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.24}>
-              <p className="mt-10 flex items-center gap-3 text-sm text-faint">
-                <span className="h-px w-8 shrink-0 bg-line-strong" />
-                {hero.note}
-              </p>
-            </Reveal>
+        {/* Eyebrow */}
+        <Reveal>
+          <div className="inline-flex items-center gap-2.5 rounded-full border border-line bg-white/[0.03] px-4 py-1.5 backdrop-blur-md">
+            <span className="size-2 rounded-full bg-accent" />
+            <span className="font-mono text-xs tracking-wider uppercase text-muted font-medium">
+              {hero.eyebrow}
+            </span>
           </div>
+        </Reveal>
 
-          {/* Clean Studio 3D Mark Stage */}
-          <Reveal delay={0.2} y={24} className="lg:col-span-5">
-            <div className="relative mx-auto aspect-square w-full max-w-[24rem] sm:max-w-[28rem] lg:max-w-[32rem]">
-              <div className="relative size-full touch-none select-none">
-                <HeroLogo3D />
-              </div>
+        {/* Central Vertical Headline */}
+        <motion.h1
+          initial="hidden"
+          animate="show"
+          className="mt-8 max-w-4xl text-[clamp(2.8rem,6.2vw,5.5rem)] font-semibold tracking-[-0.035em] text-ink"
+        >
+          <Line i={0}>You bring the ambition.</Line>
+          <Line i={1}>
+            We build the{" "}
+            <span className="text-accent font-semibold">
+              system
+            </span>{" "}
+            to scale it.
+          </Line>
+        </motion.h1>
 
-              {/* Minimalist interactive hint */}
-              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-2 rounded-full border border-line bg-void/80 px-3.5 py-1 backdrop-blur-md">
-                <span className="size-1.5 rounded-full bg-accent" />
-                <span className="font-mono text-[0.68rem] tracking-wider uppercase text-faint">
-                  Drag to rotate
-                </span>
-              </div>
+        {/* Subtitle */}
+        <Reveal delay={0.12}>
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted font-normal md:text-xl">
+            {hero.body}
+          </p>
+        </Reveal>
+
+        {/* Action Buttons */}
+        <Reveal delay={0.18}>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Magnetic>
+              <Button href={hero.primaryCta.href} size="lg" className="shine px-8 py-4 text-base font-medium">
+                {hero.primaryCta.label}
+                <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </Button>
+            </Magnetic>
+            <a
+              href={hero.secondaryCta.href}
+              data-hover="link"
+              className="group inline-flex items-center gap-2 text-base font-medium text-ink/90 transition-colors hover:text-ink px-4 py-3"
+            >
+              <span className="link-underline">{hero.secondaryCta.label}</span>
+              <ArrowUpRight className="size-4 text-accent transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+          </div>
+        </Reveal>
+
+        {/* Vertical 3D Logo Stage (Positioned Directly Below Text) */}
+        <Reveal delay={0.24} y={30} className="w-full mt-12 md:mt-16">
+          <div className="relative mx-auto aspect-square w-full max-w-[22rem] sm:max-w-[26rem] md:max-w-[30rem]">
+            <div className="relative size-full touch-none select-none">
+              <HeroLogo3D />
             </div>
-          </Reveal>
-        </div>
-      </motion.div>
+          </div>
+        </Reveal>
 
-      {/* Bottom Editorial Stats Bar */}
-      <div className="relative mt-auto border-t border-line">
-        <div className="shell">
-          <dl className="grid grid-cols-2 items-stretch md:grid-cols-[auto_repeat(4,1fr)]">
-            <div className="col-span-2 hidden items-center gap-3 py-6 pr-8 md:col-span-1 md:flex border-r border-line">
-              <MoveDown className="size-4 text-accent animate-bounce" />
-              <span className="font-mono text-xs tracking-wider uppercase text-faint">
-                Scroll to explore
+        {/* Image 2 Inspired Luxury Badges Bar (Replacing standard table grid) */}
+        <Reveal delay={0.3} className="w-full mt-16">
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+            <div className="luxury-badge">
+              <span className="luxury-badge__icon">
+                <Rocket className="size-4.5" />
               </span>
+              <span className="luxury-badge__pill">72h Prototype Sprint</span>
             </div>
-            {stats.map((stat, i) => (
-              <Reveal
-                key={stat.label}
-                delay={i * 0.05}
-                className="flex flex-col gap-1 py-6 md:pl-8 border-r border-line last:border-r-0"
-              >
-                <dd className="numeral text-3xl font-semibold text-ink md:text-4xl">
-                  <CountUp value={stat.value} />
-                </dd>
-                <dt className="text-sm text-muted">{stat.label}</dt>
-              </Reveal>
-            ))}
-          </dl>
-        </div>
-      </div>
+
+            <div className="luxury-badge">
+              <span className="luxury-badge__icon">
+                <ShieldCheck className="size-4.5" />
+              </span>
+              <span className="luxury-badge__pill">100% Code & IP Ownership</span>
+            </div>
+
+            <div className="luxury-badge">
+              <span className="luxury-badge__icon">
+                <TrendingUp className="size-4.5" />
+              </span>
+              <span className="luxury-badge__pill">€10M+ Revenue Pipeline</span>
+            </div>
+
+            <div className="luxury-badge">
+              <span className="luxury-badge__icon">
+                <Layers className="size-4.5" />
+              </span>
+              <span className="luxury-badge__pill">07 Products Shipped</span>
+            </div>
+          </div>
+        </Reveal>
+      </motion.div>
     </section>
   );
 }

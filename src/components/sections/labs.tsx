@@ -8,36 +8,37 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { labs } from "@/lib/content";
 import type { Lab } from "@/lib/content";
-import { Check } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function LabCard({ lab }: { lab: Lab }) {
   const Icon = lab.icon;
   return (
-    <article className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-surface/80 p-8 md:p-10 backdrop-blur-xl transition-all duration-300 hover:border-accent/40">
+    <article className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-line/80 bg-surface/80 p-8 backdrop-blur-xl transition-all duration-300 hover:border-accent/40 md:p-10">
       <div className="relative flex items-start justify-between gap-4">
-        <span className="inline-flex size-14 items-center justify-center rounded-2xl border border-line bg-white/[0.04] text-accent shadow-sm">
-          <Icon className="size-7" />
-        </span>
-        <span className="font-mono text-xs font-medium text-ink/90 border border-line bg-white/[0.03] px-3.5 py-1 rounded-full">
-          {lab.stage}
-        </span>
+        {/* Image 2 Luxury Badge */}
+        <div className="luxury-badge">
+          <span className="luxury-badge__icon">
+            <Icon className="size-4.5" />
+          </span>
+          <span className="luxury-badge__pill">
+            {lab.stage}
+          </span>
+        </div>
       </div>
 
-      <h3 className="relative mt-8 font-display text-2xl font-medium text-ink md:text-3xl">
+      <h3 className="relative mt-8 font-display text-2xl font-semibold text-ink sm:text-3xl">
         {lab.name}
       </h3>
-      <p className="relative mt-3 text-base leading-relaxed text-muted">
+      <p className="relative mt-3 text-base leading-relaxed text-muted font-normal">
         {lab.summary}
       </p>
 
       <ul className="relative mt-6 grid gap-3">
         {lab.audience.map((point) => (
-          <li key={point} className="flex items-start gap-3 text-sm text-ink/85">
-            <span className="mt-1 flex size-4 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
-              <Check className="size-2.5" strokeWidth={3} />
-            </span>
+          <li key={point} className="flex items-start gap-3 text-sm text-ink/85 font-normal">
+            <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-accent" />
             <span>{point}</span>
           </li>
         ))}
@@ -49,7 +50,7 @@ function LabCard({ lab }: { lab: Lab }) {
           <span className="font-mono text-xs text-accent uppercase tracking-wider font-medium">
             Free Entry Point
           </span>
-          <span className="font-mono text-xs font-semibold text-ink px-3 py-1 rounded-full border border-accent/30 bg-accent/5">
+          <span className="font-mono text-xs font-medium text-ink px-3 py-1 rounded-full border border-accent/30 bg-accent/10">
             {lab.entry}
           </span>
         </div>
@@ -142,7 +143,7 @@ export function Labs() {
       title={
         <>
           Start from where you stand.{" "}
-          <span className="font-serif italic font-normal text-accent">Enter the Lab built for it.</span>
+          <span className="text-accent font-semibold">Enter the Lab built for it.</span>
         </>
       }
       description="Every founder arrives with a specific bottleneck. Each Lab converts your stage into leverage — with a free entry point, so we prove fit before any commitment."
@@ -153,7 +154,7 @@ export function Labs() {
     <section
       id="labs"
       ref={root}
-      className="relative scroll-mt-24 border-t border-line py-20 md:py-28"
+      className="relative scroll-mt-24 border-t border-line/60 py-20 md:py-32"
       style={
         mode === "deck"
           ? { height: `${(n - 1) * 90 + 116}vh` }
@@ -163,7 +164,6 @@ export function Labs() {
       {mode === "deck" ? (
         <div className="sticky top-0 flex h-screen items-center overflow-hidden py-16">
           <div className="shell grid w-full items-center gap-12 lg:grid-cols-[0.85fr_1.15fr]">
-            {/* Left Readout */}
             <div>
               {heading}
 
@@ -182,7 +182,7 @@ export function Labs() {
                 <div className="flex flex-col justify-center">
                   <span
                     ref={nameRef}
-                    className="font-display text-2xl font-medium text-ink"
+                    className="font-display text-2xl font-semibold text-ink"
                   >
                     {labs[0].name}
                   </span>
@@ -193,7 +193,6 @@ export function Labs() {
               </div>
             </div>
 
-            {/* Right Deck */}
             <div className="relative h-[34rem] [perspective:1600px]">
               {labs.map((lab) => (
                 <div

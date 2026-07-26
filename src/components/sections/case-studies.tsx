@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { ArrowUpRight, MoveRight, Sparkles } from "lucide-react";
+import { ArrowUpRight, MoveRight, Sparkles, CheckCircle2 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Tilt } from "@/components/motion/tilt";
 import { caseStudies } from "@/lib/content";
@@ -15,32 +15,34 @@ gsap.registerPlugin(ScrollTrigger);
 function StudyCard({ item }: { item: CaseStudy }) {
   return (
     <Tilt className="h-full">
-      <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-surface/80 p-8 backdrop-blur-xl transition-all duration-300 hover:border-accent/40 hover:bg-surface">
-        <div className="relative flex items-center justify-between gap-3">
-          <span className="font-mono text-xs font-medium text-accent uppercase tracking-wider">{item.category}</span>
-          {item.featured && (
-            <span className="inline-flex items-center gap-1 rounded-full bg-accent/15 px-2.5 py-0.5 font-mono text-[0.68rem] text-accent">
-              <Sparkles className="size-3" /> Flagship
+      <article className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-line/80 bg-surface/80 p-8 backdrop-blur-xl transition-all duration-300 hover:border-accent/40 hover:bg-surface">
+        <div>
+          <div className="luxury-badge mb-4">
+            <span className="luxury-badge__icon">
+              <CheckCircle2 className="size-4" />
             </span>
-          )}
+            <span className="luxury-badge__pill text-xs">
+              {item.category}
+            </span>
+          </div>
+
+          <h3 className="font-display text-2xl font-semibold text-ink sm:text-3xl transition-colors group-hover:text-accent">
+            {item.name}
+          </h3>
+          <p className="mt-4 text-base leading-relaxed text-muted font-normal">
+            {item.summary}
+          </p>
+
+          <div className="mt-6 flex flex-wrap gap-2">
+            {item.tags.map((tag) => (
+              <span key={tag} className="font-mono text-xs border border-line/80 bg-white/[0.02] px-3 py-1 rounded-full text-muted">
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
 
-        <h3 className="relative mt-6 font-display text-2xl font-medium text-ink md:text-3xl transition-colors group-hover:text-accent">
-          {item.name}
-        </h3>
-        <p className="relative mt-4 flex-1 text-base leading-relaxed text-muted">
-          {item.summary}
-        </p>
-
-        <div className="relative mt-6 flex flex-wrap gap-2">
-          {item.tags.map((tag) => (
-            <span key={tag} className="font-mono text-xs border border-line bg-white/[0.02] px-2.5 py-1 rounded-full text-muted">
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div className="relative mt-8 flex items-end justify-between gap-4 border-t border-line/60 pt-6">
+        <div className="mt-8 flex items-end justify-between gap-4 border-t border-line/60 pt-6">
           <div>
             <div className="numeral text-2xl font-semibold text-ink">{item.metric.value}</div>
             <div className="mt-1 font-mono text-xs text-faint uppercase tracking-wider">{item.metric.label}</div>
@@ -49,7 +51,7 @@ function StudyCard({ item }: { item: CaseStudy }) {
             href="#work"
             data-hover="link"
             aria-label={`Read the ${item.name} case study`}
-            className="inline-flex size-10 items-center justify-center rounded-full border border-line bg-white/[0.03] text-muted transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-void"
+            className="inline-flex size-10 items-center justify-center rounded-full border border-line bg-white/[0.03] text-muted transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-white"
           >
             <ArrowUpRight className="size-4" />
           </a>
@@ -116,7 +118,7 @@ export function CaseStudies() {
       title={
         <>
           An index of{" "}
-          <span className="font-serif italic font-normal text-accent">shipped systems.</span>
+          <span className="text-accent font-semibold">shipped systems.</span>
         </>
       }
       description="Not promises — production systems founders and users rely on every day. Scroll sideways through our shipped index."
@@ -138,7 +140,7 @@ export function CaseStudies() {
     <section
       id="work"
       ref={root}
-      className="relative scroll-mt-24 border-t border-line py-20 md:py-28"
+      className="relative scroll-mt-24 border-t border-line/60 py-20 md:py-32"
     >
       {mode === "scroll" ? (
         <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden py-16">
