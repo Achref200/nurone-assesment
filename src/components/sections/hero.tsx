@@ -40,7 +40,6 @@ const lineVariant = {
   }),
 };
 
-/** One masked headline line that rises into view. */
 function Line({ i, children }: { i: number; children: React.ReactNode }) {
   return (
     <span className="block overflow-hidden">
@@ -55,7 +54,6 @@ function Line({ i, children }: { i: number; children: React.ReactNode }) {
   );
 }
 
-/** Floating glass spec chip anchored around the 3D mark. */
 function SpecChip({
   className,
   k,
@@ -71,24 +69,23 @@ function SpecChip({
 }) {
   return (
     <div
-      className={`glass-strong ${float} absolute z-20 hidden items-center gap-2.5 rounded-full px-3.5 py-2 md:flex ${className}`}
+      className={`glass-strong ${float} absolute z-20 hidden items-center gap-2.5 rounded-full border border-line-strong px-4 py-2 shadow-2xl backdrop-blur-xl md:flex ${className}`}
       style={{ animationDelay: `${delay}s` }}
     >
-      <span className="size-1.5 rounded-full bg-accent shadow-[0_0_10px_2px_var(--accent-glow)]" />
-      <span className="numeral text-sm text-ink">{v}</span>
-      <span className="overline text-faint">{k}</span>
+      <span className="size-2 rounded-full bg-accent shadow-[0_0_10px_2px_var(--accent-glow)]" />
+      <span className="numeral text-sm font-semibold text-ink">{v}</span>
+      <span className="overline text-[0.65rem] text-muted">{k}</span>
     </div>
   );
 }
 
-/** Live "build feed" streamed inside the console card. */
 const feed = [
   "N—OS kernel · online",
   "surface scan · complete",
   "architecture · provisioning",
   "ai agents · 12 active",
   "prototype · ready in 72h",
-  "ownership · transferred",
+  "ownership · 100% transferred",
 ];
 
 export function Hero() {
@@ -110,44 +107,42 @@ export function Hero() {
       ref={ref}
       className="relative flex min-h-[100svh] flex-col overflow-hidden pt-28 md:pt-32"
     >
-      {/* ---- Ambient background stack (scroll-parallaxed) ---- */}
+      {/* Background ambient lighting */}
       <motion.div
         aria-hidden
         className="absolute inset-0 -z-10"
         style={reduce ? undefined : { y: bgY, scale: bgScale }}
       >
         <SignalField />
-        {/* drifting aurora orbs */}
         <span
-          className="orb h-[34rem] w-[34rem] bg-[radial-gradient(circle,rgba(85,123,255,0.5),transparent_65%)]"
-          style={{ top: "-8rem", right: "-6rem" }}
+          className="orb h-[36rem] w-[36rem] bg-[radial-gradient(circle,rgba(85,123,255,0.45),transparent_65%)]"
+          style={{ top: "-6rem", right: "-4rem" }}
         />
         <span
-          className="orb h-[26rem] w-[26rem] bg-[radial-gradient(circle,rgba(165,180,252,0.28),transparent_65%)]"
-          style={{ bottom: "2rem", left: "-8rem", animationDelay: "-8s" }}
+          className="orb h-[30rem] w-[30rem] bg-[radial-gradient(circle,rgba(165,180,252,0.25),transparent_65%)]"
+          style={{ bottom: "0rem", left: "-6rem", animationDelay: "-7s" }}
         />
-        {/* perspective floor grid */}
-        <div className="floor-grid absolute inset-x-0 bottom-0 h-[42%]" />
+        <div className="floor-grid absolute inset-x-0 bottom-0 h-[45%]" />
       </motion.div>
 
-      {/* ---- HUD frame — corner brackets + telemetry (desktop) ---- */}
+      {/* Tech Telemetry HUD Header frame (desktop) */}
       <div aria-hidden className="pointer-events-none absolute inset-0 hidden md:block">
         <div className="shell relative h-full py-6">
-          <span className="absolute left-0 top-6 size-5 border-l-2 border-t-2 border-line-strong/70" />
-          <span className="absolute right-0 top-6 size-5 border-r-2 border-t-2 border-line-strong/70" />
-          <span className="absolute bottom-6 left-0 size-5 border-b-2 border-l-2 border-line-strong/70" />
-          <span className="absolute bottom-6 right-0 size-5 border-b-2 border-r-2 border-line-strong/70" />
-          <span className="absolute left-8 top-4 overline text-faint/80">
-            N—OS · v2.4
+          <span className="absolute left-0 top-6 size-5 border-l-2 border-t-2 border-line-strong/80" />
+          <span className="absolute right-0 top-6 size-5 border-r-2 border-t-2 border-line-strong/80" />
+          <span className="absolute bottom-6 left-0 size-5 border-b-2 border-l-2 border-line-strong/80" />
+          <span className="absolute bottom-6 right-0 size-5 border-b-2 border-r-2 border-line-strong/80" />
+          <span className="absolute left-8 top-4 overline text-faint">
+            N—OS · CORE SYSTEM v2.4
           </span>
-          <span className="absolute right-8 top-4 inline-flex items-center gap-2 overline text-faint/80">
+          <span className="absolute right-8 top-4 inline-flex items-center gap-2 overline text-faint">
             <span className="size-1.5 rounded-full bg-accent pulse-soft" />
-            system · operational
+            OPERATIONAL STACK
           </span>
         </div>
       </div>
 
-      {/* ---- Main content ---- */}
+      {/* Hero content */}
       <motion.div
         className="shell relative flex flex-1 items-center py-8 lg:py-10"
         style={reduce ? undefined : { y: contentY, opacity: contentOpacity }}
@@ -156,9 +151,9 @@ export function Hero() {
           {/* Copy */}
           <div className="lg:col-span-6">
             <Reveal>
-              <div className="inline-flex items-center gap-2.5 rounded-full border border-line bg-white/[0.03] py-1.5 pl-2.5 pr-4 backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2.5 rounded-full border border-line bg-white/[0.04] py-1.5 pl-3 pr-4 shadow-lg backdrop-blur-md">
                 <span className="relative flex size-2">
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent/60" />
+                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent/70" />
                   <span className="relative inline-flex size-2 rounded-full bg-accent" />
                 </span>
                 <TextScramble
@@ -173,16 +168,26 @@ export function Hero() {
               animate="show"
               className="mt-7 text-[clamp(2.5rem,5.4vw,4.9rem)] font-semibold leading-[1.0] tracking-[-0.045em] text-ink"
             >
-              <Line i={0}>You bring the ambition.</Line>
+              <Line i={0}>
+                You bring{" "}
+                <span className="font-serif italic text-accent font-normal">
+                  the ambition
+                </span>
+                .
+              </Line>
               <Line i={1}>
                 We build the{" "}
-                <span className="text-shimmer italic">system</span>
+                <span className="text-shimmer font-serif italic font-normal">
+                  system
+                </span>
               </Line>
               <Line i={2}>to scale it.</Line>
             </motion.h1>
 
             <Reveal delay={0.12}>
-              <p className="mt-7 max-w-xl text-fluid text-muted">{hero.body}</p>
+              <p className="mt-7 max-w-xl text-fluid leading-relaxed text-muted">
+                {hero.body}
+              </p>
             </Reveal>
 
             <Reveal delay={0.18}>
@@ -218,12 +223,9 @@ export function Hero() {
               className="relative mx-auto aspect-square w-full max-w-[24rem] sm:max-w-[28rem] lg:max-w-[36rem]"
               style={reduce ? undefined : { y: modelY }}
             >
-              {/* rotating reactor beam */}
               <div aria-hidden className="beam absolute inset-0 -z-10" />
-              {/* radial spotlight */}
               <div aria-hidden className="glow absolute inset-8 -z-10 opacity-80" />
 
-              {/* orbital rings — counter-rotating for depth */}
               <svg
                 aria-hidden
                 viewBox="0 0 100 100"
@@ -261,38 +263,36 @@ export function Hero() {
                 <HeroLogo3D />
               </div>
 
-              {/* floating spec chips */}
               <SpecChip
                 className="-left-2 top-10"
                 v="72h"
-                k="first build"
+                k="first sprint"
                 float="float-slow"
               />
               <SpecChip
                 className="-right-2 top-[28%]"
                 v="100%"
-                k="ownership"
+                k="code ownership"
                 float="float-slower"
                 delay={1}
               />
 
-              {/* live console card */}
-              <div className="glass-strong float-slowest absolute -bottom-3 -right-2 hidden w-52 overflow-hidden rounded-2xl p-3 lg:block">
+              <div className="glass-strong float-slowest absolute -bottom-3 -right-2 hidden w-56 overflow-hidden rounded-2xl p-3.5 border border-line-strong shadow-2xl backdrop-blur-xl lg:block">
                 <div className="flex items-center gap-1.5">
                   <span className="win-dot" />
                   <span className="win-dot" />
                   <span className="win-dot" />
-                  <span className="ml-auto inline-flex items-center gap-1.5 overline text-faint/80">
+                  <span className="ml-auto inline-flex items-center gap-1.5 overline text-faint">
                     <span className="size-1.5 rounded-full bg-success pulse-soft" />
-                    live
+                    live telemetry
                   </span>
                 </div>
-                <div className="mt-2 h-[4.5rem] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_28%,black_72%,transparent)]">
+                <div className="mt-2.5 h-[4.8rem] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_28%,black_72%,transparent)]">
                   <ul className="ticker-up space-y-1.5">
                     {[...feed, ...feed].map((line, i) => (
                       <li
                         key={i}
-                        className="flex items-center gap-2 font-mono text-[0.62rem] text-muted"
+                        className="flex items-center gap-2 font-mono text-[0.64rem] text-muted"
                       >
                         <span className="size-1 shrink-0 rounded-full bg-accent" />
                         {line}
@@ -302,17 +302,16 @@ export function Hero() {
                 </div>
               </div>
 
-              {/* drag hint */}
               <div className="absolute bottom-1 left-1 flex items-center gap-2 md:bottom-2 md:left-2">
                 <span className="size-1.5 rounded-full bg-accent" />
-                <span className="overline text-faint">Drag to rotate</span>
+                <span className="overline text-faint">Drag to rotate 3D mark</span>
               </div>
             </motion.div>
           </Reveal>
         </div>
       </motion.div>
 
-      {/* ---- Bottom telemetry bar — stats + scroll cue ---- */}
+      {/* Bottom stats bar */}
       <div className="relative mt-auto">
         <div aria-hidden className="rule-accent" />
         <div className="shell">
@@ -327,7 +326,7 @@ export function Hero() {
                 delay={i * 0.06}
                 className="flex flex-col gap-1 py-5 md:border-l md:border-line md:pl-6"
               >
-                <dd className="numeral text-3xl text-ink md:text-[2.25rem]">
+                <dd className="numeral text-3xl font-semibold text-ink md:text-[2.25rem]">
                   <CountUp value={stat.value} />
                 </dd>
                 <dt className="text-sm text-muted">{stat.label}</dt>

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { testimonials } from "@/lib/content";
 
@@ -13,7 +13,6 @@ export function Testimonials() {
 
   const go = (dir: number) => setIndex((i) => (i + dir + count) % count);
 
-  // Auto-advance, paused on hover / focus. Disabled under reduced motion.
   useEffect(() => {
     if (paused) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -27,18 +26,18 @@ export function Testimonials() {
     <section id="voices" className="scroll-mt-24 border-t border-line py-20 md:py-28">
       <div className="shell">
         <SectionHeading
-          eyebrow="What founders say"
+          eyebrow="What Founders Say"
           index="05"
           title={
             <>
               Not promises.{" "}
-              <em className="italic text-muted">Words from people who shipped.</em>
+              <span className="font-serif italic text-accent font-normal">Words from founders who shipped.</span>
             </>
           }
         />
 
         <div
-          className="glass-panel relative mt-14 overflow-hidden rounded-4xl p-8 md:p-12"
+          className="glass-panel relative mt-14 overflow-hidden rounded-4xl border border-line-strong p-8 backdrop-blur-2xl shadow-2xl md:p-12"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           onFocusCapture={() => setPaused(true)}
@@ -49,11 +48,16 @@ export function Testimonials() {
             className="glow right-[-4rem] top-[-4rem] h-[18rem] w-[18rem] opacity-50"
           />
 
-          <span aria-hidden className="relative font-display text-6xl leading-none text-accent">
-            &ldquo;
-          </span>
+          <div className="flex items-center justify-between pb-6">
+            <span className="inline-flex size-12 items-center justify-center rounded-2xl border border-line bg-white/[0.04] text-accent">
+              <Quote className="size-6" />
+            </span>
+            <span className="overline text-faint">
+              Founder Proof · {index + 1} of {count}
+            </span>
+          </div>
 
-          <div className="relative min-h-[13rem] md:min-h-[10rem]">
+          <div className="relative min-h-[14rem] md:min-h-[11rem]">
             <AnimatePresence mode="wait">
               <motion.figure
                 key={index}
@@ -62,15 +66,15 @@ export function Testimonials() {
                 exit={{ opacity: 0, y: -16 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               >
-                <blockquote className="max-w-3xl font-display text-2xl leading-[1.35] text-ink md:text-[1.9rem]">
-                  {active.quote}
+                <blockquote className="max-w-3xl font-display text-xl leading-[1.4] text-ink md:text-[1.85rem]">
+                  &ldquo;{active.quote}&rdquo;
                 </blockquote>
                 <figcaption className="mt-8 flex items-center gap-3">
-                  <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-line bg-white/[0.03] font-display text-sm text-ink">
+                  <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-line-strong bg-white/[0.05] font-display text-sm font-semibold text-accent shadow-inner">
                     {active.initials}
                   </span>
                   <span className="flex flex-col">
-                    <span className="text-sm font-medium text-ink">{active.name}</span>
+                    <span className="text-sm font-semibold text-ink">{active.name}</span>
                     <span className="text-xs text-muted">{active.role}</span>
                   </span>
                 </figcaption>
@@ -78,8 +82,7 @@ export function Testimonials() {
             </AnimatePresence>
           </div>
 
-          {/* Minimal controls */}
-          <div className="relative mt-10 flex items-center justify-between border-t border-line pt-6">
+          <div className="relative mt-10 flex items-center justify-between border-t border-line/60 pt-6">
             <span className="numeral text-sm text-faint">
               {String(index + 1).padStart(2, "0")}{" "}
               <span className="text-faint/60">/ {String(count).padStart(2, "0")}</span>
@@ -105,7 +108,7 @@ export function Testimonials() {
                   type="button"
                   aria-label="Previous testimonial"
                   onClick={() => go(-1)}
-                  className="inline-flex size-10 items-center justify-center rounded-full border border-line text-muted transition-colors hover:border-accent/40 hover:text-accent"
+                  className="inline-flex size-10 items-center justify-center rounded-full border border-line bg-white/[0.03] text-muted transition-colors hover:border-accent/40 hover:text-accent"
                 >
                   <ArrowLeft className="size-4" />
                 </button>
@@ -113,7 +116,7 @@ export function Testimonials() {
                   type="button"
                   aria-label="Next testimonial"
                   onClick={() => go(1)}
-                  className="inline-flex size-10 items-center justify-center rounded-full border border-line text-muted transition-colors hover:border-accent/40 hover:text-accent"
+                  className="inline-flex size-10 items-center justify-center rounded-full border border-line bg-white/[0.03] text-muted transition-colors hover:border-accent/40 hover:text-accent"
                 >
                   <ArrowRight className="size-4" />
                 </button>

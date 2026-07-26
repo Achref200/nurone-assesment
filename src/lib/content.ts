@@ -1,22 +1,20 @@
-import type { LucideIcon } from "lucide-react";
+import type { ComponentType, SVGProps } from "react";
 import {
-  Blocks,
-  BotMessageSquare,
-  TrendingUp,
-  Boxes,
-  Gauge,
-  Workflow,
-  Rocket,
-  ScanSearch,
-  Route,
-  Radar,
-  ShieldCheck,
-  DoorOpen,
-} from "lucide-react";
+  TechBackboneIcon,
+  AgenticOpsIcon,
+  GrowthInfraIcon,
+  LabFoundationIcon,
+  LabScaleIcon,
+  LabOpsIcon,
+  LabGrowthIcon,
+  ProcessScanIcon,
+  ProcessRouteIcon,
+  ProcessBoxesIcon,
+  ProcessShieldIcon,
+  ProcessDoorIcon,
+} from "@/components/ui/custom-icons";
 
-/* -------------------------------------------------------------------------- */
-/*  Site-wide constants                                                        */
-/* -------------------------------------------------------------------------- */
+export type CustomIconType = ComponentType<SVGProps<SVGSVGElement>>;
 
 export const siteConfig = {
   name: "NURONE",
@@ -34,10 +32,6 @@ export const navLinks = [
   { label: "FAQ", href: "#faq" },
 ] as const;
 
-/* -------------------------------------------------------------------------- */
-/*  Hero                                                                       */
-/* -------------------------------------------------------------------------- */
-
 export const hero = {
   eyebrow: "AI-Powered Tech & Growth Lab",
   titleLead: "You bring the ambition.",
@@ -48,15 +42,13 @@ export const hero = {
   secondaryCta: { label: "Explore the Lab System", href: "#labs" },
 } as const;
 
-/* -------------------------------------------------------------------------- */
-/*  Pillars                                                                    */
-/* -------------------------------------------------------------------------- */
-
 export type Pillar = {
   id: string;
   title: string;
   description: string;
-  icon: LucideIcon;
+  metric: string;
+  metricLabel: string;
+  icon: CustomIconType;
 };
 
 export const pillars: Pillar[] = [
@@ -64,41 +56,39 @@ export const pillars: Pillar[] = [
     id: "technical-backbone",
     title: "Technical Backbone",
     description:
-      "We build and rebuild products with the architecture, code quality, and delivery discipline needed to scale — and hand you code you fully own.",
-    icon: Blocks,
+      "We build and rebuild products with the architecture, code quality, and delivery discipline needed to scale — handing you production code you 100% own.",
+    metric: "72h",
+    metricLabel: "First Prototype Sprint",
+    icon: TechBackboneIcon,
   },
   {
     id: "agentic-operations",
     title: "Agentic Operations",
     description:
-      "We combine AI systems, automations, and expert operators to remove bottlenecks and accelerate execution across your entire workflow.",
-    icon: BotMessageSquare,
+      "We combine AI systems, autonomous agents, and expert human operators to eliminate internal bottlenecks and accelerate execution across your entire workflow.",
+    metric: "100%",
+    metricLabel: "Code Ownership & IP",
+    icon: AgenticOpsIcon,
   },
   {
     id: "growth-infrastructure",
     title: "Growth Infrastructure",
     description:
-      "We turn positioning, outbound, inbound, and ads into repeatable systems for leads, pipeline, and revenue — not vanity metrics.",
-    icon: TrendingUp,
+      "We turn positioning, outbound, inbound, and ads into repeatable engines for qualified leads, pipeline, and actual revenue — never vanity metrics.",
+    metric: "€10M+",
+    metricLabel: "Tracked Revenue Pipeline",
+    icon: GrowthInfraIcon,
   },
 ];
-
-/* -------------------------------------------------------------------------- */
-/*  Stats                                                                      */
-/* -------------------------------------------------------------------------- */
 
 export type Stat = { value: string; label: string };
 
 export const stats: Stat[] = [
   { value: "72h", label: "Prototype Sprint" },
-  { value: "100%", label: "Tracked Execution" },
+  { value: "100%", label: "Code & IP Ownership" },
   { value: "€10M+", label: "Revenue Pipeline" },
   { value: "07", label: "Products Shipped" },
 ];
-
-/* -------------------------------------------------------------------------- */
-/*  The Lab System                                                             */
-/* -------------------------------------------------------------------------- */
 
 export type Lab = {
   id: string;
@@ -108,7 +98,7 @@ export type Lab = {
   summary: string;
   audience: string[];
   entry: string;
-  icon: LucideIcon;
+  icon: CustomIconType;
 };
 
 export const labs: Lab[] = [
@@ -118,14 +108,14 @@ export const labs: Lab[] = [
     name: "Foundation Lab",
     stage: "Idea → First Serious Product",
     summary:
-      "We turn raw ambition and fragile MVPs into a first serious product foundation: clear scope, clean flows, real architecture, and launch-ready logic.",
+      "We turn raw ambition and fragile MVPs into a first serious product foundation: clear scope, clean flows, production architecture, and launch-ready logic.",
     audience: [
-      "You have an idea, expertise, or market insight",
+      "You have an idea, domain expertise, or market insight",
       "You built a rough prototype, no-code app, or vibe-coded MVP",
       "You need real foundations before showing users or investors",
     ],
     entry: "72h Prototype Sprint or Free MVP Review",
-    icon: Rocket,
+    icon: LabFoundationIcon,
   },
   {
     id: "scale",
@@ -133,14 +123,14 @@ export const labs: Lab[] = [
     name: "Scale Lab",
     stage: "Traction → Built to Grow",
     summary:
-      "For products slowing under growth. We add stronger architecture, AI features, automation, and fractional CTO execution so the system keeps up with demand.",
+      "For products slowing under growth. We add resilient architecture, AI capabilities, automation, and fractional CTO execution so your system keeps up with demand.",
     audience: [
-      "You have users, revenue, or real traction",
-      "The product is slowing down under growth",
-      "You need architecture, AI, automation, or a fractional CTO",
+      "You have active users, revenue, or real market traction",
+      "The product is slowing down or accumulating tech debt under growth",
+      "You need scalable architecture, AI integration, or a fractional CTO",
     ],
     entry: "Free Scale Diagnosis",
-    icon: Gauge,
+    icon: LabScaleIcon,
   },
   {
     id: "operations",
@@ -148,14 +138,14 @@ export const labs: Lab[] = [
     name: "Operations Lab",
     stage: "Chaos → Operating System",
     summary:
-      "We replace tool sprawl and manual work with internal tools, automations, dashboards, and AI agents built around your real process — not a template.",
+      "We replace tool sprawl and manual grunt work with internal tools, automations, real-time dashboards, and custom AI agents built around your real process.",
     audience: [
-      "You pay for too many tools that still don't fit",
-      "You run workflows manually across spreadsheets, CRMs, and docs",
-      "You need internal tools, automations, dashboards, or AI agents",
+      "You pay for dozens of tools that still don't fit your workflow",
+      "You run operations manually across spreadsheets, CRMs, and docs",
+      "You need internal tools, custom automations, or AI agents",
     ],
     entry: "Free Workflow Prototype",
-    icon: Workflow,
+    icon: LabOpsIcon,
   },
   {
     id: "growth",
@@ -163,20 +153,16 @@ export const labs: Lab[] = [
     name: "Growth Lab",
     stage: "Product → Pipeline & Revenue",
     summary:
-      "We turn something worth selling into qualified leads, pipeline, and revenue with GTM execution — not generic retainers or vanity metrics.",
+      "We turn something worth selling into qualified leads, predictable pipeline, and recurring revenue with hands-on GTM execution — not generic agency retainers.",
     audience: [
-      "You have something worth selling or scaling",
-      "You need qualified leads, pipeline, revenue, or momentum",
-      "You want GTM execution without generic marketing retainers",
+      "You have a product worth selling or scaling further",
+      "You need qualified leads, pipeline, revenue, and market momentum",
+      "You want sharp GTM execution without generic marketing retainers",
     ],
     entry: "Free GTM Plan for selected businesses",
-    icon: Radar,
+    icon: LabGrowthIcon,
   },
 ];
-
-/* -------------------------------------------------------------------------- */
-/*  Case studies                                                               */
-/* -------------------------------------------------------------------------- */
 
 export type CaseStudy = {
   id: string;
@@ -186,6 +172,7 @@ export type CaseStudy = {
   summary: string;
   tags: string[];
   metric: { value: string; label: string };
+  featured?: boolean;
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -195,9 +182,10 @@ export const caseStudies: CaseStudy[] = [
     name: "Trucking88",
     category: "Transportation SaaS",
     summary:
-      "A first AI-built MVP transformed into a production-ready transportation platform with stronger foundations, cleaner UX, and AI-assisted workflows.",
-    tags: ["AI Load Creation", "Web + Mobile", "Real-Time Tracking"],
-    metric: { value: "Web + Mobile", label: "SaaS platform" },
+      "A fragile AI prototype transformed into a production-ready transportation platform with scalable microservices, real-time tracking, and automated dispatch.",
+    tags: ["AI Load Creation", "Web + Mobile App", "Real-Time Tracking"],
+    metric: { value: "Web + Mobile", label: "Production SaaS" },
+    featured: true,
   },
   {
     id: "hirekey",
@@ -205,9 +193,9 @@ export const caseStudies: CaseStudy[] = [
     name: "HireKey",
     category: "AI Career Platform",
     summary:
-      "An AI career platform with resume parsing, ATS scoring, job matching, application tracking, and personalized guidance for graduates and professionals.",
+      "An end-to-end career acceleration system featuring instant ATS resume scoring, smart job matching, and automated candidate positioning.",
     tags: ["ATS Resume Scoring", "Smart Job Matching", "Career Workflow"],
-    metric: { value: "AI ATS", label: "Resume scoring" },
+    metric: { value: "AI ATS", label: "Resume scoring engine" },
   },
   {
     id: "mediform",
@@ -215,9 +203,10 @@ export const caseStudies: CaseStudy[] = [
     name: "MediForm AI",
     category: "Clinical Documentation",
     summary:
-      "Turns patient conversations into structured SOAP notes with speech recognition, medical NLP, confidence scoring, human review, and EHR-ready workflows.",
+      "Transforms doctor-patient dialogues into structured SOAP notes with speech recognition, medical NLP, confidence scoring, and EHR integration.",
     tags: ["SOAP AI Notes", "Medical NLP", "EHR Ready"],
-    metric: { value: "80%", label: "Time reduced" },
+    metric: { value: "80%", label: "Clinical time saved" },
+    featured: true,
   },
   {
     id: "ministry-legal-ai",
@@ -225,9 +214,9 @@ export const caseStudies: CaseStudy[] = [
     name: "Ministry of Higher Education",
     category: "Public-Sector Legal AI",
     summary:
-      "AI legal advisory built on document intelligence, RAG-based legal search, and Arabic / French NLP to modernize public-sector legal workflows.",
-    tags: ["RAG Legal Search", "AI Document Review", "AR / FR NLP"],
-    metric: { value: "AR / FR", label: "Legal NLP" },
+      "Enterprise legal advisory platform built on document intelligence, RAG-based legal search, and bilingual Arabic/French NLP for public sector operations.",
+    tags: ["RAG Legal Search", "AI Document Review", "Bilingual NLP"],
+    metric: { value: "AR / FR", label: "Bilingual legal NLP" },
   },
   {
     id: "youthschedule",
@@ -235,9 +224,9 @@ export const caseStudies: CaseStudy[] = [
     name: "YouthSchedule",
     category: "Platform Rescue & Rebuild",
     summary:
-      "Extracted from a locked no-code cloud, we migrated and rebuilt 300+ files, reconstructed the database, and moved the platform onto real SaaS infrastructure.",
-    tags: ["300+ Files Migrated", "Rebuilt Schema", "Escaped Lock-in"],
-    metric: { value: "300+", label: "Files migrated" },
+      "Rescued from proprietary vendor lock-in. Migrated and rebuilt 300+ legacy files, reconstructed relational database schemas, and redeployed to custom cloud.",
+    tags: ["300+ Files Migrated", "Rebuilt Schema", "Zero Lock-in"],
+    metric: { value: "300+", label: "Files rescued & rebuilt" },
   },
   {
     id: "sg-solutions",
@@ -245,9 +234,9 @@ export const caseStudies: CaseStudy[] = [
     name: "SG Solutions",
     category: "B2B HR Directory",
     summary:
-      "From founder idea to a B2B HR provider directory with a large database, admin panel, visitor tracking, UTM analytics, and a roadmap toward AI matching.",
+      "From napkin sketch to live B2B directory in 48 hours: comprehensive vendor index, custom admin dashboard, visitor attribution, and AI matching pipeline.",
     tags: ["48h Prototype", "B2B Directory", "AI Matching Roadmap"],
-    metric: { value: "48h", label: "Prototype sprint" },
+    metric: { value: "48h", label: "Rapid prototype sprint" },
   },
   {
     id: "remedy-tax",
@@ -255,21 +244,17 @@ export const caseStudies: CaseStudy[] = [
     name: "Remedy Tax Solutions",
     category: "AI Operating System",
     summary:
-      "A modern AI operating system for tax relief teams — CRM workflows, case management, document intelligence, RAG retrieval, and agentic automation.",
-    tags: ["RAG Case Intelligence", "Workflow Agents", "Tax Ops OS"],
-    metric: { value: "1 OS", label: "For tax operations" },
+      "All-in-one AI operating layer for tax relief firms — automated client onboarding, document intelligence, case RAG search, and compliance workflow agents.",
+    tags: ["RAG Case Search", "Workflow Agents", "Tax Ops OS"],
+    metric: { value: "1 OS", label: "Unified Tax Operations" },
   },
 ];
-
-/* -------------------------------------------------------------------------- */
-/*  Process                                                                    */
-/* -------------------------------------------------------------------------- */
 
 export type ProcessStep = {
   index: string;
   title: string;
   description: string;
-  icon: LucideIcon;
+  icon: CustomIconType;
 };
 
 export const processSteps: ProcessStep[] = [
@@ -277,42 +262,38 @@ export const processSteps: ProcessStep[] = [
     index: "01",
     title: "FitCheck",
     description:
-      "Before we sell anything, we look at your idea, MVP, product, workflow, or growth system. We identify what's real, what's risky, and whether NURONE is the right team to move it forward.",
-    icon: ScanSearch,
+      "Before any commitment, we audit your idea, MVP, codebase, or growth bottlenecks. We identify what's solid, what's fragile, and whether NURONE is the right partner.",
+    icon: ProcessScanIcon,
   },
   {
     index: "02",
     title: "Choose the Right Lab",
     description:
-      "You enter the Lab that matches your current stage. Each path is built for a specific bottleneck — not a generic service package. No wrong team, no wasted motion.",
-    icon: Route,
+      "You enter the exact Lab matching your current stage (Foundation, Scale, Operations, or Growth). Targeted leverage for your specific challenge — zero wasted motion.",
+    icon: ProcessRouteIcon,
   },
   {
     index: "03",
     title: "Build with Visibility",
     description:
-      "Execution runs on a clear weekly rhythm. You see what was done, what's next, what's blocked, who worked on what, and how every hour was used. No black box.",
-    icon: Boxes,
+      "Execution runs on disciplined 1-week sprint cycles. Live dashboard access to commits, active tasks, team assignments, and transparent hour tracking. No black box.",
+    icon: ProcessBoxesIcon,
   },
   {
     index: "04",
     title: "Stay Accountable",
     description:
-      "You own the code, the assets, and the progress. If we underestimate a scoped build, we finish the agreed work. If a talent isn't the right fit, we replace them fast.",
-    icon: ShieldCheck,
+      "You own 100% of the code, IP, and assets. We guarantee agreed deliverables. If a scope detail needs refinement, we stay until it's right. Complete peace of mind.",
+    icon: ProcessShieldIcon,
   },
   {
     index: "05",
     title: "Scale or Exit Cleanly",
     description:
-      "When the stage is complete, you decide what happens next. Continue with the team, scale the system, or leave with everything in hand. No dependency, no messy handoff.",
-    icon: DoorOpen,
+      "When your stage milestone is achieved, you decide next steps: scale into the next Lab stage, transition to internal team, or exit cleanly with full documentation.",
+    icon: ProcessDoorIcon,
   },
 ];
-
-/* -------------------------------------------------------------------------- */
-/*  Testimonials                                                               */
-/* -------------------------------------------------------------------------- */
 
 export type Testimonial = {
   quote: string;
@@ -324,86 +305,78 @@ export type Testimonial = {
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "Job seekers don't just need a resume builder. They need an intelligent system that understands their profile, improves their positioning, and guides them toward the right opportunities.",
+      "Job seekers don't just need a basic resume builder. They need an intelligent system that understands their profile, improves positioning, and guides them toward real opportunities.",
     name: "Nela D.",
     role: "Co-Founder @ HireKey",
     initials: "ND",
   },
   {
     quote:
-      "Clinicians don't need another tool to manage. They need an AI system that listens, structures the clinical story, and gives them back time without losing control.",
+      "Clinicians don't need another admin burden to manage. They need an AI system that listens, structures clinical notes accurately, and gives them back time with patient care.",
     name: "Pablo C.",
     role: "Founder @ MediForm AI",
     initials: "PC",
   },
   {
     quote:
-      "Tax relief isn't just about managing clients. It's deadlines, documents, IRS communication, case strategy, and trust — brought into one intelligent operating layer.",
+      "Tax relief isn't just client notes. It's strict deadlines, IRS documents, case strategy, and trust — all unified into one seamless, agentic operating system.",
     name: "Tomy C.",
     role: "COO @ Remedy Tax Solutions",
     initials: "TC",
   },
   {
     quote:
-      "Legal knowledge is only useful when teams can access it, search it, and act on it quickly. The goal was to turn complex information into institutional intelligence.",
+      "Legal information is only useful when institutional teams can search it, query it, and act on it instantly. NURONE turned complex law into actionable intelligence.",
     name: "Strategic AI Initiative",
     role: "Ministry of Higher Education, Tunisia",
     initials: "AI",
   },
 ];
 
-/* -------------------------------------------------------------------------- */
-/*  FAQ                                                                        */
-/* -------------------------------------------------------------------------- */
-
 export type Faq = { question: string; answer: string };
 
 export const faqs: Faq[] = [
   {
-    question: "Do you work with people who only have an idea?",
+    question: "Do you work with founders who only have an idea?",
     answer:
-      "Yes. The Foundation Lab exists exactly for that stage. If you have an idea, expertise, or market insight, we help you turn it into a real product foundation — often starting with a free 72h prototype or MVP review.",
+      "Yes. The Foundation Lab is designed specifically for this stage. If you have domain expertise or an unbuilt concept, we help turn it into a production foundation — starting with a 72h prototype sprint or MVP review.",
   },
   {
-    question: "Is the 72h prototype really free?",
+    question: "Is the 72h prototype sprint really free?",
     answer:
-      "For selected founders, yes. It's our free entry point — a way to prove we can create real leverage before any commitment on either side.",
+      "For qualified projects, yes. It's our initial entry point — a zero-risk way to demonstrate technical execution and product fit before any long-term commitment.",
   },
   {
     question: "What if I already built an MVP with no-code or freelancers?",
     answer:
-      "That's common. We regularly rescue and rebuild fragile MVPs — migrating code, reconstructing databases, and moving products onto real, scalable infrastructure you fully own.",
+      "That's one of our core specialties. We regularly rescue fragile MVPs — refactoring code, rebuilding database schemas, and migrating products onto production cloud infrastructure you fully own.",
   },
   {
-    question: "Are you a software agency?",
+    question: "Are you a traditional software development agency?",
     answer:
-      "No. We're an AI-augmented operating team. We embed with you, execute against a specific bottleneck, and hand you systems you own — not a generic service retainer.",
+      "No. NURONE is an AI-augmented operating team (engineers, product architects, growth hackers). We embed directly with you to solve specific bottlenecks and deliver owned systems — not endless agency billing.",
   },
   {
-    question: "Do you replace a CTO or work with our existing team?",
+    question: "Do you act as a Fractional CTO or work with our existing engineering team?",
     answer:
-      "Both. We can act as a fractional CTO or plug elite engineers and operators into your existing team, depending on the stage and the bottleneck.",
+      "Both. We can serve as your Fractional CTO to direct tech strategy, or embed elite developers into your team to accelerate product delivery.",
   },
   {
-    question: "Do we own the code and assets?",
+    question: "Do we own 100% of the code and intellectual property?",
     answer:
-      "Always. You own the code, the assets, the systems, and the progress. No lock-in, no black box, no messy handoff.",
+      "Always. You own every line of code, design asset, database schema, and deployment pipeline. Zero vendor lock-in, zero proprietary software dependencies.",
   },
   {
-    question: "Do you work for equity?",
+    question: "Do you offer equity or revenue-share arrangements?",
     answer:
-      "Selectively. For the right founders and stage, we explore equity or hybrid models — but only where we genuinely believe we can win together.",
+      "Selectively. For exceptional founders with validated market pull, we consider hybrid cash/equity structures where our goals align completely.",
   },
   {
     question: "What happens after I request access?",
     answer:
-      "We run a FitCheck. We look at where you stand, identify what's real and what's blocking you, and recommend the right Lab — or tell you honestly if we're not the right team.",
+      "We schedule a 20-minute FitCheck. We evaluate your current product/stage, identify the key bottleneck, and propose the matching Lab path — or point you in the right direction if we're not the ideal fit.",
   },
 ];
-
-/* -------------------------------------------------------------------------- */
-/*  Footer                                                                     */
-/* -------------------------------------------------------------------------- */
 
 export const footerNav = {
   Pages: [

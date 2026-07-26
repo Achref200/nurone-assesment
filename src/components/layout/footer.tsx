@@ -3,7 +3,6 @@ import { Logo } from "@/components/brand/logo";
 import { footerNav, siteConfig } from "@/lib/content";
 import { NewsletterForm } from "./newsletter-form";
 
-/* lucide-react removed brand marks, so socials use inline SVG paths. */
 const socials = [
   {
     label: "LinkedIn",
@@ -29,15 +28,19 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-line bg-void">
+    <footer className="border-t border-line bg-void relative overflow-hidden">
       <div className="shell pb-8 pt-16">
-        <div className="grid gap-12 border-t border-line pt-12 lg:grid-cols-[1.4fr_1fr_1fr_1.4fr]">
-          {/* Brand */}
+        <div className="grid gap-12 border-t border-line/60 pt-12 lg:grid-cols-[1.4fr_1fr_1fr_1.4fr]">
+          {/* Brand Column */}
           <div>
             <Logo />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted">
               {siteConfig.tagline}
             </p>
+            <div className="mt-4 inline-flex items-center gap-2 font-mono text-xs text-accent">
+              <span className="size-2 rounded-full bg-success pulse-soft" />
+              N—OS Studio core operational
+            </div>
             <div className="mt-6 flex items-center gap-2">
               {socials.map((s) => (
                 <a
@@ -47,7 +50,7 @@ export function Footer() {
                   rel="noreferrer"
                   aria-label={s.label}
                   data-hover="link"
-                  className="inline-flex size-9 items-center justify-center rounded-lg border border-line text-muted transition-colors hover:border-accent/40 hover:text-accent"
+                  className="inline-flex size-9 items-center justify-center rounded-xl border border-line bg-white/[0.02] text-muted transition-colors hover:border-accent/40 hover:text-accent"
                 >
                   <svg viewBox="0 0 24 24" fill="currentColor" className="size-4">
                     <path d={s.path} />
@@ -57,7 +60,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Nav columns */}
+          {/* Navigation Columns */}
           {Object.entries(footerNav).map(([heading, links]) => (
             <nav key={heading} aria-label={heading}>
               <h2 className="overline text-faint">{heading}</h2>
@@ -77,21 +80,28 @@ export function Footer() {
             </nav>
           ))}
 
-          {/* Newsletter */}
+          {/* Newsletter Column */}
           <div className="max-w-sm">
-            <NewsletterForm />
+            <h2 className="overline text-faint">Stay Updated</h2>
+            <p className="mt-3 text-xs leading-relaxed text-muted">
+              Receive quarterly engineering insights and AI architecture breakdowns. No spam.
+            </p>
+            <div className="mt-4">
+              <NewsletterForm />
+            </div>
           </div>
         </div>
 
-        {/* Oversized wordmark */}
+        {/* Oversized Wordmark */}
         <div aria-hidden className="mt-16 select-none overflow-hidden">
-          <div className="font-display leading-none tracking-[-0.04em] text-white/[0.045] text-[19vw] md:text-[15.5vw]">
+          <div className="stroke-text font-display leading-none tracking-[-0.04em] text-white/[0.035] text-[19vw] md:text-[15.5vw] font-bold">
             NURONE
           </div>
         </div>
 
-        <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-line pt-8 text-xs text-faint sm:flex-row">
-          <p>© {new Date().getFullYear()} NURONE. All rights reserved.</p>
+        {/* Legal Footer */}
+        <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-line/60 pt-8 text-xs text-faint sm:flex-row">
+          <p>© {new Date().getFullYear()} NURONE AI Operating Team. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <Link href="#" className="transition-colors hover:text-ink">
               Terms &amp; Conditions

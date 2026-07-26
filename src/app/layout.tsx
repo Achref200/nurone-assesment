@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/content";
 import { Cursor } from "@/components/motion/cursor";
@@ -18,6 +18,13 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
   style: ["normal", "italic"],
+});
+
+const newsreader = Newsreader({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  style: ["italic"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -92,7 +99,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${newsreader.variable}`}
     >
       <body className="grain min-h-dvh antialiased">
         <script
