@@ -57,7 +57,7 @@ export function Faq() {
         <div
           ref={cardRef}
           onMouseMove={handleMouseMove}
-          className="faq-answer-card mt-16 p-6 md:p-10"
+          className="faq-answer-card p-6 md:p-10"
         >
           <div className="flex flex-col">
             {faqs.map((faq, index) => {
