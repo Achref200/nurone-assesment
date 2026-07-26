@@ -17,6 +17,7 @@
   --color-line-strong: rgba(255, 255, 255, 0.16);
 
   --color-accent: #3b82f6;
+  --color-accent-dim: #2563eb;
   --color-accent-hover: #2563eb;
   --color-accent-light: #60a5fa;
 
@@ -47,9 +48,9 @@ html.lenis body {
 }
 
 @theme inline {
-  --font-sans: var(--font-outfit);
-  --font-display: var(--font-outfit);
-  --font-mono: var(--font-jetbrains-mono);
+  --font-sans: var(--font-syne);
+  --font-display: var(--font-syne);
+  --font-mono: var(--font-syne);
 }
 
 @layer base {
@@ -254,6 +255,145 @@ html[data-cursor="on"] button {
 }
 .shine:hover::before {
   transform: translateX(120%);
+}
+
+/* Marquee infinite scroll animation */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 35s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* FAQ morphing card */
+.faq-answer-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(160deg, rgba(255,255,255,0.035), rgba(255,255,255,0.008));
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+.faq-answer-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(500px circle at var(--faq-x, 50%) var(--faq-y, 0%), rgba(59,130,246,0.06), transparent 60%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.faq-answer-card:hover::before {
+  opacity: 1;
+}
+
+/* Stroke text utility */
+.stroke-text {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.04);
+  color: transparent;
+}
+
+/* Numeral display - tabular numbers */
+.numeral {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* Link underline effect */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Ambient orb */
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  filter: blur(80px);
+}
+
+/* Horizontal scroll rail */
+.hx-rail {
+  position: relative;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.hx-rail__fill {
+  position: absolute;
+  inset: 0;
+  background: var(--color-accent);
+  transform-origin: left;
+  transform: scaleX(var(--hx, 0));
+}
+
+/* Scanline effect */
+.scanline {
+  animation: scanline-move 8s linear infinite;
+}
+@keyframes scanline-move {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 0.5; }
+  90% { opacity: 0.5; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* Parallax back */
+.parallax-back {
+  will-change: transform;
+}
+
+/* Preloader */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  background: var(--color-void);
+}
+.preloader__bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* Overline utility */
+.overline {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
 @media (prefers-reduced-motion: reduce) {

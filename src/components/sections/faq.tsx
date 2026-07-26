@@ -1,130 +1,163 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronRight, HelpCircle } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { faqs } from "@/lib/content";
 
 export function Faq() {
-  const [activeTab, setActiveTab] = useState(0);
-  const currentFaq = faqs[activeTab];
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const toggle = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    cardRef.current.style.setProperty("--faq-x", `${x}%`);
+    cardRef.current.style.setProperty("--faq-y", `${y}%`);
+  };
 
   return (
-    <section id="faq" className="scroll-mt-24 border-t border-line/60 py-24 md:py-36 relative">
-      <div aria-hidden className="glow top-1/2 left-1/4 h-[24rem] w-[24rem] -translate-y-1/2 opacity-40" />
+    <section id="faq" className="scroll-mt-24 border-t border-line/60 py-28 md:py-40 relative">
+      <div aria-hidden className="glow top-1/3 left-1/3 h-[30rem] w-[30rem] -translate-y-1/2 opacity-30" />
 
       <div className="shell relative">
         <Reveal>
-          <div className="flex items-center gap-3">
-            <span className="h-px w-8 bg-accent" />
-            <span className="font-mono text-xs tracking-widest uppercase text-accent font-medium">
-              FAQ
-            </span>
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="h-px w-10 bg-accent/60" />
+              <span className="font-mono text-[0.7rem] tracking-[0.2em] uppercase text-muted/80 font-medium">
+                Questions & Answers
+              </span>
+            </div>
+            <h2 className="text-[clamp(2.2rem,4.5vw,3.8rem)] font-bold text-ink tracking-[-0.035em] leading-[0.95]">
+              Everything you need<br />
+              <span className="text-accent">to know.</span>
+            </h2>
+            <p className="mt-6 max-w-xl text-[1.05rem] leading-[1.7] text-muted/90 tracking-[-0.005em]">
+              Clear answers about how NURONE partners with founders to build, rebuild, and scale products.
+            </p>
           </div>
-          <h2 className="mt-4 text-3xl font-semibold text-ink sm:text-4xl md:text-5xl tracking-tight">
-            Frequently Asked Questions
-          </h2>
-          <p className="mt-3 max-w-xl text-base text-muted">
-            Everything you need to know about partnering with NURONE to build, rebuild, and scale your product.
-          </p>
         </Reveal>
 
-        {/* Image 1 Inspired Split-Screen FAQ Layout */}
-        <div className="mt-14 grid gap-8 lg:grid-cols-12 lg:items-start">
-          {/* Left Column: Interactive Question Tabs */}
-          <div className="flex flex-col gap-3 lg:col-span-5">
+        {/* Elegant Accordion */}
+        <div
+          ref={cardRef}
+          onMouseMove={handleMouseMove}
+          className="faq-answer-card mt-16 p-6 md:p-10"
+        >
+          <div className="flex flex-col">
             {faqs.map((faq, index) => {
-              const isActive = activeTab === index;
+              const isOpen = openIndex === index;
               return (
-                <motion.button
+                <div
                   key={faq.question}
-                  type="button"
-                  onClick={() => setActiveTab(index)}
-                  whileHover={{ x: 4 }}
-                  whileTap={{ scale: 0.98 }}
-                  className={`group relative flex w-full items-center justify-between gap-4 rounded-2xl border px-6 py-4.5 text-left transition-all duration-300 ${
-                    isActive
-                      ? "border-accent bg-accent/10 shadow-lg shadow-accent/5 text-ink"
-                      : "border-line/70 bg-surface/50 text-muted hover:border-line-strong hover:bg-surface/90 hover:text-ink"
-                  }`}
+                  className="border-b border-line/40 last:border-b-0"
                 >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeFaqIndicator"
-                      className="absolute inset-0 rounded-2xl border border-accent bg-accent/10 -z-10"
-                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                    />
-                  )}
-                  <div className="flex items-center gap-3.5 min-w-0">
-                    <span
-                      className={`flex size-6 shrink-0 items-center justify-center rounded-full transition-colors duration-300 ${
-                        isActive
-                          ? "bg-white text-void shadow-md"
-                          : "bg-accent text-white"
-                      }`}
-                    >
-                      <span className="size-2 rounded-full bg-current" />
-                    </span>
-                    <span className="text-base font-medium truncate sm:text-lg">
-                      {faq.question}
-                    </span>
-                  </div>
-                  <ChevronRight
-                    className={`size-5 shrink-0 transition-transform duration-300 ${
-                      isActive
-                        ? "translate-x-1 text-accent"
-                        : "text-faint group-hover:text-muted"
-                    }`}
-                  />
-                </motion.button>
+                  <motion.button
+                    type="button"
+                    onClick={() => toggle(index)}
+                    className="group relative flex w-full items-center justify-between gap-6 py-7 text-left transition-colors"
+                    whileHover={{ x: 4 }}
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <div className="flex items-center gap-5 min-w-0 flex-1">
+                      <span
+                        className={`flex size-8 shrink-0 items-center justify-center rounded-full border transition-all duration-500 ${
+                          isOpen
+                            ? "border-accent bg-accent text-white scale-110"
+                            : "border-line/60 bg-white/[0.02] text-muted group-hover:border-line-strong group-hover:text-ink"
+                        }`}
+                      >
+                        <AnimatePresence mode="wait">
+                          {isOpen ? (
+                            <motion.span
+                              key="minus"
+                              initial={{ rotate: -90, opacity: 0 }}
+                              animate={{ rotate: 0, opacity: 1 }}
+                              exit={{ rotate: 90, opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <Minus className="size-3.5" strokeWidth={2.5} />
+                            </motion.span>
+                          ) : (
+                            <motion.span
+                              key="plus"
+                              initial={{ rotate: 90, opacity: 0 }}
+                              animate={{ rotate: 0, opacity: 1 }}
+                              exit={{ rotate: -90, opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <Plus className="size-3.5" strokeWidth={2.5} />
+                            </motion.span>
+                          )}
+                        </AnimatePresence>
+                      </span>
+                      <span
+                        className={`text-[1.1rem] md:text-[1.25rem] font-medium tracking-[-0.02em] transition-colors duration-300 ${
+                          isOpen ? "text-ink" : "text-muted group-hover:text-ink"
+                        }`}
+                      >
+                        {faq.question}
+                      </span>
+                    </div>
+                  </motion.button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{
+                          height: "auto",
+                          opacity: 1,
+                          transition: {
+                            height: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
+                            opacity: { duration: 0.3, delay: 0.1 },
+                          },
+                        }}
+                        exit={{
+                          height: 0,
+                          opacity: 0,
+                          transition: {
+                            height: { duration: 0.3 },
+                            opacity: { duration: 0.2 },
+                          },
+                        }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pb-8 pl-[4.5rem] pr-4">
+                          <p className="text-[1rem] leading-[1.75] text-muted tracking-[-0.005em] max-w-2xl">
+                            {faq.answer}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               );
             })}
           </div>
-
-          {/* Right Column: Active Question Detail Card (Overlapping Luxury Card) */}
-          <div className="lg:col-span-7">
-            <div className="relative min-h-[22rem] rounded-3xl border-2 border-white/20 bg-surface/90 p-8 shadow-2xl backdrop-blur-2xl md:p-12">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTab}
-                  initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, y: -16, filter: "blur(8px)" }}
-                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex flex-col h-full justify-between"
-                >
-                  <div>
-                    <div className="flex items-center gap-2 text-accent font-mono text-xs font-medium uppercase tracking-wider mb-4">
-                      <HelpCircle className="size-4" />
-                      <span>Question 0{activeTab + 1}</span>
-                    </div>
-
-                    <h3 className="font-display text-2xl font-semibold text-ink sm:text-3xl leading-snug">
-                      {currentFaq.question}
-                    </h3>
-
-                    <div className="mt-6 h-px w-full bg-line" />
-
-                    <p className="mt-6 text-base leading-relaxed text-muted md:text-lg">
-                      {currentFaq.answer}
-                    </p>
-                  </div>
-
-                  <div className="mt-10 flex items-center justify-between border-t border-line/60 pt-6 text-xs text-faint">
-                    <span>NURONE Operating Model Guarantee</span>
-                    <a
-                      href="#access"
-                      className="font-medium text-accent hover:underline"
-                    >
-                      Have a custom question? Talk to us →
-                    </a>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
         </div>
+
+        {/* Subtle footer note */}
+        <Reveal delay={0.1}>
+          <div className="mt-8 flex items-center justify-between text-xs text-faint/70">
+            <span>Can't find your answer?</span>
+            <a
+              href="#access"
+              className="inline-flex items-center gap-1.5 font-medium text-accent/80 hover:text-accent transition-colors"
+            >
+              <span>Get in touch</span>
+              <span className="text-sm">→</span>
+            </a>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -143,7 +143,7 @@ export function Labs() {
       title={
         <>
           Start from where you stand.{" "}
-          <span className="text-accent font-semibold">Enter the Lab built for it.</span>
+          <span className="text-accent font-bold">Enter the Lab built for it.</span>
         </>
       }
       description="Every founder arrives with a specific bottleneck. Each Lab converts your stage into leverage — with a free entry point, so we prove fit before any commitment."

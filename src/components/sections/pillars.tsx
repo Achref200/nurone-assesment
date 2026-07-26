@@ -2,65 +2,62 @@
 
 import { Reveal } from "@/components/ui/reveal";
 import { pillars } from "@/lib/content";
-import { ArrowUpRight } from "lucide-react";
 
 export function Pillars() {
   return (
-    <section id="system" className="relative scroll-mt-24 py-24 md:py-36">
-      <div aria-hidden className="glow top-1/3 right-1/4 h-[28rem] w-[28rem] opacity-30" />
+    <section id="system" className="relative scroll-mt-24 py-28 md:py-40">
+      <div aria-hidden className="glow top-1/3 right-1/4 h-[28rem] w-[28rem] opacity-25" />
 
       <div className="shell relative">
-        {/* Simple & Futuristic Problem Framing */}
-        <div className="max-w-3xl mx-auto text-center">
-          <Reveal>
-            <div className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-1 text-accent font-mono text-xs font-medium uppercase tracking-wider">
-              The Problem We Solve
+        {/* Header - Simple & Futuristic */}
+        <Reveal>
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="h-px w-10 bg-accent/60" />
+              <span className="font-mono text-[0.7rem] tracking-[0.2em] uppercase text-muted/80 font-medium">
+                The Problem We Solve
+              </span>
             </div>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <h2 className="mt-6 text-3xl font-semibold text-ink sm:text-4xl md:text-5xl tracking-tight leading-tight">
-              Ambition rarely dies in the idea. It breaks in the{" "}
+            <h2 className="text-[clamp(2.2rem,4.5vw,3.8rem)] font-bold text-ink tracking-[-0.035em] leading-[0.95]">
+              Ambition breaks in the<br />
               <span className="text-accent">system behind it.</span>
             </h2>
-          </Reveal>
-          <Reveal delay={0.12}>
-            <p className="mt-6 text-lg leading-relaxed text-muted font-normal">
-              Prototypes collapse under traffic, tech debt stalls momentum, and teams bolt AI on top of chaos. NURONE delivers the technical backbone, agentic ops, and growth infrastructure to scale cleanly.
+            <p className="mt-6 max-w-2xl text-[1.05rem] leading-[1.7] text-muted/90 tracking-[-0.005em]">
+              Prototypes collapse under traffic. Tech debt stalls momentum. Teams bolt AI on top of chaos. We deliver the infrastructure to scale cleanly.
             </p>
-          </Reveal>
-        </div>
+          </div>
+        </Reveal>
 
-        {/* Futuristic 3 Pillars Cards */}
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
+        {/* Pillars - Clean, minimal cards */}
+        <div className="mt-20 grid gap-6 md:grid-cols-3 md:gap-8">
           {pillars.map((pillar, i) => {
             const Icon = pillar.icon;
             return (
               <Reveal key={pillar.id} delay={i * 0.08}>
-                <article className="group relative flex h-full flex-col justify-between rounded-3xl border border-line/80 bg-surface/60 p-8 backdrop-blur-xl transition-all duration-300 hover:border-accent/50 hover:bg-surface/90 hover:shadow-2xl hover:shadow-accent/5">
-                  <div>
-                    {/* Image 2 Inspired Header Badge */}
-                    <div className="luxury-badge mb-6">
-                      <span className="luxury-badge__icon">
-                        <Icon className="size-4.5" />
-                      </span>
-                      <span className="luxury-badge__pill font-mono text-xs">
-                        {pillar.metric}
-                      </span>
-                    </div>
-
-                    <h3 className="font-display text-2xl font-semibold text-ink">
-                      {pillar.title}
-                    </h3>
-                    <p className="mt-3 text-base leading-relaxed text-muted font-normal">
-                      {pillar.description}
-                    </p>
+                <article className="group relative flex h-full flex-col rounded-3xl border border-line/60 bg-gradient-to-b from-white/[0.03] to-transparent p-8 backdrop-blur-sm transition-all duration-500 hover:border-accent/30 hover:from-white/[0.05] md:p-10">
+                  {/* Icon */}
+                  <div className="flex size-14 items-center justify-center rounded-2xl border border-line/60 bg-white/[0.02] transition-colors duration-500 group-hover:border-accent/40 group-hover:bg-accent/10">
+                    <Icon className="size-6 text-muted transition-colors duration-500 group-hover:text-accent" />
                   </div>
 
-                  <div className="mt-8 flex items-center justify-between border-t border-line/50 pt-5">
-                    <span className="font-mono text-xs text-faint uppercase tracking-wider">
+                  {/* Title */}
+                  <h3 className="mt-8 text-[1.4rem] font-semibold text-ink tracking-[-0.02em] leading-[1.15]">
+                    {pillar.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="mt-4 flex-1 text-[0.95rem] leading-[1.7] text-muted tracking-[-0.005em]">
+                    {pillar.description}
+                  </p>
+
+                  {/* Metric - subtle, elegant */}
+                  <div className="mt-8 flex items-center gap-3 border-t border-line/40 pt-6">
+                    <span className="text-[1.8rem] font-bold text-accent tracking-[-0.03em]">
+                      {pillar.metric}
+                    </span>
+                    <span className="text-[0.8rem] text-muted/70 tracking-[-0.005em]">
                       {pillar.metricLabel}
                     </span>
-                    <ArrowUpRight className="size-4 text-muted transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-accent" />
                   </div>
                 </article>
               </Reveal>

@@ -118,7 +118,7 @@ export function CaseStudies() {
       title={
         <>
           An index of{" "}
-          <span className="text-accent font-semibold">shipped systems.</span>
+          <span className="text-accent font-bold">shipped systems.</span>
         </>
       }
       description="Not promises — production systems founders and users rely on every day. Scroll sideways through our shipped index."

@@ -4,7 +4,6 @@ import { Reveal } from "./reveal";
 
 type SectionHeadingProps = {
   eyebrow?: string;
-  index?: string;
   title: ReactNode;
   description?: ReactNode;
   align?: "left" | "center";
@@ -34,8 +33,8 @@ export function SectionHeading({
               align === "center" && "justify-center",
             )}
           >
-            <span className="h-px w-8 bg-accent" />
-            <span className="font-mono text-xs tracking-widest uppercase text-accent font-medium">
+            <span className="h-px w-10 bg-accent/60" />
+            <span className="font-mono text-[0.7rem] tracking-[0.2em] uppercase text-muted/80 font-medium">
               {eyebrow}
             </span>
           </div>
@@ -43,7 +42,7 @@ export function SectionHeading({
       ) : null}
 
       <Reveal delay={0.05}>
-        <h2 className="mt-5 max-w-3xl text-[2rem] font-medium leading-[1.05] tracking-[-0.035em] sm:text-[2.5rem] md:text-[3rem] text-ink">
+        <h2 className="mt-5 max-w-3xl text-[clamp(2.2rem,4.5vw,3.8rem)] font-bold leading-[0.95] tracking-[-0.035em] text-ink">
           {title}
         </h2>
       </Reveal>
@@ -52,7 +51,7 @@ export function SectionHeading({
         <Reveal delay={0.1}>
           <p
             className={cn(
-              "mt-5 max-w-2xl text-base leading-relaxed text-muted font-normal md:text-lg",
+              "mt-6 max-w-2xl text-[1.05rem] leading-[1.7] text-muted/90 tracking-[-0.005em]",
               align === "center" && "mx-auto",
             )}
           >

@@ -2,118 +2,83 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { processSteps } from "@/lib/content";
-import { cn } from "@/lib/utils";
 
 export function Process() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 0.7", "end 0.55"],
+    offset: ["start 0.8", "end 0.6"],
   });
   const spineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
-  const headTop = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-  const headOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.04, 0.96, 1],
-    [0, 1, 1, 0],
-  );
 
   return (
     <section
       id="process"
       ref={ref}
-      className="relative scroll-mt-24 overflow-hidden border-t border-line py-24 md:py-32"
+      className="relative scroll-mt-24 overflow-hidden border-t border-line/60 py-28 md:py-40"
     >
       <div className="shell relative">
-        <SectionHeading
-          eyebrow="How It Works"
-          title={
-            <>
-              A clear path from{" "}
-              <span className="font-serif italic font-normal text-accent">ambition</span> to market execution.
-            </>
-          }
-          description="First we evaluate where you stand. Then we select the matching Lab stage, assign your specialized team, and execute with weekly transparency."
-        />
+        {/* Header */}
+        <Reveal>
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="h-px w-10 bg-accent/60" />
+              <span className="font-mono text-[0.7rem] tracking-[0.2em] uppercase text-muted/80 font-medium">
+                How It Works
+              </span>
+            </div>
+            <h2 className="text-[clamp(2.2rem,4.5vw,3.8rem)] font-bold text-ink tracking-[-0.035em] leading-[0.95]">
+              From ambition<br />
+              <span className="text-accent">to execution.</span>
+            </h2>
+            <p className="mt-6 max-w-xl text-[1.05rem] leading-[1.7] text-muted/90 tracking-[-0.005em]">
+              We evaluate where you stand, match the right Lab stage, assign your team, and execute with complete transparency.
+            </p>
+          </div>
+        </Reveal>
 
-        <div className="relative mt-16 md:mt-24">
-          {/* Static central spine track */}
-          <span
-            aria-hidden
-            className="absolute bottom-0 left-[22px] top-0 w-px bg-line md:left-1/2 md:-translate-x-1/2"
-          />
-          {/* Animated scroll spine fill */}
-          <motion.span
+        {/* Process Steps - Editorial staggered layout */}
+        <div className="relative mt-20 md:mt-28">
+          {/* Animated vertical spine */}
+          <motion.div
             aria-hidden
             style={{ scaleY: spineScale }}
-            className="absolute bottom-0 left-[22px] top-0 w-px origin-top bg-gradient-to-b from-accent via-accent to-accent-2 md:left-1/2 md:-translate-x-1/2"
-          />
-          {/* Laser pulse head riding the spine */}
-          <motion.span
-            aria-hidden
-            style={{ top: headTop, opacity: headOpacity }}
-            className="absolute left-[22px] size-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent shadow-[0_0_20px_5px_var(--accent-glow)] md:left-1/2"
+            className="absolute left-6 top-0 bottom-0 w-px origin-top bg-gradient-to-b from-accent via-accent/60 to-transparent md:left-8"
           />
 
-          <ol className="flex flex-col gap-12 md:gap-16">
+          <div className="flex flex-col gap-14 md:gap-20">
             {processSteps.map((step, i) => {
-              const onLeft = i % 2 === 0;
               const Icon = step.icon;
               return (
-                <li
-                  key={step.title}
-                  className="relative md:grid md:grid-cols-2 md:items-center md:gap-x-16"
-                >
-                  {/* Central Node Badge */}
-                  <span
-                    aria-hidden
-                    className="absolute left-[22px] top-1 z-10 inline-flex size-12 -translate-x-1/2 items-center justify-center rounded-2xl border border-line bg-surface text-accent shadow-lg md:left-1/2 md:top-1/2 md:-translate-y-1/2"
-                  >
-                    <Icon className="size-6" />
-                  </span>
+                <Reveal key={step.title} delay={i * 0.06}>
+                  <div className="relative grid gap-8 pl-16 md:grid-cols-[auto_1fr] md:gap-12 md:pl-24">
+                    {/* Node icon */}
+                    <div className="absolute left-0 top-1 flex size-12 items-center justify-center rounded-2xl border border-line/60 bg-surface/80 backdrop-blur-sm md:size-16 md:rounded-3xl">
+                      <Icon className="size-5 text-accent md:size-6" />
+                    </div>
 
-                  {/* Content Card */}
-                  <Reveal
-                    x={onLeft ? -24 : 24}
-                    y={14}
-                    className={cn(
-                      "pl-16 md:pl-0",
-                      onLeft
-                        ? "md:col-start-1 md:pr-16 md:text-right"
-                        : "md:col-start-2 md:pl-16",
-                    )}
-                  >
-                    <div className="group relative rounded-3xl border border-line bg-surface/80 p-8 backdrop-blur-xl transition-all duration-300 hover:border-accent/40">
-                      <div
-                        className={cn(
-                          "flex items-center gap-2",
-                          onLeft && "md:justify-end",
-                        )}
-                      >
-                        <span className="font-mono text-xs font-medium text-accent uppercase tracking-wider">
-                          Phase 0{i + 1}
+                    {/* Content */}
+                    <div className="max-w-xl">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-accent/70 font-medium">
+                          {String(i + 1).padStart(2, "0")}
                         </span>
+                        <span className="h-px w-6 bg-line/60" />
                       </div>
-                      <h3 className="mt-3 font-display text-xl font-medium text-ink md:text-2xl">
+                      <h3 className="text-[1.5rem] md:text-[1.8rem] font-semibold text-ink tracking-[-0.025em] leading-[1.1]">
                         {step.title}
                       </h3>
-                      <p
-                        className={cn(
-                          "mt-3 max-w-md text-base leading-relaxed text-muted font-normal",
-                          onLeft && "md:ml-auto",
-                        )}
-                      >
+                      <p className="mt-4 text-[1rem] leading-[1.75] text-muted tracking-[-0.005em]">
                         {step.description}
                       </p>
                     </div>
-                  </Reveal>
-                </li>
+                  </div>
+                </Reveal>
               );
             })}
-          </ol>
+          </div>
         </div>
       </div>
     </section>
