@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Reveal } from "@/components/ui/reveal";
 import { processSteps } from "@/lib/content";
 
 export function Process() {
@@ -13,69 +12,90 @@ export function Process() {
   });
   const spineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
+  const headingRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: headingProgress } = useScroll({
+    target: headingRef,
+    offset: ["start 0.9", "start 0.45"],
+  });
+
+  const headingWords = "From ambition to execution.".split(" ");
+
   return (
     <section
       id="process"
       ref={ref}
-      className="relative scroll-mt-24 overflow-hidden border-t border-line/60 py-28 md:py-40"
+      className="relative scroll-mt-24 overflow-hidden border-t border-white/[0.05] py-28 md:py-40"
     >
       <div className="shell relative">
-        {/* Header */}
-        <Reveal>
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="h-px w-10 bg-accent/60" />
-              <span className="font-mono text-[0.7rem] tracking-[0.2em] uppercase text-muted/80 font-medium">
-                How It Works
-              </span>
-            </div>
-            <h2 className="text-[clamp(2.2rem,4.5vw,3.8rem)] font-bold text-ink tracking-[-0.035em] leading-[0.95]">
-              From ambition<br />
-              <span className="text-accent">to execution.</span>
-            </h2>
-            <p className="mt-6 max-w-xl text-[1.05rem] leading-[1.7] text-muted/90 tracking-[-0.005em]">
-              We evaluate where you stand, match the right Lab stage, assign your team, and execute with complete transparency.
-            </p>
-          </div>
-        </Reveal>
+        {/* Header with scroll text reveal */}
+        <div ref={headingRef} className="mb-24 md:mb-32">
+          <p className="text-[0.65rem] tracking-[0.3em] uppercase text-muted/40 font-medium mb-8">
+            How it works
+          </p>
 
-        {/* Process Steps - Editorial staggered layout */}
-        <div className="relative mt-20 md:mt-28">
-          {/* Animated vertical spine */}
+          <p className="text-[clamp(2.2rem,4.5vw,3.8rem)] font-bold text-ink tracking-[-0.04em] leading-[0.93] max-w-xl">
+            {headingWords.map((word, i) => {
+              const start = i / headingWords.length;
+              const end = start + 1 / headingWords.length;
+              const opacity = useTransform(
+                headingProgress,
+                [start, end],
+                [0.1, 1],
+              );
+              return (
+                <motion.span key={i} style={{ opacity }}>
+                  {word}{" "}
+                </motion.span>
+              );
+            })}
+          </p>
+        </div>
+
+        {/* Steps */}
+        <div className="relative">
+          {/* Animated spine */}
           <motion.div
             aria-hidden
             style={{ scaleY: spineScale }}
-            className="absolute left-6 top-0 bottom-0 w-px origin-top bg-gradient-to-b from-accent via-accent/60 to-transparent md:left-8"
+            className="absolute left-[1.5rem] top-0 bottom-0 w-px origin-top bg-gradient-to-b from-accent/60 via-accent/20 to-transparent"
           />
 
-          <div className="flex flex-col gap-14 md:gap-20">
+          <div className="flex flex-col gap-0">
             {processSteps.map((step, i) => {
               const Icon = step.icon;
               return (
-                <Reveal key={step.title} delay={i * 0.06}>
-                  <div className="relative grid gap-8 pl-16 md:grid-cols-[auto_1fr] md:gap-12 md:pl-24">
-                    {/* Node icon */}
-                    <div className="absolute left-0 top-1 flex size-12 items-center justify-center rounded-2xl border border-line/60 bg-surface/80 backdrop-blur-sm md:size-16 md:rounded-3xl">
-                      <Icon className="size-5 text-accent md:size-6" />
-                    </div>
-
-                    {/* Content */}
-                    <div className="max-w-xl">
-                      <div className="flex items-center gap-3 mb-3">
-                        <span className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-accent/70 font-medium">
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        <span className="h-px w-6 bg-line/60" />
-                      </div>
-                      <h3 className="text-[1.5rem] md:text-[1.8rem] font-semibold text-ink tracking-[-0.025em] leading-[1.1]">
-                        {step.title}
-                      </h3>
-                      <p className="mt-4 text-[1rem] leading-[1.75] text-muted tracking-[-0.005em]">
-                        {step.description}
-                      </p>
-                    </div>
+                <motion.div
+                  key={step.title}
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{
+                    duration: 0.7,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: 0.05,
+                  }}
+                  viewport={{ once: true, margin: "-10%" }}
+                  className="relative grid gap-8 pl-16 py-12 border-b border-white/[0.04] last:border-0 md:grid-cols-[1fr_2fr] md:gap-16 md:pl-20"
+                >
+                  {/* Node */}
+                  <div className="absolute left-0 top-12 flex size-12 items-center justify-center rounded-2xl border border-white/[0.08] bg-void">
+                    <Icon className="size-4 text-accent/70" />
                   </div>
-                </Reveal>
+
+                  {/* Index + Title */}
+                  <div className="flex flex-col justify-center">
+                    <span className="text-[0.65rem] font-medium tracking-[0.2em] uppercase text-muted/40">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="mt-1 text-[1.5rem] font-bold text-ink tracking-[-0.025em] leading-[1.1]">
+                      {step.title}
+                    </h3>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-[0.97rem] leading-[1.75] text-muted/80 tracking-[-0.005em]">
+                    {step.description}
+                  </p>
+                </motion.div>
               );
             })}
           </div>

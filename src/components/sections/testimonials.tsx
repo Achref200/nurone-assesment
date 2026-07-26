@@ -1,15 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
-import { Reveal } from "@/components/ui/reveal";
 import { testimonials } from "@/lib/content";
 
 export function Testimonials() {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const count = testimonials.length;
+  const headingRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: headingRef,
+    offset: ["start 0.9", "start 0.45"],
+  });
+
+  const headingWords = "Not promises. Words from founders.".split(" ");
 
   const go = (dir: number) => setIndex((i) => (i + dir + count) % count);
 
@@ -23,22 +29,25 @@ export function Testimonials() {
   const active = testimonials[index];
 
   return (
-    <section id="voices" className="scroll-mt-24 border-t border-line/60 py-28 md:py-40">
+    <section id="voices" className="scroll-mt-24 border-t border-white/[0.05] py-28 md:py-40">
       <div className="shell">
-        <Reveal>
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="h-px w-10 bg-accent/60" />
-              <span className="font-mono text-[0.7rem] tracking-[0.2em] uppercase text-muted/80 font-medium">
-                What Founders Say
-              </span>
-            </div>
-            <h2 className="text-[clamp(2.2rem,4.5vw,3.8rem)] font-bold text-ink tracking-[-0.035em] leading-[0.95]">
-              Not promises.<br />
-              <span className="text-accent">Words from founders.</span>
-            </h2>
-          </div>
-        </Reveal>
+        <div ref={headingRef} className="mb-12">
+          <p className="text-[0.65rem] tracking-[0.3em] uppercase text-muted/40 font-medium mb-6">
+            What Founders Say
+          </p>
+          <h2 className="max-w-3xl text-[clamp(2.2rem,4.5vw,3.8rem)] font-bold leading-[0.95] tracking-[-0.04em] text-ink">
+            {headingWords.map((word, i) => {
+              const start = i / headingWords.length;
+              const end = start + 1 / headingWords.length;
+              const opacity = useTransform(scrollYProgress, [start, end], [0.1, 1]);
+              return (
+                <motion.span key={i} style={{ opacity }}>
+                  {word}{" "}
+                </motion.span>
+              );
+            })}
+          </h2>
+        </div>
 
         <div
           className="relative mt-16 overflow-hidden rounded-3xl border border-line/60 bg-gradient-to-b from-white/[0.03] to-transparent p-8 backdrop-blur-2xl md:p-14"

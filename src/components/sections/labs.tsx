@@ -8,52 +8,55 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { labs } from "@/lib/content";
 import type { Lab } from "@/lib/content";
-import { CheckCircle2 } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function LabCard({ lab }: { lab: Lab }) {
   const Icon = lab.icon;
   return (
-    <article className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-line/80 bg-surface/80 p-8 backdrop-blur-xl transition-all duration-300 hover:border-accent/40 md:p-10">
-      <div className="relative flex items-start justify-between gap-4">
-        {/* Image 2 Luxury Badge */}
-        <div className="luxury-badge">
-          <span className="luxury-badge__icon">
-            <Icon className="size-4.5" />
-          </span>
-          <span className="luxury-badge__pill">
-            {lab.stage}
-          </span>
-        </div>
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.015] p-8 transition-all duration-700 hover:border-accent/20 md:p-10">
+      {/* Gradient hover overlay */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
+        style={{ background: "radial-gradient(600px circle at 50% 0%, rgba(59,130,246,0.05), transparent 60%)" }}
+      />
+
+      {/* Stage + Icon Row */}
+      <div className="flex items-center justify-between">
+        <span className="text-[0.65rem] font-medium tracking-[0.25em] uppercase text-muted/40">
+          {lab.stage}
+        </span>
+        <span className="flex size-9 items-center justify-center rounded-xl border border-white/[0.07] bg-white/[0.02] transition-colors duration-500 group-hover:border-accent/30 group-hover:bg-accent/5">
+          <Icon className="size-4 text-muted/60 group-hover:text-accent transition-colors duration-500" />
+        </span>
       </div>
 
-      <h3 className="relative mt-8 font-display text-2xl font-semibold text-ink sm:text-3xl">
+      <h3 className="mt-7 text-[1.5rem] font-bold text-ink tracking-[-0.025em] leading-[1.1]">
         {lab.name}
       </h3>
-      <p className="relative mt-3 text-base leading-relaxed text-muted font-normal">
+      <p className="mt-3 text-[0.95rem] leading-[1.7] text-muted/80 flex-1">
         {lab.summary}
       </p>
 
-      <ul className="relative mt-6 grid gap-3">
+      {/* Audience points - minimal dots instead of checkmarks */}
+      <ul className="mt-6 flex flex-col gap-2">
         {lab.audience.map((point) => (
-          <li key={point} className="flex items-start gap-3 text-sm text-ink/85 font-normal">
-            <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-accent" />
-            <span>{point}</span>
+          <li key={point} className="flex items-start gap-3 text-[0.88rem] text-muted/60">
+            <span className="mt-1.5 size-1 shrink-0 rounded-full bg-accent/40" />
+            {point}
           </li>
         ))}
       </ul>
 
-      <div className="relative mt-auto pt-8">
-        <div className="h-px w-full bg-line/60" />
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-2">
-          <span className="font-mono text-xs text-accent uppercase tracking-wider font-medium">
-            Free Entry Point
-          </span>
-          <span className="font-mono text-xs font-medium text-ink px-3 py-1 rounded-full border border-accent/30 bg-accent/10">
-            {lab.entry}
-          </span>
-        </div>
+      <div className="mt-8 border-t border-white/[0.05] pt-6 flex items-center justify-between">
+        <span className="text-[0.72rem] tracking-[0.15em] uppercase text-muted/40">
+          {lab.entry}
+        </span>
+        <span className="flex size-8 items-center justify-center rounded-full border border-white/[0.07] bg-white/[0.02] text-muted/50 transition-all duration-300 group-hover:border-accent/30 group-hover:text-accent">
+          <ArrowUpRight className="size-3.5" />
+        </span>
       </div>
     </article>
   );
@@ -140,12 +143,7 @@ export function Labs() {
   const heading = (
     <SectionHeading
       eyebrow="The Lab System"
-      title={
-        <>
-          Start from where you stand.{" "}
-          <span className="text-accent font-bold">Enter the Lab built for it.</span>
-        </>
-      }
+      title="Start from where you stand. Enter the Lab built for it."
       description="Every founder arrives with a specific bottleneck. Each Lab converts your stage into leverage — with a free entry point, so we prove fit before any commitment."
     />
   );

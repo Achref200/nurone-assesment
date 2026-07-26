@@ -7,6 +7,8 @@ const statement =
   "Ambition rarely dies in the idea. It breaks in the system behind it.";
 const words = statement.split(" ");
 
+const ACCENT = new Set(["system", "breaks"]);
+
 export function Statement() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -17,22 +19,20 @@ export function Statement() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden border-y border-line/60 bg-surface/20 py-28 md:py-40"
+      className="relative overflow-hidden py-32 md:py-48"
     >
       <div className="shell relative">
-        <div className="flex items-center gap-3 mb-10">
-          <span className="h-px w-10 bg-accent/60" />
-          <span className="font-mono text-[0.7rem] tracking-[0.2em] uppercase text-muted/80 font-medium">
-            Core Principle
-          </span>
-        </div>
+        <p className="text-[0.65rem] tracking-[0.3em] uppercase text-muted/40 font-medium mb-16">
+          Core belief
+        </p>
 
-        <p className="max-w-5xl text-[clamp(2rem,4.5vw,3.6rem)] font-bold leading-[1.05] tracking-[-0.035em] text-ink">
+        <p className="max-w-5xl text-[clamp(2.2rem,5vw,4rem)] font-bold leading-[1.0] tracking-[-0.04em] text-ink">
           {words.map((word, i) => {
             const start = i / words.length;
             const end = start + 1 / words.length;
-            const opacity = useTransform(scrollYProgress, [start, end], [0.15, 1]);
-            const isAccent = word.toLowerCase().includes("system");
+            const opacity = useTransform(scrollYProgress, [start, end], [0.1, 1]);
+            const clean = word.toLowerCase().replace(/[^a-z]/g, "");
+            const isAccent = ACCENT.has(clean);
             return (
               <motion.span
                 key={`${word}-${i}`}

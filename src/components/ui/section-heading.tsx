@@ -1,15 +1,21 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
-import { Reveal } from "./reveal";
 
 type SectionHeadingProps = {
   eyebrow?: string;
-  title: ReactNode;
+  title: string;
   description?: ReactNode;
   align?: "left" | "center";
   className?: string;
 };
 
+/**
+ * SectionHeading with scroll-driven word reveal on the title.
+ */
 export function SectionHeading({
   eyebrow,
   title,
@@ -17,8 +23,17 @@ export function SectionHeading({
   align = "left",
   className,
 }: SectionHeadingProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 0.9", "start 0.45"],
+  });
+
+  const words = title.split(" ");
+
   return (
     <div
+      ref={ref}
       className={cn(
         "relative flex flex-col",
         align === "center" && "items-center text-center",
@@ -26,38 +41,38 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? (
-        <Reveal>
-          <div
-            className={cn(
-              "flex items-center gap-3",
-              align === "center" && "justify-center",
-            )}
-          >
-            <span className="h-px w-10 bg-accent/60" />
-            <span className="font-mono text-[0.7rem] tracking-[0.2em] uppercase text-muted/80 font-medium">
-              {eyebrow}
-            </span>
-          </div>
-        </Reveal>
+        <p
+          className={cn(
+            "text-[0.65rem] tracking-[0.3em] uppercase text-muted/40 font-medium mb-6",
+            align === "center" && "text-center",
+          )}
+        >
+          {eyebrow}
+        </p>
       ) : null}
 
-      <Reveal delay={0.05}>
-        <h2 className="mt-5 max-w-3xl text-[clamp(2.2rem,4.5vw,3.8rem)] font-bold leading-[0.95] tracking-[-0.035em] text-ink">
-          {title}
-        </h2>
-      </Reveal>
+      <h2 className="max-w-3xl text-[clamp(2.2rem,4.5vw,3.8rem)] font-bold leading-[0.95] tracking-[-0.04em] text-ink">
+        {words.map((word, i) => {
+          const start = i / words.length;
+          const end = start + 1 / words.length;
+          const opacity = useTransform(scrollYProgress, [start, end], [0.1, 1]);
+          return (
+            <motion.span key={i} style={{ opacity }}>
+              {word}{" "}
+            </motion.span>
+          );
+        })}
+      </h2>
 
       {description ? (
-        <Reveal delay={0.1}>
-          <p
-            className={cn(
-              "mt-6 max-w-2xl text-[1.05rem] leading-[1.7] text-muted/90 tracking-[-0.005em]",
-              align === "center" && "mx-auto",
-            )}
-          >
-            {description}
-          </p>
-        </Reveal>
+        <p
+          className={cn(
+            "mt-6 max-w-2xl text-[1.05rem] leading-[1.7] text-muted/80 tracking-[-0.005em]",
+            align === "center" && "mx-auto",
+          )}
+        >
+          {description}
+        </p>
       ) : null}
     </div>
   );

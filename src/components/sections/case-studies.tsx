@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { ArrowUpRight, MoveRight, Sparkles, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight, MoveRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Tilt } from "@/components/motion/tilt";
 import { caseStudies } from "@/lib/content";
@@ -15,45 +15,51 @@ gsap.registerPlugin(ScrollTrigger);
 function StudyCard({ item }: { item: CaseStudy }) {
   return (
     <Tilt className="h-full">
-      <article className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-line/80 bg-surface/80 p-8 backdrop-blur-xl transition-all duration-300 hover:border-accent/40 hover:bg-surface">
-        <div>
-          <div className="luxury-badge mb-4">
-            <span className="luxury-badge__icon">
-              <CheckCircle2 className="size-4" />
-            </span>
-            <span className="luxury-badge__pill text-xs">
-              {item.category}
-            </span>
-          </div>
+      <article className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.015] p-8 transition-all duration-700 hover:border-accent/20">
+        {/* Hover gradient */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
+          style={{ background: "radial-gradient(500px circle at 30% 0%, rgba(59,130,246,0.05), transparent 60%)" }}
+        />
 
-          <h3 className="font-display text-2xl font-semibold text-ink sm:text-3xl transition-colors group-hover:text-accent">
+        <div>
+          {/* Category */}
+          <p className="text-[0.62rem] font-medium tracking-[0.25em] uppercase text-muted/40 mb-5">
+            {item.category}
+          </p>
+
+          <h3 className="text-[1.4rem] font-bold text-ink tracking-[-0.025em] leading-[1.15] transition-colors group-hover:text-accent">
             {item.name}
           </h3>
-          <p className="mt-4 text-base leading-relaxed text-muted font-normal">
+          <p className="mt-3 text-[0.9rem] leading-[1.7] text-muted/70">
             {item.summary}
           </p>
 
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div className="mt-5 flex flex-wrap gap-2">
             {item.tags.map((tag) => (
-              <span key={tag} className="font-mono text-xs border border-line/80 bg-white/[0.02] px-3 py-1 rounded-full text-muted">
+              <span
+                key={tag}
+                className="text-[0.7rem] border border-white/[0.06] bg-white/[0.02] px-2.5 py-1 rounded-full text-muted/50 tracking-[0.02em]"
+              >
                 {tag}
               </span>
             ))}
           </div>
         </div>
 
-        <div className="mt-8 flex items-end justify-between gap-4 border-t border-line/60 pt-6">
+        <div className="mt-8 flex items-end justify-between gap-4 border-t border-white/[0.04] pt-5">
           <div>
-            <div className="numeral text-2xl font-semibold text-ink">{item.metric.value}</div>
-            <div className="mt-1 font-mono text-xs text-faint uppercase tracking-wider">{item.metric.label}</div>
+            <div className="text-[1.6rem] font-bold text-ink tracking-[-0.03em]">{item.metric.value}</div>
+            <div className="mt-0.5 text-[0.72rem] text-muted/40 uppercase tracking-[0.12em]">{item.metric.label}</div>
           </div>
           <a
             href="#work"
             data-hover="link"
             aria-label={`Read the ${item.name} case study`}
-            className="inline-flex size-10 items-center justify-center rounded-full border border-line bg-white/[0.03] text-muted transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-white"
+            className="inline-flex size-9 items-center justify-center rounded-full border border-white/[0.06] text-muted/40 transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-white"
           >
-            <ArrowUpRight className="size-4" />
+            <ArrowUpRight className="size-3.5" />
           </a>
         </div>
       </article>
@@ -115,12 +121,7 @@ export function CaseStudies() {
   const heading = (
     <SectionHeading
       eyebrow="Selected Production Work"
-      title={
-        <>
-          An index of{" "}
-          <span className="text-accent font-bold">shipped systems.</span>
-        </>
-      }
+      title="An index of shipped systems."
       description="Not promises — production systems founders and users rely on every day. Scroll sideways through our shipped index."
     />
   );
