@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Reveal } from "./reveal";
-import { TextScramble } from "@/components/motion/text-scramble";
 
 type SectionHeadingProps = {
   eyebrow?: string;
@@ -14,7 +13,6 @@ type SectionHeadingProps = {
 
 export function SectionHeading({
   eyebrow,
-  index,
   title,
   description,
   align = "left",
@@ -28,16 +26,6 @@ export function SectionHeading({
         className,
       )}
     >
-      {/* Oversized outlined chapter watermark */}
-      {index ? (
-        <span
-          aria-hidden
-          className="chapter-ghost pointer-events-none absolute -top-10 right-0 hidden text-[9rem] leading-none opacity-60 lg:block xl:text-[12rem]"
-        >
-          {index}
-        </span>
-      ) : null}
-
       {eyebrow ? (
         <Reveal>
           <div
@@ -47,16 +35,15 @@ export function SectionHeading({
             )}
           >
             <span className="h-px w-8 bg-accent" />
-            <TextScramble text={eyebrow} className="overline" />
-            {index ? (
-              <span className="overline text-faint">Chapter {index}</span>
-            ) : null}
+            <span className="font-mono text-xs tracking-widest uppercase text-accent font-medium">
+              {eyebrow}
+            </span>
           </div>
         </Reveal>
       ) : null}
 
       <Reveal delay={0.05}>
-        <h2 className="mt-6 max-w-3xl text-[1.85rem] leading-[1.05] tracking-[-0.03em] sm:text-[2.2rem] md:text-[2.7rem]">
+        <h2 className="mt-5 max-w-3xl text-[2rem] font-medium leading-[1.05] tracking-[-0.035em] sm:text-[2.5rem] md:text-[3rem] text-ink">
           {title}
         </h2>
       </Reveal>
@@ -65,7 +52,7 @@ export function SectionHeading({
         <Reveal delay={0.1}>
           <p
             className={cn(
-              "mt-5 max-w-2xl text-base leading-relaxed text-muted md:text-lg",
+              "mt-5 max-w-2xl text-base leading-relaxed text-muted font-normal md:text-lg",
               align === "center" && "mx-auto",
             )}
           >

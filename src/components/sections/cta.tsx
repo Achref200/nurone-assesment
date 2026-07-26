@@ -8,35 +8,28 @@ export function Cta() {
   return (
     <section
       id="access"
-      className="relative scroll-mt-24 overflow-hidden border-t border-line bg-surface"
+      className="relative scroll-mt-24 overflow-hidden border-t border-line bg-surface/40 py-24 md:py-32"
     >
-      <div
-        aria-hidden
-        className="glow bottom-[-10rem] left-1/2 h-[28rem] w-[42rem] -translate-x-1/2 opacity-70"
-      />
-      <span
-        aria-hidden
-        className="orb right-[-6rem] top-[-6rem] h-[26rem] w-[26rem] bg-[radial-gradient(circle,rgba(165,180,252,0.18),transparent_65%)]"
-      />
-
-      <div className="shell relative py-24 md:py-32">
-        <div className="glass-panel relative overflow-hidden rounded-4xl border border-line-strong p-8 backdrop-blur-2xl shadow-2xl md:p-14">
+      <div className="shell relative">
+        <div className="relative overflow-hidden rounded-3xl border border-line bg-surface/90 p-8 backdrop-blur-2xl md:p-14">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
               <Reveal>
                 <div className="flex items-center gap-3">
                   <span className="h-px w-8 bg-accent" />
-                  <span className="overline text-accent">Request Access</span>
+                  <span className="font-mono text-xs tracking-widest uppercase text-accent font-medium">
+                    Request Access
+                  </span>
                 </div>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="mt-7 text-display text-ink font-semibold">
+                <h2 className="mt-7 text-display text-ink font-medium">
                   Bring the ambition. We&apos;ll build the{" "}
-                  <em className="text-shimmer font-serif italic font-normal">system</em> behind it.
+                  <span className="font-serif italic font-normal text-accent">system</span> behind it.
                 </h2>
               </Reveal>
               <Reveal delay={0.1}>
-                <p className="mt-6 max-w-xl text-fluid leading-relaxed text-muted">
+                <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted font-normal">
                   Tell us where you stand today — idea, fragile MVP, scaling operations, or growth.
                   We&apos;ll run a FitCheck and show you where NURONE creates asymmetric leverage.
                 </p>
@@ -74,8 +67,8 @@ export function Cta() {
                 </Magnetic>
 
                 <div className="w-full border-t border-line/60 pt-6">
-                  <p className="text-xs text-faint mb-3 font-mono uppercase tracking-wider">
-                    Or subscribe for tech & growth insights
+                  <p className="font-mono text-xs text-faint uppercase tracking-wider mb-3">
+                    Or subscribe for engineering insights
                   </p>
                   <NewsletterForm />
                 </div>

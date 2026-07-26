@@ -25,21 +25,15 @@ export function Process() {
     <section
       id="process"
       ref={ref}
-      className="relative scroll-mt-24 overflow-hidden border-t border-line py-20 md:py-28"
+      className="relative scroll-mt-24 overflow-hidden border-t border-line py-24 md:py-32"
     >
-      <div
-        aria-hidden
-        className="glow parallax-mid left-1/2 top-40 h-[26rem] w-[26rem] -translate-x-1/2 opacity-40"
-      />
-
       <div className="shell relative">
         <SectionHeading
           eyebrow="How It Works"
-          index="04"
           title={
             <>
               A clear path from{" "}
-              <span className="font-serif italic text-accent font-normal">ambition</span> to market execution.
+              <span className="font-serif italic font-normal text-accent">ambition</span> to market execution.
             </>
           }
           description="First we evaluate where you stand. Then we select the matching Lab stage, assign your specialized team, and execute with weekly transparency."
@@ -64,26 +58,26 @@ export function Process() {
             className="absolute left-[22px] size-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent shadow-[0_0_20px_5px_var(--accent-glow)] md:left-1/2"
           />
 
-          <ol className="flex flex-col gap-12 md:gap-20">
+          <ol className="flex flex-col gap-12 md:gap-16">
             {processSteps.map((step, i) => {
               const onLeft = i % 2 === 0;
               const Icon = step.icon;
               return (
                 <li
-                  key={step.index}
+                  key={step.title}
                   className="relative md:grid md:grid-cols-2 md:items-center md:gap-x-16"
                 >
                   {/* Central Node Badge */}
                   <span
                     aria-hidden
-                    className="absolute left-[22px] top-1 z-10 inline-flex size-12 -translate-x-1/2 items-center justify-center rounded-2xl border border-line-strong bg-surface text-accent shadow-xl md:left-1/2 md:top-1/2 md:-translate-y-1/2"
+                    className="absolute left-[22px] top-1 z-10 inline-flex size-12 -translate-x-1/2 items-center justify-center rounded-2xl border border-line bg-surface text-accent shadow-lg md:left-1/2 md:top-1/2 md:-translate-y-1/2"
                   >
                     <Icon className="size-6" />
                   </span>
 
                   {/* Content Card */}
                   <Reveal
-                    x={onLeft ? -28 : 28}
+                    x={onLeft ? -24 : 24}
                     y={14}
                     className={cn(
                       "pl-16 md:pl-0",
@@ -92,26 +86,23 @@ export function Process() {
                         : "md:col-start-2 md:pl-16",
                     )}
                   >
-                    <div className="glass-panel group relative rounded-3xl p-7 border border-line-strong backdrop-blur-xl transition-all duration-300 hover:border-accent/40">
+                    <div className="group relative rounded-3xl border border-line bg-surface/80 p-8 backdrop-blur-xl transition-all duration-300 hover:border-accent/40">
                       <div
                         className={cn(
-                          "flex items-baseline gap-3",
+                          "flex items-center gap-2",
                           onLeft && "md:justify-end",
                         )}
                       >
-                        <span className="numeral text-3xl font-bold text-accent md:text-4xl">
-                          {step.index}
-                        </span>
-                        <span className="numeral text-xs text-faint">
-                          / 0{processSteps.length}
+                        <span className="font-mono text-xs font-medium text-accent uppercase tracking-wider">
+                          Phase 0{i + 1}
                         </span>
                       </div>
-                      <h3 className="mt-3 font-display text-xl text-ink md:text-2xl">
+                      <h3 className="mt-3 font-display text-xl font-medium text-ink md:text-2xl">
                         {step.title}
                       </h3>
                       <p
                         className={cn(
-                          "mt-3 max-w-md text-[0.95rem] leading-relaxed text-muted",
+                          "mt-3 max-w-md text-base leading-relaxed text-muted font-normal",
                           onLeft && "md:ml-auto",
                         )}
                       >

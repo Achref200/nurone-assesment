@@ -2,13 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-/**
- * Hero backdrop — an engineered "signal field": a hairline grid masked to a
- * soft vignette, an off-center parallax aurora (never dead-center — that's the
- * #1 AI-template tell), a slow scan line, and a faint glow that tracks the
- * pointer. Everything is transform/opacity or a cheap CSS-var write; the whole
- * thing goes static under reduced motion.
- */
 export function SignalField() {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -43,7 +36,6 @@ export function SignalField() {
       aria-hidden
       className="pointer-events-none absolute inset-0 -z-10 overflow-hidden [--px:32%] [--py:24%]"
     >
-      {/* Hairline grid, vignette-masked */}
       <div
         className="absolute inset-0 opacity-[0.6] [mask-image:radial-gradient(120%_100%_at_30%_0%,black,transparent_72%)]"
         style={{
@@ -53,13 +45,11 @@ export function SignalField() {
         }}
       />
 
-      {/* Off-center parallax aurora (signal lime) */}
       <div
         className="glow parallax-back h-[46rem] w-[46rem]"
         style={{ top: "-14rem", left: "-10rem" }}
       />
 
-      {/* Pointer-tracking glow */}
       <div
         className="absolute inset-0"
         style={{
@@ -68,7 +58,6 @@ export function SignalField() {
         }}
       />
 
-      {/* Slow scan line */}
       <div className="scanline absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
     </div>
   );

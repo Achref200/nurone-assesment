@@ -15,31 +15,24 @@ gsap.registerPlugin(ScrollTrigger);
 function LabCard({ lab }: { lab: Lab }) {
   const Icon = lab.icon;
   return (
-    <article className="glass-panel relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-line-strong bg-surface p-8 shadow-2xl backdrop-blur-xl md:p-10">
-      <span
-        aria-hidden
-        className="chapter-ghost pointer-events-none absolute -right-2 -top-6 text-[10rem] leading-none opacity-30 md:text-[13rem]"
-      >
-        {lab.index}
-      </span>
-
+    <article className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-surface/80 p-8 md:p-10 backdrop-blur-xl transition-all duration-300 hover:border-accent/40">
       <div className="relative flex items-start justify-between gap-4">
-        <span className="inline-flex size-14 items-center justify-center rounded-2xl border border-line bg-white/[0.04] text-accent shadow-md">
+        <span className="inline-flex size-14 items-center justify-center rounded-2xl border border-line bg-white/[0.04] text-accent shadow-sm">
           <Icon className="size-7" />
         </span>
-        <span className="glass-strong font-mono text-xs rounded-full border border-line-strong px-3.5 py-1 text-ink/90">
+        <span className="font-mono text-xs font-medium text-ink/90 border border-line bg-white/[0.03] px-3.5 py-1 rounded-full">
           {lab.stage}
         </span>
       </div>
 
-      <h3 className="relative mt-7 font-display text-[1.75rem] leading-tight text-ink md:text-[2.1rem]">
+      <h3 className="relative mt-8 font-display text-2xl font-medium text-ink md:text-3xl">
         {lab.name}
       </h3>
-      <p className="relative mt-3 max-w-xl text-[0.95rem] leading-relaxed text-muted">
+      <p className="relative mt-3 text-base leading-relaxed text-muted">
         {lab.summary}
       </p>
 
-      <ul className="relative mt-6 grid gap-2.5">
+      <ul className="relative mt-6 grid gap-3">
         {lab.audience.map((point) => (
           <li key={point} className="flex items-start gap-3 text-sm text-ink/85">
             <span className="mt-1 flex size-4 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
@@ -50,14 +43,13 @@ function LabCard({ lab }: { lab: Lab }) {
         ))}
       </ul>
 
-      <div className="relative mt-auto pt-7">
-        <div className="h-px w-full bg-line" />
+      <div className="relative mt-auto pt-8">
+        <div className="h-px w-full bg-line/60" />
         <div className="mt-5 flex flex-wrap items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-accent" />
-            <span className="overline text-accent">Free Entry Point</span>
-          </div>
-          <span className="glass-strong font-mono text-xs font-semibold text-ink px-3 py-1 rounded-full border border-accent/30">
+          <span className="font-mono text-xs text-accent uppercase tracking-wider font-medium">
+            Free Entry Point
+          </span>
+          <span className="font-mono text-xs font-semibold text-ink px-3 py-1 rounded-full border border-accent/30 bg-accent/5">
             {lab.entry}
           </span>
         </div>
@@ -68,7 +60,6 @@ function LabCard({ lab }: { lab: Lab }) {
 
 export function Labs() {
   const root = useRef<HTMLElement>(null);
-  const counterRef = useRef<HTMLSpanElement>(null);
   const nameRef = useRef<HTMLSpanElement>(null);
   const fillRef = useRef<HTMLSpanElement>(null);
   const [mode, setMode] = useState<"static" | "deck">("static");
@@ -123,8 +114,6 @@ export function Labs() {
         const active = gsap.utils.clamp(0, n - 1, Math.round(p));
         if (active !== lastActive) {
           lastActive = active;
-          if (counterRef.current)
-            counterRef.current.textContent = labs[active].index;
           if (nameRef.current) nameRef.current.textContent = labs[active].name;
         }
         if (fillRef.current)
@@ -150,11 +139,10 @@ export function Labs() {
   const heading = (
     <SectionHeading
       eyebrow="The Lab System"
-      index="02"
       title={
         <>
           Start from where you stand.{" "}
-          <span className="font-serif italic text-accent font-normal">Enter the Lab built for it.</span>
+          <span className="font-serif italic font-normal text-accent">Enter the Lab built for it.</span>
         </>
       }
       description="Every founder arrives with a specific bottleneck. Each Lab converts your stage into leverage — with a free entry point, so we prove fit before any commitment."
@@ -165,7 +153,7 @@ export function Labs() {
     <section
       id="labs"
       ref={root}
-      className="relative scroll-mt-24 border-t border-line"
+      className="relative scroll-mt-24 border-t border-line py-20 md:py-28"
       style={
         mode === "deck"
           ? { height: `${(n - 1) * 90 + 116}vh` }
@@ -191,25 +179,16 @@ export function Labs() {
                   />
                 </span>
 
-                <div className="flex items-baseline gap-4">
+                <div className="flex flex-col justify-center">
                   <span
-                    ref={counterRef}
-                    className="numeral text-[4rem] leading-none text-accent md:text-[5.5rem]"
+                    ref={nameRef}
+                    className="font-display text-2xl font-medium text-ink"
                   >
-                    {labs[0].index}
+                    {labs[0].name}
                   </span>
-                  <div className="flex flex-col">
-                    <span className="numeral text-sm text-faint">/ 0{n}</span>
-                    <span
-                      ref={nameRef}
-                      className="mt-1 font-display text-xl text-ink"
-                    >
-                      {labs[0].name}
-                    </span>
-                    <span className="mt-2 max-w-[16rem] text-sm text-muted">
-                      Scroll to cycle through the operating labs.
-                    </span>
-                  </div>
+                  <span className="mt-2 text-sm text-muted">
+                    Scroll to cycle through operating labs.
+                  </span>
                 </div>
               </div>
             </div>
@@ -228,7 +207,7 @@ export function Labs() {
           </div>
         </div>
       ) : (
-        <div className="shell py-20 md:py-28">
+        <div className="shell">
           {heading}
           <div className="mt-14 grid gap-6 lg:grid-cols-2">
             {labs.map((lab, i) => (

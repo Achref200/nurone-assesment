@@ -11,19 +11,20 @@ export function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="scroll-mt-24 border-t border-line py-20 md:py-28">
+    <section id="faq" className="scroll-mt-24 border-t border-line py-24 md:py-32">
       <div className="shell">
         <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
-          <div className="lg:sticky lg:top-28 lg:h-fit">
+          <div className="lg:sticky lg:top-32 lg:h-fit">
             <Reveal>
               <div className="flex items-center gap-3">
                 <span className="h-px w-8 bg-accent" />
-                <span className="overline text-accent">FAQ</span>
-                <span className="overline text-faint">/ 06</span>
+                <span className="font-mono text-xs tracking-widest uppercase text-accent font-medium">
+                  FAQ
+                </span>
               </div>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="mt-6 text-h2 text-ink">
+              <h2 className="mt-6 text-h2 text-ink font-medium">
                 Questions before you request access.
               </h2>
             </Reveal>
@@ -35,10 +36,12 @@ export function Faq() {
             </Reveal>
 
             <Reveal delay={0.15}>
-              <div className="mt-8 rounded-2xl border border-line bg-white/[0.02] p-5 backdrop-blur-md">
-                <span className="overline text-faint">Direct Contact</span>
+              <div className="mt-8 rounded-2xl border border-line bg-surface/60 p-5 backdrop-blur-md">
+                <span className="font-mono text-xs text-faint uppercase tracking-wider">
+                  Direct Studio Inquiry
+                </span>
                 <p className="mt-2 text-sm text-muted">
-                  Have a specific technical question or proprietary NDA? Reach out directly to our team.
+                  Have a specific technical inquiry or non-disclosure agreement? Reach out directly.
                 </p>
                 <a
                   href="mailto:contact@nurone.ai"
@@ -59,8 +62,8 @@ export function Faq() {
                 <div
                   key={faq.question}
                   className={cn(
-                    "glass-panel overflow-hidden rounded-2xl border px-6 transition-all duration-300",
-                    isOpen ? "border-accent/40 bg-surface/90 shadow-xl" : "border-line bg-white/[0.02]",
+                    "overflow-hidden rounded-2xl border px-6 transition-all duration-300",
+                    isOpen ? "border-accent/40 bg-surface/90" : "border-line bg-surface/40",
                   )}
                 >
                   <h3>
@@ -105,7 +108,7 @@ export function Faq() {
                         transition={{ duration: 0.36, ease: [0.76, 0, 0.24, 1] }}
                         className="overflow-hidden"
                       >
-                        <p className="max-w-xl pb-6 text-sm leading-relaxed text-muted md:text-base border-t border-line/40 pt-3 mt-1">
+                        <p className="max-w-xl pb-6 text-sm leading-relaxed text-muted md:text-base border-t border-line/40 pt-3 mt-1 font-normal">
                           {faq.answer}
                         </p>
                       </motion.div>

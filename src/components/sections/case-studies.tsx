@@ -15,47 +15,35 @@ gsap.registerPlugin(ScrollTrigger);
 function StudyCard({ item }: { item: CaseStudy }) {
   return (
     <Tilt className="h-full">
-      <article className="glass-panel shine group relative flex h-full flex-col overflow-hidden rounded-3xl p-8 border border-line-strong backdrop-blur-xl transition-all duration-300 hover:border-accent/40">
-        <span
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{
-            background:
-              "radial-gradient(18rem 18rem at var(--mx) var(--my), rgba(85,123,255,0.14), transparent 55%)",
-          }}
-        />
-
+      <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-surface/80 p-8 backdrop-blur-xl transition-all duration-300 hover:border-accent/40 hover:bg-surface">
         <div className="relative flex items-center justify-between gap-3">
-          <span className="numeral text-base font-semibold text-accent">{item.index}</span>
-          <div className="flex items-center gap-2">
-            {item.featured && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-accent/15 px-2.5 py-0.5 font-mono text-[0.65rem] text-accent">
-                <Sparkles className="size-3" /> Flagship
-              </span>
-            )}
-            <span className="overline text-faint">{item.category}</span>
-          </div>
+          <span className="font-mono text-xs font-medium text-accent uppercase tracking-wider">{item.category}</span>
+          {item.featured && (
+            <span className="inline-flex items-center gap-1 rounded-full bg-accent/15 px-2.5 py-0.5 font-mono text-[0.68rem] text-accent">
+              <Sparkles className="size-3" /> Flagship
+            </span>
+          )}
         </div>
 
-        <h3 className="relative mt-6 font-display text-3xl text-ink transition-colors group-hover:text-accent">
+        <h3 className="relative mt-6 font-display text-2xl font-medium text-ink md:text-3xl transition-colors group-hover:text-accent">
           {item.name}
         </h3>
-        <p className="relative mt-4 flex-1 text-[0.95rem] leading-relaxed text-muted">
+        <p className="relative mt-4 flex-1 text-base leading-relaxed text-muted">
           {item.summary}
         </p>
 
         <div className="relative mt-6 flex flex-wrap gap-2">
           {item.tags.map((tag) => (
-            <span key={tag} className="tag border-line bg-white/[0.02]">
+            <span key={tag} className="font-mono text-xs border border-line bg-white/[0.02] px-2.5 py-1 rounded-full text-muted">
               {tag}
             </span>
           ))}
         </div>
 
-        <div className="relative mt-7 flex items-end justify-between gap-4 border-t border-line/60 pt-6">
+        <div className="relative mt-8 flex items-end justify-between gap-4 border-t border-line/60 pt-6">
           <div>
             <div className="numeral text-2xl font-semibold text-ink">{item.metric.value}</div>
-            <div className="mt-1 overline text-faint">{item.metric.label}</div>
+            <div className="mt-1 font-mono text-xs text-faint uppercase tracking-wider">{item.metric.label}</div>
           </div>
           <a
             href="#work"
@@ -125,11 +113,10 @@ export function CaseStudies() {
   const heading = (
     <SectionHeading
       eyebrow="Selected Production Work"
-      index="03"
       title={
         <>
           An index of{" "}
-          <span className="font-serif italic text-accent font-normal">shipped systems.</span>
+          <span className="font-serif italic font-normal text-accent">shipped systems.</span>
         </>
       }
       description="Not promises — production systems founders and users rely on every day. Scroll sideways through our shipped index."
@@ -138,7 +125,7 @@ export function CaseStudies() {
 
   const railFooter = (
     <div className="shell mt-8 flex items-center gap-5">
-      <span className="inline-flex shrink-0 items-center gap-2 overline text-faint">
+      <span className="inline-flex shrink-0 items-center gap-2 font-mono text-xs text-faint uppercase tracking-wider">
         <MoveRight className="size-4 text-accent" /> {caseStudies.length} production systems shipped
       </span>
       <span aria-hidden className="hx-rail hidden flex-1 lg:block">
@@ -151,7 +138,7 @@ export function CaseStudies() {
     <section
       id="work"
       ref={root}
-      className="relative scroll-mt-24 border-t border-line"
+      className="relative scroll-mt-24 border-t border-line py-20 md:py-28"
     >
       {mode === "scroll" ? (
         <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden py-16">
@@ -172,8 +159,8 @@ export function CaseStudies() {
           {railFooter}
         </div>
       ) : (
-        <div className="py-20 md:py-28">
-          <div className="shell">{heading}</div>
+        <div className="shell">
+          {heading}
           <div className="mt-12 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <div className="flex snap-x snap-mandatory gap-6 pl-[clamp(1.25rem,5vw,3rem)]">
               {caseStudies.map((item) => (
