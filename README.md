@@ -27,12 +27,11 @@ NURONE is an AI-augmented operating team that helps founders turn ideas, broken 
 
 ## Design decisions
 
-### Art direction — "Clean, clear, futuristic, artistic, humanized"
+### Art direction — "Clean, clear, futuristic, artistic, creative"
 
 The original site uses a common dark AI SaaS aesthetic. The redesign preserves the dark canvas but elevates it with:
 - **Futuristic luxury** feel using Syne's geometric letterforms
 - **Artistic patterns**: dot-grid backgrounds, ambient radial orbs, grain overlay
-- **Humanized interaction**: cursor-tracking dot, magnetic buttons, scroll-linked reveals
 - **Clean, not bombarded**: generous whitespace, clear hierarchy, restrained accent use
 
 ### Color system
