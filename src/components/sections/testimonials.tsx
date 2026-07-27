@@ -76,7 +76,11 @@ export function Testimonials() {
   const active = testimonials[index];
 
   return (
-    <section id="voices" className="scroll-mt-24 py-28 md:py-40">
+    <section id="voices" className="scroll-mt-24 py-28 md:py-40 relative">
+      {/* Soft background pattern */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <span className="absolute top-1/3 right-1/4 h-[20rem] w-[20rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.03),transparent_60%)]" />
+      </div>
       <div className="shell">
         <div ref={headingRef} className="mb-12">
           <p className="overline text-muted/30 mb-6">
@@ -105,7 +109,7 @@ export function Testimonials() {
           >
             {/* Quote icon */}
             <div className="mb-8">
-              <span className="inline-flex size-11 items-center justify-center rounded-xl border border-white/[0.06] bg-white/[0.02] text-accent/50">
+              <span className="inline-flex size-11 items-center justify-center rounded-xl border border-white/[0.06] bg-white/[0.02] text-accent/40">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-5">
                   <path d="M10 8c-1.1 0-2 .9-2 2v4h4v-4H8.5c0-1.38.62-2.5 1.5-2.5V5C8.57 5 7 6.79 7 9v3H4V8c0-2.21 1.79-4 4-4h2v4zm9 0c-1.1 0-2 .9-2 2v4h4v-4h-3.5c0-1.38.62-2.5 1.5-2.5V5c-2.93 0-4.5 1.79-4.5 4v3h-3V8c0-2.21 1.79-4 4-4h2v4z" />
                 </svg>
@@ -118,16 +122,16 @@ export function Testimonials() {
                 className="transition-all duration-300"
                 style={{ opacity: fading ? 0 : 1, transform: fading ? 'translateY(6px)' : 'translateY(0)' }}
               >
-                <blockquote className="max-w-3xl text-[clamp(1.2rem,2.5vw,1.8rem)] font-semibold leading-[1.3] text-ink tracking-[-0.02em]">
+                <blockquote className="max-w-3xl text-[clamp(1.15rem,2.2vw,1.65rem)] font-medium leading-[1.45] text-ink/85 tracking-[-0.01em]">
                   &ldquo;<TypewriterText text={active.quote} speed={18} />&rdquo;
                 </blockquote>
                 <figcaption className="mt-10 flex items-center gap-4">
-                  <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-white/[0.06] bg-accent/10 text-sm font-semibold text-accent/80">
+                  <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent/15 to-accent/5 border border-white/[0.06] text-sm font-semibold text-accent/70">
                     {active.initials}
                   </span>
                   <span className="flex flex-col">
-                    <span className="text-[0.9rem] font-semibold text-ink tracking-[-0.01em]">{active.name}</span>
-                    <span className="text-[0.8rem] text-muted/60 tracking-[-0.005em]">{active.role}</span>
+                    <span className="text-[0.88rem] font-semibold text-ink tracking-[-0.01em]">{active.name}</span>
+                    <span className="text-[0.78rem] text-muted/50 tracking-[-0.005em]">{active.role}</span>
                   </span>
                 </figcaption>
               </div>
@@ -151,7 +155,7 @@ export function Testimonials() {
                       }, 300);
                     }}
                     className={`h-1 rounded-full transition-all duration-500 ${
-                      i === index ? "w-8 bg-accent" : "w-1.5 bg-white/[0.1] hover:bg-white/[0.2]"
+                      i === index ? "w-8 bg-accent" : "w-1.5 bg-white/[0.12] hover:bg-white/[0.22]"
                     }`}
                   />
                 ))}
@@ -161,7 +165,7 @@ export function Testimonials() {
                   type="button"
                   aria-label="Previous testimonial"
                   onClick={() => go(-1)}
-                  className="inline-flex size-10 items-center justify-center rounded-full border border-white/[0.06] bg-white/[0.02] text-muted/50 transition-all duration-300 hover:border-accent/20 hover:text-accent/70"
+                  className="inline-flex size-10 items-center justify-center rounded-full border border-white/[0.06] bg-white/[0.03] text-muted/55 transition-all duration-300 hover:border-accent/25 hover:text-accent/80"
                 >
                   <ArrowLeft className="size-4" />
                 </button>
@@ -169,7 +173,7 @@ export function Testimonials() {
                   type="button"
                   aria-label="Next testimonial"
                   onClick={() => go(1)}
-                  className="inline-flex size-10 items-center justify-center rounded-full border border-white/[0.06] bg-white/[0.02] text-muted/50 transition-all duration-300 hover:border-accent/20 hover:text-accent/70"
+                  className="inline-flex size-10 items-center justify-center rounded-full border border-white/[0.06] bg-white/[0.03] text-muted/55 transition-all duration-300 hover:border-accent/25 hover:text-accent/80"
                 >
                   <ArrowRight className="size-4" />
                 </button>

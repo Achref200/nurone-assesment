@@ -30,6 +30,11 @@ export function Faq() {
 
   return (
     <section id="faq" className="scroll-mt-24 py-28 md:py-40 relative">
+      {/* Soft background pattern */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-0 dot-grid-sm opacity-15" />
+        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.03),transparent_60%)]" />
+      </div>
       <div className="shell relative">
         <div ref={headingRef} className="mb-16">
           <p className="overline text-muted/30 mb-6">
@@ -55,8 +60,16 @@ export function Faq() {
         <div
           ref={cardRef}
           onMouseMove={handleMouseMove}
-          className="rounded-2xl border border-white/[0.07] bg-surface p-6 md:p-10" style={{ boxShadow: '0 2px 24px rgba(0,0,0,0.3)' }}
+          className="group rounded-2xl border border-white/[0.07] bg-surface p-6 md:p-10 relative overflow-hidden" style={{ boxShadow: '0 2px 24px rgba(0,0,0,0.3)' }}
         >
+          {/* Cursor-following glow */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            style={{
+              background: `radial-gradient(400px circle at var(--faq-x, 50%) var(--faq-y, 50%), rgba(59,130,246,0.06), transparent 60%)`,
+            }}
+          />
           <div className="flex flex-col">
             {faqs.map((faq, index) => {
               const isOpen = openIndex === index;
@@ -150,7 +163,7 @@ export function Faq() {
           </div>
         </div>
 
-        <div className="mt-8 flex items-center justify-between text-[0.8rem] text-muted/40">
+        <div className="mt-8 flex items-center justify-between text-[0.8rem] text-muted/45">
           <span>Can&apos;t find your answer?</span>
           <a
             href="#access"

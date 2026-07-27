@@ -14,9 +14,9 @@ import { cn } from "@/lib/utils";
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const menuSocials = [
-  { label: "LinkedIn", href: "https://www.linkedin.com" },
-  { label: "X", href: "https://x.com" },
-  { label: "Instagram", href: "https://www.instagram.com" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/nurone" },
+  { label: "X", href: "https://x.com/nurone_io" },
+  { label: "Instagram", href: "https://www.instagram.com/nurone.io" },
 ];
 
 export function Navbar() {
@@ -113,7 +113,7 @@ export function Navbar() {
                   scroll={false}
                   className="group inline-flex items-baseline gap-1.5 text-sm text-muted transition-colors hover:text-ink"
                 >
-                  <span className="numeral text-[0.7rem] text-faint transition-colors group-hover:text-accent">
+                  <span className="numeral text-[0.7rem] text-faint/60 transition-colors group-hover:text-accent">
                     0{i + 1}
                   </span>
                   <TextScramble
@@ -191,11 +191,11 @@ export function Navbar() {
                   onClick={() => setOpen(false)}
                   aria-label="Close menu"
                   data-hover="link"
-                  className="group inline-flex items-center gap-2 rounded-full border border-line-strong bg-white/[0.03] py-1.5 pl-4 pr-1.5 text-sm text-ink transition-colors hover:border-accent/50 hover:text-accent"
+                  className="group inline-flex items-center gap-2.5 rounded-full border border-line-strong bg-white/[0.03] py-2 pl-5 pr-2 text-sm text-ink transition-colors hover:border-accent/50 hover:text-accent"
                 >
                   Close
-                  <span className="inline-flex size-8 items-center justify-center rounded-full bg-accent/15 text-accent transition-colors group-hover:bg-accent group-hover:text-void">
-                    <X className="size-4" />
+                  <span className="inline-flex size-9 items-center justify-center rounded-full bg-accent/15 text-accent transition-colors group-hover:bg-accent group-hover:text-void">
+                    <X className="size-[18px]" />
                   </span>
                 </button>
               </div>
@@ -219,7 +219,7 @@ export function Navbar() {
                       className="group flex items-center justify-between gap-4 py-3.5 sm:py-4"
                     >
                       <span className="flex items-baseline gap-4 overflow-hidden">
-                        <span className="numeral text-sm text-faint">
+                        <span className="numeral text-sm text-faint/60">
                           0{i + 1}
                         </span>
                         <span className="overflow-hidden">
@@ -264,13 +264,13 @@ export function Navbar() {
                         href={s.href}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-sm text-muted transition-colors hover:text-ink"
+                        className="text-sm text-muted/60 transition-colors hover:text-ink"
                       >
                         {s.label}
                       </a>
                     ))}
                   </div>
-                  <span className="overline text-faint">Est. 2024</span>
+                  <span className="overline text-faint/60">Est. 2024</span>
                 </div>
               </motion.div>
             </div>

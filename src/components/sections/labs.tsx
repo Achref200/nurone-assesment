@@ -19,16 +19,16 @@ function LabCard({ lab }: { lab: Lab }) {
       {/* Soft corner glow on hover */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-24 -right-24 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.07),transparent_70%)] opacity-0 transition-opacity duration-700 group-hover:opacity-100"
+        className="pointer-events-none absolute -top-28 -right-28 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.09),transparent_70%)] opacity-0 transition-opacity duration-700 group-hover:opacity-100"
       />
 
       {/* Stage tag */}
       <div className="flex items-center justify-between">
-        <span className="overline text-muted/35">
+        <span className="overline text-muted/40">
           {lab.stage}
         </span>
-        <span className="flex size-9 items-center justify-center rounded-xl border border-white/[0.06] bg-white/[0.015] transition-all duration-500 group-hover:border-accent/20 group-hover:bg-accent/5">
-          <Icon className="size-4 text-muted/40 group-hover:text-accent/60 transition-colors duration-500" />
+        <span className="flex size-9 items-center justify-center rounded-xl border border-white/[0.06] bg-white/[0.02] transition-all duration-500 group-hover:border-accent/25 group-hover:bg-accent/5">
+          <Icon className="size-4 text-muted/45 group-hover:text-accent/65 transition-colors duration-500" />
         </span>
       </div>
 
@@ -46,7 +46,7 @@ function LabCard({ lab }: { lab: Lab }) {
       <ul className="mt-5 flex flex-col gap-1.5">
         {lab.audience.map((point) => (
           <li key={point} className="flex items-start gap-3 text-[0.8rem] text-muted/45 leading-[1.6]">
-            <span className="mt-2 size-[3px] shrink-0 rounded-full bg-accent/30" />
+            <span className="mt-2 size-[3px] shrink-0 rounded-full bg-accent/35" />
             {point}
           </li>
         ))}
@@ -54,10 +54,10 @@ function LabCard({ lab }: { lab: Lab }) {
 
       {/* Entry point */}
       <div className="mt-6 pt-5 flex items-center justify-between">
-        <span className="text-[0.68rem] tracking-[0.12em] uppercase text-muted/35">
+        <span className="text-[0.68rem] tracking-[0.12em] uppercase text-muted/40">
           {lab.entry}
         </span>
-        <span className="flex size-8 items-center justify-center rounded-full border border-white/[0.06] bg-white/[0.015] text-muted/35 transition-all duration-300 group-hover:border-accent/25 group-hover:text-accent/70 group-hover:bg-accent/5">
+        <span className="flex size-8 items-center justify-center rounded-full border border-white/[0.06] bg-white/[0.015] text-muted/40 transition-all duration-300 group-hover:border-accent/30 group-hover:text-accent group-hover:bg-accent/10">
           <ArrowUpRight className="size-3.5" />
         </span>
       </div>

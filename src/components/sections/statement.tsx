@@ -23,7 +23,7 @@ export function Statement() {
     >
       {/* Subtle ambient orb */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.04),transparent_60%)]" />
+        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[32rem] w-[32rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.05),transparent_60%)]" />
       </div>
 
       <div className="shell relative">

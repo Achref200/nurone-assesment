@@ -49,7 +49,7 @@ export function Hero() {
       {/* Background: subtle dot grid + ambient glow */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_70%_50%_at_50%_30%,black,transparent)]" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-        <span className="absolute h-[48rem] w-[48rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.07),transparent_60%)]" style={{ top: "-8rem", left: "50%", transform: "translateX(-50%)" }} />
+        <span className="absolute h-[50rem] w-[50rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.08),transparent_60%)]" style={{ top: "-10rem", left: "50%", transform: "translateX(-50%)" }} />
       </div>
 
       {/* Centered Vertical Layout */}
@@ -75,7 +75,14 @@ export function Hero() {
         {/* Subtitle */}
         <Reveal delay={0.2}>
           <p className="mt-6 max-w-md text-[0.88rem] leading-[1.75] text-muted/50 tracking-[-0.005em] font-normal">
-            {hero.body.split(".").slice(0, 2).join(".")}.
+            {hero.body}
+          </p>
+        </Reveal>
+
+        {/* Exclusivity note */}
+        <Reveal delay={0.28}>
+          <p className="mt-4 text-[0.72rem] tracking-[0.08em] text-accent/35 font-medium italic">
+            {hero.note}
           </p>
         </Reveal>
 
@@ -87,7 +94,7 @@ export function Hero() {
           >
             <div
               aria-hidden
-              className="absolute inset-[15%] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.06),transparent_65%)]"
+              className="absolute inset-[12%] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.08),transparent_60%)]"
             />
             <div className="relative size-full touch-none select-none">
               <HeroLogo3D />

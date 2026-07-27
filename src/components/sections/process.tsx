@@ -23,13 +23,13 @@ function StepRow({ step, index }: { step: (typeof processSteps)[number]; index: 
       className="relative grid gap-8 pl-16 py-12 border-b border-white/[0.04] last:border-0 md:grid-cols-[1fr_2fr] md:gap-16 md:pl-20"
     >
       {/* Node */}
-      <div className="absolute left-0 top-12 flex size-12 items-center justify-center rounded-2xl border border-white/[0.06] bg-white/[0.015] transition-colors duration-500 hover:border-accent/20 hover:bg-accent/5">
-        <Icon className="size-4 text-accent/50" />
+      <div className="absolute left-0 top-12 flex size-12 items-center justify-center rounded-2xl border border-white/[0.06] bg-white/[0.02] transition-colors duration-500 hover:border-accent/25 hover:bg-accent/5">
+        <Icon className="size-4 text-accent/55" />
       </div>
 
       {/* Index + Title */}
       <div className="flex flex-col justify-center">
-        <span className="text-[0.6rem] font-medium tracking-[0.22em] uppercase text-muted/30">
+        <span className="text-[0.6rem] font-medium tracking-[0.22em] uppercase text-muted/40">
           {String(index + 1).padStart(2, "0")}
         </span>
         <h3 className="mt-2 text-[1.4rem] font-bold text-ink tracking-[-0.025em] leading-[1.1]">
@@ -105,7 +105,7 @@ export function Process() {
           <motion.div
             aria-hidden
             style={{ scaleY: spineScale }}
-            className="absolute left-[1.5rem] top-0 bottom-0 w-px origin-top bg-gradient-to-b from-accent/40 via-accent/10 to-transparent"
+            className="absolute left-[1.5rem] top-0 bottom-0 w-px origin-top bg-gradient-to-b from-accent/50 via-accent/15 to-transparent"
           />
 
           <div className="flex flex-col gap-0">

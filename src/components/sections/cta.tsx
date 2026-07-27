@@ -19,10 +19,14 @@ export function Cta() {
       id="access"
       className="relative scroll-mt-24 overflow-hidden py-28 md:py-40"
     >
+      {/* Soft background pattern */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <span className="absolute bottom-0 right-0 h-[22rem] w-[22rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.04),transparent_60%)]" />
+      </div>
       <div className="shell relative">
         <div className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-surface p-8 md:p-16" style={{ boxShadow: '0 2px 24px rgba(0,0,0,0.3)' }}>
           {/* Subtle corner glow */}
-          <div aria-hidden className="pointer-events-none absolute -top-32 -right-32 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.06),transparent_70%)]" />
+          <div aria-hidden className="pointer-events-none absolute -top-36 -right-36 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.07),transparent_70%)]" />
 
           <div className="grid gap-14 lg:grid-cols-12 lg:items-start">
             <div className="lg:col-span-7" ref={headingRef}>
@@ -57,7 +61,7 @@ export function Cta() {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="border-t border-white/[0.04] pt-8 lg:border-t-0 lg:border-l lg:border-white/[0.04] lg:pl-10">
+              <div className="lg:border-l lg:border-white/[0.04] lg:pl-10 pt-8 lg:pt-0">
                 <p className="overline text-muted/30 mb-5">
                   Or subscribe for insights
                 </p>

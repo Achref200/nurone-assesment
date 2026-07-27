@@ -69,15 +69,15 @@ export function Pillars() {
                 {/* Subtle corner accent */}
                 <div
                   aria-hidden
-                  className="absolute -top-20 -right-20 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.08),transparent_70%)] opacity-0 transition-opacity duration-700 group-hover:opacity-100"
+                  className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.1),transparent_70%)] opacity-0 transition-opacity duration-700 group-hover:opacity-100"
                 />
 
                 {/* Top: icon + index */}
                 <div className="flex items-start justify-between">
-                  <div className="flex size-11 items-center justify-center rounded-xl border border-white/[0.07] bg-white/[0.02] transition-all duration-500 group-hover:border-accent/20 group-hover:bg-accent/5">
-                    <Icon className="size-[18px] text-accent/50 group-hover:text-accent/70 transition-colors duration-500" />
+                  <div className="flex size-11 items-center justify-center rounded-xl border border-white/[0.07] bg-white/[0.02] transition-all duration-500 group-hover:border-accent/25 group-hover:bg-accent/5">
+                    <Icon className="size-[18px] text-accent/55 group-hover:text-accent/75 transition-colors duration-500" />
                   </div>
-                  <span className="text-[0.55rem] font-medium tracking-[0.22em] text-white/[0.1] mt-1">
+                  <span className="text-[0.55rem] font-medium tracking-[0.22em] text-white/[0.12] mt-1">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
@@ -94,7 +94,7 @@ export function Pillars() {
 
                 {/* Bottom metric */}
                 <div className="mt-6 flex items-end justify-between pt-5">
-                  <span className="text-[0.65rem] uppercase tracking-[0.14em] text-white/[0.15]">
+                  <span className="text-[0.65rem] uppercase tracking-[0.14em] text-white/[0.18]">
                     {pillar.metricLabel}
                   </span>
                   <span className="text-[1.4rem] font-bold text-ink/20 tracking-[-0.02em] group-hover:text-accent/60 transition-colors duration-500">

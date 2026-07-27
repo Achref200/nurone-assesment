@@ -69,7 +69,7 @@ export function Preloader() {
   return (
     <div ref={root} className="preloader" aria-hidden>
       <div className="preloader__inner relative z-10 flex flex-col items-center gap-6">
-        <Mark className="size-10 text-accent" />
+        <Mark className="size-10 text-accent/70" />
         <span ref={countRef} className="numeral text-5xl text-ink md:text-6xl">
           000
         </span>

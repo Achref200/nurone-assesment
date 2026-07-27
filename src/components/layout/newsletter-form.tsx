@@ -25,10 +25,10 @@ export function NewsletterForm() {
   return (
     <form onSubmit={handleSubmit} noValidate className="w-full">
       <label htmlFor="newsletter-email" className="text-sm font-medium text-ink">
-        Join the newsletter
+        Stay in the loop
       </label>
-      <p className="mt-1 text-sm text-muted">
-        Weekly signal on building and scaling products. No noise.
+      <p className="mt-1.5 text-[0.82rem] leading-[1.6] text-muted/55">
+        Quarterly signal on building and scaling products. No noise, no spam.
       </p>
 
       {status === "success" ? (

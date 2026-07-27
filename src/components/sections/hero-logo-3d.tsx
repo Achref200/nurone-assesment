@@ -55,12 +55,12 @@ function LogoMark({ reduced }: { reduced: boolean }) {
       <Center>
         <mesh ref={mesh} geometry={geometry} castShadow>
           <meshStandardMaterial
-            color="#557bff"
-            metalness={0.92}
-            roughness={0.22}
-            emissive="#16205e"
-            emissiveIntensity={0.45}
-            envMapIntensity={1.4}
+            color="#4f8bff"
+            metalness={0.90}
+            roughness={0.20}
+            emissive="#1a2d6e"
+            emissiveIntensity={0.5}
+            envMapIntensity={1.5}
           />
         </mesh>
       </Center>

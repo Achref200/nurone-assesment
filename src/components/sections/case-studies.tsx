@@ -20,7 +20,7 @@ function StudyCard({ item }: { item: CaseStudy }) {
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
-          style={{ background: "radial-gradient(500px circle at 30% 0%, rgba(59,130,246,0.04), transparent 60%)" }}
+          style={{ background: "radial-gradient(500px circle at 30% 0%, rgba(59,130,246,0.05), transparent 60%)" }}
         />
 
         <div>
@@ -38,15 +38,15 @@ function StudyCard({ item }: { item: CaseStudy }) {
 
         <div className="mt-7 flex items-end justify-between gap-4 pt-5">
           <div>
-            <div className="text-[1.5rem] font-bold text-ink/30 tracking-[-0.03em] group-hover:text-ink/60 transition-colors duration-500">
+            <div className="text-[1.5rem] font-bold text-ink/35 tracking-[-0.03em] group-hover:text-ink/65 transition-colors duration-500">
               {item.metric.value}
             </div>
-            <div className="mt-0.5 text-[0.68rem] text-muted/35 uppercase tracking-[0.1em]">
+            <div className="mt-0.5 text-[0.68rem] text-muted/40 uppercase tracking-[0.1em]">
               {item.metric.label}
             </div>
           </div>
           <span
-            className="inline-flex size-9 items-center justify-center rounded-full border border-white/[0.05] text-muted/30 transition-all duration-500 group-hover:border-accent/40 group-hover:bg-accent group-hover:text-white group-hover:scale-110"
+            className="inline-flex size-9 items-center justify-center rounded-full border border-white/[0.06] text-muted/35 transition-all duration-500 group-hover:border-accent/50 group-hover:bg-accent group-hover:text-white group-hover:scale-110"
           >
             <ArrowUpRight className="size-3.5" />
           </span>
@@ -132,6 +132,11 @@ export function CaseStudies() {
       ref={root}
       className="relative scroll-mt-24 py-20 md:py-32"
     >
+      {/* Soft background pattern */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-0 dot-grid-sm opacity-10" />
+        <span className="absolute top-1/4 left-1/3 h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.025),transparent_60%)]" />
+      </div>
       {mode === "scroll" ? (
         <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden py-10">
           <div className="shell">{heading}</div>

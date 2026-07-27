@@ -36,7 +36,7 @@ export const hero = {
   eyebrow: "AI-Powered Tech & Growth Lab",
   titleLead: "You bring the ambition.",
   titleAccent: "We build the system to scale it.",
-  body: "NURONE is an AI-augmented operating team of elite engineers, product architects, and growth hackers. We turn ideas, broken MVPs, and stalled businesses into scalable products, automated systems, and revenue engines built to dominate their market.",
+  body: "An AI-augmented team of engineers, architects, and growth hackers. We turn ideas and broken MVPs into products that actually scale.",
   note: "We don't work with everyone. We work where we believe we can win.",
   primaryCta: { label: "Request Access", href: "#access" },
   secondaryCta: { label: "Explore the Lab System", href: "#labs" },
@@ -56,7 +56,7 @@ export const pillars: Pillar[] = [
     id: "technical-backbone",
     title: "Technical Backbone",
     description:
-      "We build and rebuild products with the architecture, code quality, and delivery discipline needed to scale — handing you production code you 100% own.",
+      "We build and rebuild products with the architecture, code quality, and delivery discipline needed to scale — you own every line of production code.",
     metric: "72h",
     metricLabel: "First Prototype Sprint",
     icon: TechBackboneIcon,
@@ -65,7 +65,7 @@ export const pillars: Pillar[] = [
     id: "agentic-operations",
     title: "Agentic Operations",
     description:
-      "We combine AI systems, autonomous agents, and expert human operators to eliminate internal bottlenecks and accelerate execution across your entire workflow.",
+      "AI systems, autonomous agents, and expert human operators working together to eliminate bottlenecks and accelerate execution across your workflow.",
     metric: "100%",
     metricLabel: "Code Ownership & IP",
     icon: AgenticOpsIcon,
@@ -74,7 +74,7 @@ export const pillars: Pillar[] = [
     id: "growth-infrastructure",
     title: "Growth Infrastructure",
     description:
-      "We turn positioning, outbound, inbound, and ads into repeatable engines for qualified leads, pipeline, and actual revenue — never vanity metrics.",
+      "Positioning, outbound, inbound, and ads turned into repeatable engines for qualified leads, pipeline, and actual revenue — never vanity metrics.",
     metric: "€10M+",
     metricLabel: "Tracked Revenue Pipeline",
     icon: GrowthInfraIcon,
@@ -108,7 +108,7 @@ export const labs: Lab[] = [
     name: "Foundation Lab",
     stage: "Idea → First Serious Product",
     summary:
-      "We turn raw ambition and fragile MVPs into a first serious product foundation: clear scope, clean flows, production architecture, and launch-ready logic.",
+      "Raw ambition and fragile MVPs become a real product: clear scope, clean flows, production architecture, and launch-ready logic.",
     audience: [
       "You have an idea, domain expertise, or market insight",
       "You built a rough prototype, no-code app, or vibe-coded MVP",
@@ -123,7 +123,7 @@ export const labs: Lab[] = [
     name: "Scale Lab",
     stage: "Traction → Built to Grow",
     summary:
-      "For products slowing under growth. We add resilient architecture, AI capabilities, automation, and fractional CTO execution so your system keeps up with demand.",
+      "Products slowing under growth get resilient architecture, AI capabilities, automation, and fractional CTO execution so the system keeps up with demand.",
     audience: [
       "You have active users, revenue, or real market traction",
       "The product is slowing down or accumulating tech debt under growth",
@@ -138,7 +138,7 @@ export const labs: Lab[] = [
     name: "Operations Lab",
     stage: "Chaos → Operating System",
     summary:
-      "We replace tool sprawl and manual grunt work with internal tools, automations, real-time dashboards, and custom AI agents built around your real process.",
+      "Tool sprawl and manual grunt work replaced with internal tools, automations, real-time dashboards, and custom AI agents built around your actual process.",
     audience: [
       "You pay for dozens of tools that still don't fit your workflow",
       "You run operations manually across spreadsheets, CRMs, and docs",
@@ -153,7 +153,7 @@ export const labs: Lab[] = [
     name: "Growth Lab",
     stage: "Product → Pipeline & Revenue",
     summary:
-      "We turn something worth selling into qualified leads, predictable pipeline, and recurring revenue with hands-on GTM execution — not generic agency retainers.",
+      "Something worth selling turns into qualified leads, predictable pipeline, and recurring revenue with hands-on GTM execution — not generic agency retainers.",
     audience: [
       "You have a product worth selling or scaling further",
       "You need qualified leads, pipeline, revenue, and market momentum",
@@ -269,28 +269,28 @@ export const processSteps: ProcessStep[] = [
     index: "02",
     title: "Choose the Right Lab",
     description:
-      "You enter the exact Lab matching your current stage (Foundation, Scale, Operations, or Growth). Targeted leverage for your specific challenge — zero wasted motion.",
+      "Enter the Lab matching your current stage — Foundation, Scale, Operations, or Growth. Targeted leverage for your specific challenge. Zero wasted motion.",
     icon: ProcessRouteIcon,
   },
   {
     index: "03",
     title: "Build with Visibility",
     description:
-      "Execution runs on disciplined 1-week sprint cycles. Live dashboard access to commits, active tasks, team assignments, and transparent hour tracking. No black box.",
+      "Disciplined 1-week sprint cycles. Live dashboard access to commits, tasks, team assignments, and hour tracking. No black boxes.",
     icon: ProcessBoxesIcon,
   },
   {
     index: "04",
     title: "Stay Accountable",
     description:
-      "You own 100% of the code, IP, and assets. We guarantee agreed deliverables. If a scope detail needs refinement, we stay until it's right. Complete peace of mind.",
+      "You own 100% of the code, IP, and assets. We guarantee deliverables. If something needs refinement, we stay until it's right.",
     icon: ProcessShieldIcon,
   },
   {
     index: "05",
     title: "Scale or Exit Cleanly",
     description:
-      "When your stage milestone is achieved, you decide next steps: scale into the next Lab stage, transition to internal team, or exit cleanly with full documentation.",
+      "When your milestone is hit, you decide: scale into the next Lab, transition to your internal team, or exit cleanly with full documentation.",
     icon: ProcessDoorIcon,
   },
 ];
