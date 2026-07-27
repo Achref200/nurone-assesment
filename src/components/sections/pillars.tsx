@@ -58,7 +58,7 @@ export function Pillars() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-8%" }}
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
-                className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] p-7 md:p-8 transition-all duration-700 hover:border-white/[0.12] hover:bg-white/[0.035] ${span} ${height}`}
+                className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/[0.07] bg-surface p-7 md:p-8 transition-all duration-700 hover:border-white/[0.14] hover:bg-surface-2 ${span} ${height}`} style={{ boxShadow: '0 2px 24px rgba(0,0,0,0.3)' }}
               >
                 {/* Subtle corner accent */}
                 <div

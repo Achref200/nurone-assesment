@@ -44,7 +44,7 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden"
+      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden pt-28 pb-16 md:pt-32 md:pb-20"
     >
       {/* Background: subtle dot grid + ambient glow */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
@@ -74,7 +74,7 @@ export function Hero() {
 
         {/* Subtitle */}
         <Reveal delay={0.2}>
-          <p className="mt-8 max-w-lg text-[1rem] leading-[1.8] text-muted/60 tracking-[-0.005em] font-normal">
+          <p className="mt-6 max-w-md text-[0.88rem] leading-[1.75] text-muted/50 tracking-[-0.005em] font-normal">
             {hero.body.split(".").slice(0, 2).join(".")}.
           </p>
         </Reveal>

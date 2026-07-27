@@ -15,7 +15,7 @@ gsap.registerPlugin(ScrollTrigger);
 function LabCard({ lab }: { lab: Lab }) {
   const Icon = lab.icon;
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.05] bg-white/[0.015] p-7 md:p-9 transition-all duration-700 hover:border-white/[0.1] hover:bg-white/[0.03]">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-surface p-7 md:p-9 transition-all duration-700 hover:border-white/[0.14] hover:bg-surface-2" style={{ boxShadow: '0 2px 24px rgba(0,0,0,0.3)' }}>
       {/* Soft corner glow on hover */}
       <div
         aria-hidden
@@ -155,7 +155,7 @@ export function Labs() {
     <section
       id="labs"
       ref={root}
-      className="relative scroll-mt-24 border-t border-line/60 py-20 md:py-32"
+      className="relative scroll-mt-24 py-20 md:py-32"
       style={
         mode === "deck"
           ? { height: `${(n - 1) * 90 + 116}vh` }

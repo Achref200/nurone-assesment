@@ -63,6 +63,10 @@ html.lenis body {
 
   body {
     background-color: var(--color-void);
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(59, 130, 246, 0.04), transparent),
+      radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.02), transparent 50%),
+      radial-gradient(circle at 80% 40%, rgba(99, 102, 241, 0.02), transparent 50%);
     color: var(--color-ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -129,6 +133,19 @@ html.lenis body {
 /* -------------------------------------------------------------------------- */
 /*  Artistic Patterns & Decorative Elements                                   */
 /* -------------------------------------------------------------------------- */
+
+/* Soft dot-grid background — very subtle artistic texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 20%, transparent 70%);
+}
 
 /* Grain overlay — adds subtle organic texture */
 .grain::after {

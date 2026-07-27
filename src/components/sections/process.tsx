@@ -65,7 +65,7 @@ export function Process() {
     <section
       id="process"
       ref={ref}
-      className="relative scroll-mt-24 overflow-hidden border-t border-white/[0.04] py-28 md:py-40"
+      className="relative scroll-mt-24 overflow-hidden py-28 md:py-40"
     >
       <div className="shell relative">
         <div ref={headingRef} className="mb-24 md:mb-32">

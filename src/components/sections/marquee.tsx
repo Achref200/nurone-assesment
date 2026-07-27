@@ -21,9 +21,6 @@ export function Marquee() {
       aria-label="Shipped Systems Index"
       className="relative overflow-hidden py-6 md:py-8 select-none"
     >
-      {/* Top decorative line */}
-      <div className="hr-gradient mb-6" />
-
       {/* Row 1: scrolling right-to-left */}
       <motion.div style={{ x: x1 }} className="flex whitespace-nowrap gap-8 items-center">
         {ITEMS.map((study, i) => (
@@ -68,8 +65,6 @@ export function Marquee() {
         ))}
       </motion.div>
 
-      {/* Bottom decorative line */}
-      <div className="hr-gradient mt-6" />
     </section>
   );
 }

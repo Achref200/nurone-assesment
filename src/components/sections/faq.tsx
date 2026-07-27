@@ -29,7 +29,7 @@ export function Faq() {
   };
 
   return (
-    <section id="faq" className="scroll-mt-24 border-t border-white/[0.04] py-28 md:py-40 relative">
+    <section id="faq" className="scroll-mt-24 py-28 md:py-40 relative">
       <div className="shell relative">
         <div ref={headingRef} className="mb-16">
           <p className="overline text-muted/30 mb-6">
@@ -55,7 +55,7 @@ export function Faq() {
         <div
           ref={cardRef}
           onMouseMove={handleMouseMove}
-          className="rounded-2xl border border-white/[0.05] bg-white/[0.015] p-6 md:p-10"
+          className="rounded-2xl border border-white/[0.07] bg-surface p-6 md:p-10" style={{ boxShadow: '0 2px 24px rgba(0,0,0,0.3)' }}
         >
           <div className="flex flex-col">
             {faqs.map((faq, index) => {

@@ -17,10 +17,10 @@ export function Cta() {
   return (
     <section
       id="access"
-      className="relative scroll-mt-24 overflow-hidden border-t border-line/60 py-28 md:py-40"
+      className="relative scroll-mt-24 overflow-hidden py-28 md:py-40"
     >
       <div className="shell relative">
-        <div className="relative overflow-hidden rounded-2xl border border-white/[0.05] bg-white/[0.015] p-8 md:p-16">
+        <div className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-surface p-8 md:p-16" style={{ boxShadow: '0 2px 24px rgba(0,0,0,0.3)' }}>
           {/* Subtle corner glow */}
           <div aria-hidden className="pointer-events-none absolute -top-32 -right-32 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.06),transparent_70%)]" />
 
