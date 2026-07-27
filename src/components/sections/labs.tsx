@@ -15,46 +15,49 @@ gsap.registerPlugin(ScrollTrigger);
 function LabCard({ lab }: { lab: Lab }) {
   const Icon = lab.icon;
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.015] p-8 transition-all duration-700 hover:border-accent/20 md:p-10">
-      {/* Gradient hover overlay */}
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.05] bg-white/[0.015] p-7 md:p-9 transition-all duration-700 hover:border-white/[0.1] hover:bg-white/[0.03]">
+      {/* Soft corner glow on hover */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
-        style={{ background: "radial-gradient(600px circle at 50% 0%, rgba(59,130,246,0.05), transparent 60%)" }}
+        className="pointer-events-none absolute -top-24 -right-24 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.07),transparent_70%)] opacity-0 transition-opacity duration-700 group-hover:opacity-100"
       />
 
-      {/* Stage + Icon Row */}
+      {/* Stage tag */}
       <div className="flex items-center justify-between">
-        <span className="text-[0.65rem] font-medium tracking-[0.25em] uppercase text-muted/40">
+        <span className="overline text-muted/35">
           {lab.stage}
         </span>
-        <span className="flex size-9 items-center justify-center rounded-xl border border-white/[0.07] bg-white/[0.02] transition-colors duration-500 group-hover:border-accent/30 group-hover:bg-accent/5">
-          <Icon className="size-4 text-muted/60 group-hover:text-accent transition-colors duration-500" />
+        <span className="flex size-9 items-center justify-center rounded-xl border border-white/[0.06] bg-white/[0.015] transition-all duration-500 group-hover:border-accent/20 group-hover:bg-accent/5">
+          <Icon className="size-4 text-muted/40 group-hover:text-accent/60 transition-colors duration-500" />
         </span>
       </div>
 
-      <h3 className="mt-7 text-[1.5rem] font-bold text-ink tracking-[-0.025em] leading-[1.1]">
+      {/* Lab name */}
+      <h3 className="mt-6 text-[1.35rem] font-bold text-ink tracking-[-0.02em] leading-[1.15]">
         {lab.name}
       </h3>
-      <p className="mt-3 text-[0.95rem] leading-[1.7] text-muted/80 flex-1">
+
+      {/* Summary */}
+      <p className="mt-3 text-[0.88rem] leading-[1.75] text-muted/60 flex-1">
         {lab.summary}
       </p>
 
-      {/* Audience points - minimal dots instead of checkmarks */}
-      <ul className="mt-6 flex flex-col gap-2">
+      {/* Audience — simple, clean bullets */}
+      <ul className="mt-5 flex flex-col gap-1.5">
         {lab.audience.map((point) => (
-          <li key={point} className="flex items-start gap-3 text-[0.88rem] text-muted/60">
-            <span className="mt-1.5 size-1 shrink-0 rounded-full bg-accent/40" />
+          <li key={point} className="flex items-start gap-3 text-[0.8rem] text-muted/45 leading-[1.6]">
+            <span className="mt-2 size-[3px] shrink-0 rounded-full bg-accent/30" />
             {point}
           </li>
         ))}
       </ul>
 
-      <div className="mt-8 border-t border-white/[0.05] pt-6 flex items-center justify-between">
-        <span className="text-[0.72rem] tracking-[0.15em] uppercase text-muted/40">
+      {/* Entry point */}
+      <div className="mt-6 border-t border-white/[0.04] pt-5 flex items-center justify-between">
+        <span className="text-[0.68rem] tracking-[0.12em] uppercase text-muted/35">
           {lab.entry}
         </span>
-        <span className="flex size-8 items-center justify-center rounded-full border border-white/[0.07] bg-white/[0.02] text-muted/50 transition-all duration-300 group-hover:border-accent/30 group-hover:text-accent">
+        <span className="flex size-8 items-center justify-center rounded-full border border-white/[0.06] bg-white/[0.015] text-muted/35 transition-all duration-300 group-hover:border-accent/25 group-hover:text-accent/70 group-hover:bg-accent/5">
           <ArrowUpRight className="size-3.5" />
         </span>
       </div>
@@ -206,7 +209,7 @@ export function Labs() {
       ) : (
         <div className="shell">
           {heading}
-          <div className="mt-14 grid gap-6 lg:grid-cols-2">
+          <div className="mt-14 grid gap-5 lg:grid-cols-2">
             {labs.map((lab, i) => (
               <Reveal key={lab.id} delay={i * 0.06} className="h-full">
                 <LabCard lab={lab} />

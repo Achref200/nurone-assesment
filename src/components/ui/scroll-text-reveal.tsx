@@ -9,7 +9,6 @@ type ScrollTextRevealProps = {
   accentWords?: string[];
 };
 
-
 export function ScrollTextReveal({
   children,
   className = "",

@@ -46,7 +46,7 @@ export function Footer() {
                   rel="noreferrer"
                   aria-label={s.label}
                   data-hover="link"
-                  className="inline-flex size-9 items-center justify-center rounded-xl border border-line bg-white/[0.02] text-muted transition-colors hover:border-accent/40 hover:text-accent"
+                  className="inline-flex size-9 items-center justify-center rounded-xl border border-line bg-white/[0.02] text-muted transition-colors hover:border-accent/30 hover:text-accent"
                 >
                   <svg viewBox="0 0 24 24" fill="currentColor" className="size-4">
                     <path d={s.path} />
@@ -59,7 +59,7 @@ export function Footer() {
           {/* Navigation Columns */}
           {Object.entries(footerNav).map(([heading, links]) => (
             <nav key={heading} aria-label={heading}>
-              <h2 className="font-mono text-xs text-faint uppercase tracking-wider">{heading}</h2>
+              <h2 className="text-[0.62rem] text-faint uppercase tracking-[0.2em] font-medium">{heading}</h2>
               <ul className="mt-5 flex flex-col gap-3">
                 {links.map((link) => (
                   <li key={link.label}>
@@ -78,7 +78,7 @@ export function Footer() {
 
           {/* Newsletter Column */}
           <div className="max-w-sm">
-            <h2 className="font-mono text-xs text-faint uppercase tracking-wider">Stay Updated</h2>
+            <h2 className="text-[0.62rem] text-faint uppercase tracking-[0.2em] font-medium">Stay Updated</h2>
             <p className="mt-3 text-xs leading-relaxed text-muted">
               Receive quarterly engineering insights and AI architecture breakdowns. No spam.
             </p>
@@ -88,9 +88,9 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Oversized Studio Wordmark */}
+        {/* Oversized Studio Wordmark — subtle */}
         <div aria-hidden className="mt-16 select-none overflow-hidden">
-          <div className="stroke-text font-display leading-none tracking-[-0.04em] text-white/[0.035] text-[19vw] md:text-[15.5vw] font-bold">
+          <div className="stroke-text font-display leading-none tracking-[-0.04em] text-white/[0.025] text-[19vw] md:text-[15.5vw] font-bold">
             NURONE
           </div>
         </div>

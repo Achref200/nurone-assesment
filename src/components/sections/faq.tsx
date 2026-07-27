@@ -11,7 +11,7 @@ export function Faq() {
   const headingRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: headingRef,
-    offset: ["start 0.9", "start 0.45"],
+    offset: ["start 0.9", "start 0.4"],
   });
   const headingWords = "Everything you need to know.".split(" ");
 
@@ -29,18 +29,17 @@ export function Faq() {
   };
 
   return (
-    <section id="faq" className="scroll-mt-24 border-t border-white/[0.05] py-28 md:py-40 relative">
+    <section id="faq" className="scroll-mt-24 border-t border-white/[0.04] py-28 md:py-40 relative">
       <div className="shell relative">
-        {/* Scroll-reveal heading */}
         <div ref={headingRef} className="mb-16">
-          <p className="text-[0.65rem] tracking-[0.3em] uppercase text-muted/40 font-medium mb-6">
+          <p className="overline text-muted/30 mb-6">
             Questions & Answers
           </p>
-          <h2 className="max-w-3xl text-[clamp(2.2rem,4.5vw,3.8rem)] font-bold tracking-[-0.04em] leading-[0.95] text-ink">
+          <h2 className="max-w-3xl text-[clamp(2rem,4.5vw,3.8rem)] font-bold tracking-[-0.04em] leading-[0.95] text-ink">
             {headingWords.map((word, i) => {
               const start = i / headingWords.length;
               const end = start + 1 / headingWords.length;
-              const opacity = useTransform(scrollYProgress, [start, end], [0.1, 1]);
+              const opacity = useTransform(scrollYProgress, [start, end], [0.08, 1]);
               return (
                 <motion.span key={i} style={{ opacity }}>
                   {word}{" "}
@@ -48,16 +47,15 @@ export function Faq() {
               );
             })}
           </h2>
-          <p className="mt-6 max-w-xl text-[1.05rem] leading-[1.7] text-muted/80 tracking-[-0.005em]">
+          <p className="mt-6 max-w-xl text-[1rem] leading-[1.7] text-muted/65 tracking-[-0.005em]">
             Clear answers about how NURONE partners with founders to build, rebuild, and scale products.
           </p>
         </div>
 
-        {/* Elegant Accordion */}
         <div
           ref={cardRef}
           onMouseMove={handleMouseMove}
-          className="faq-answer-card p-6 md:p-10"
+          className="rounded-2xl border border-white/[0.05] bg-white/[0.015] p-6 md:p-10"
         >
           <div className="flex flex-col">
             {faqs.map((faq, index) => {
@@ -65,7 +63,7 @@ export function Faq() {
               return (
                 <div
                   key={faq.question}
-                  className="border-b border-line/40 last:border-b-0"
+                  className="border-b border-white/[0.04] last:border-b-0"
                 >
                   <motion.button
                     type="button"
@@ -79,7 +77,7 @@ export function Faq() {
                         className={`flex size-8 shrink-0 items-center justify-center rounded-full border transition-all duration-500 ${
                           isOpen
                             ? "border-accent bg-accent text-white scale-110"
-                            : "border-line/60 bg-white/[0.02] text-muted group-hover:border-line-strong group-hover:text-ink"
+                            : "border-white/[0.08] bg-white/[0.02] text-muted/50 group-hover:border-white/[0.15] group-hover:text-ink"
                         }`}
                       >
                         <AnimatePresence mode="wait">
@@ -107,8 +105,8 @@ export function Faq() {
                         </AnimatePresence>
                       </span>
                       <span
-                        className={`text-[1.1rem] md:text-[1.25rem] font-medium tracking-[-0.02em] transition-colors duration-300 ${
-                          isOpen ? "text-ink" : "text-muted group-hover:text-ink"
+                        className={`text-[1.05rem] md:text-[1.15rem] font-medium tracking-[-0.02em] transition-colors duration-300 ${
+                          isOpen ? "text-ink" : "text-muted/70 group-hover:text-ink"
                         }`}
                       >
                         {faq.question}
@@ -139,7 +137,7 @@ export function Faq() {
                         className="overflow-hidden"
                       >
                         <div className="pb-8 pl-[4.5rem] pr-4">
-                          <p className="text-[1rem] leading-[1.75] text-muted tracking-[-0.005em] max-w-2xl">
+                          <p className="text-[0.95rem] leading-[1.8] text-muted/60 tracking-[-0.005em] max-w-2xl">
                             {faq.answer}
                           </p>
                         </div>
@@ -152,12 +150,11 @@ export function Faq() {
           </div>
         </div>
 
-        {/* Subtle footer note */}
-        <div className="mt-8 flex items-center justify-between text-[0.8rem] text-muted/50">
+        <div className="mt-8 flex items-center justify-between text-[0.8rem] text-muted/40">
           <span>Can&apos;t find your answer?</span>
           <a
             href="#access"
-            className="inline-flex items-center gap-1.5 font-medium text-accent/70 hover:text-accent transition-colors"
+            className="inline-flex items-center gap-1.5 font-medium text-accent/60 hover:text-accent transition-colors"
           >
             <span>Get in touch</span>
             <span>→</span>

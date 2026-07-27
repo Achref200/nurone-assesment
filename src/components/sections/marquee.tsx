@@ -1,57 +1,75 @@
 "use client";
 
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { caseStudies } from "@/lib/content";
 
-const SEPARATOR = (
-  <span className="mx-8 inline-block h-px w-12 bg-white/10 align-middle" />
-);
+const ITEMS = [...caseStudies, ...caseStudies];
 
 export function Marquee() {
-  // Two rows: one going right, one going left
-  const row1 = [...caseStudies, ...caseStudies];
-  const row2 = [...caseStudies, ...caseStudies].reverse();
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const x1 = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const x2 = useTransform(scrollYProgress, [0, 1], [-120, 0]);
 
   return (
     <section
-      aria-label="Shipped Systems Ticker"
-      className="relative overflow-hidden border-y border-white/[0.05] py-6 select-none"
+      ref={ref}
+      aria-label="Shipped Systems Index"
+      className="relative overflow-hidden py-6 md:py-8 select-none"
     >
-      {/* Fade edges */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-y-0 left-0 w-32 z-10 bg-gradient-to-r from-void to-transparent"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-y-0 right-0 w-32 z-10 bg-gradient-to-l from-void to-transparent"
-      />
+      {/* Top decorative line */}
+      <div className="hr-gradient mb-6" />
 
-      {/* Row 1 — scrolls right */}
-      <div className="marquee-track mb-3" style={{ animationDirection: "normal" }}>
-        {row1.map((study, i) => (
-          <span key={`r1-${study.id}-${i}`} className="inline-flex items-center shrink-0">
-            <span className="whitespace-nowrap text-[0.78rem] font-medium text-ink/50 tracking-[0.02em] uppercase">
+      {/* Row 1: scrolling right-to-left */}
+      <motion.div style={{ x: x1 }} className="flex whitespace-nowrap gap-8 items-center">
+        {ITEMS.map((study, i) => (
+          <span
+            key={`a-${study.id}-${i}`}
+            className="inline-flex items-center gap-4 shrink-0 group cursor-default"
+          >
+            <span className="inline-block size-1.5 rounded-full bg-accent/30 group-hover:bg-accent transition-colors duration-500" />
+            <span className="text-[0.72rem] font-medium text-muted/30 tracking-[0.2em] uppercase tabular-nums">
+              {study.index}
+            </span>
+            <span className="text-[0.9rem] font-semibold text-ink/40 tracking-[-0.01em] group-hover:text-ink/70 transition-colors duration-500">
               {study.name}
             </span>
-            <span className="mx-8 inline-flex size-1 rounded-full bg-accent/30" />
-          </span>
-        ))}
-      </div>
-
-      {/* Row 2 — scrolls left */}
-      <div
-        className="marquee-track"
-        style={{ animationDirection: "reverse", animationDuration: "50s" }}
-      >
-        {row2.map((study, i) => (
-          <span key={`r2-${study.id}-${i}`} className="inline-flex items-center shrink-0">
-            <span className="whitespace-nowrap text-[0.78rem] font-medium text-muted/35 tracking-[0.02em] uppercase">
+            <span className="text-[0.72rem] text-muted/20 tracking-[0.04em] hidden sm:inline">
               {study.category}
             </span>
-            <span className="mx-8 inline-flex size-1 rounded-full bg-white/[0.08]" />
+            <span className="text-white/[0.06] text-[0.7rem] font-extralight select-none mx-2 hidden md:inline">·</span>
           </span>
         ))}
-      </div>
+      </motion.div>
+
+      {/* Row 2: scrolling left-to-right (reverse direction) */}
+      <motion.div style={{ x: x2 }} className="flex whitespace-nowrap gap-8 items-center mt-4">
+        {[...ITEMS].reverse().map((study, i) => (
+          <span
+            key={`b-${study.id}-${i}`}
+            className="inline-flex items-center gap-4 shrink-0 group cursor-default"
+          >
+            <span className="text-white/[0.06] text-[0.7rem] font-extralight select-none mx-2 hidden md:inline">·</span>
+            <span className="text-[0.72rem] text-muted/20 tracking-[0.04em] hidden sm:inline">
+              {study.category}
+            </span>
+            <span className="text-[0.9rem] font-semibold text-ink/40 tracking-[-0.01em] group-hover:text-ink/70 transition-colors duration-500">
+              {study.name}
+            </span>
+            <span className="text-[0.72rem] font-medium text-muted/30 tracking-[0.2em] uppercase tabular-nums">
+              {study.index}
+            </span>
+            <span className="inline-block size-1.5 rounded-full bg-accent/30 group-hover:bg-accent transition-colors duration-500" />
+          </span>
+        ))}
+      </motion.div>
+
+      {/* Bottom decorative line */}
+      <div className="hr-gradient mt-6" />
     </section>
   );
 }
