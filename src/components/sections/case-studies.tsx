@@ -16,7 +16,6 @@ function StudyCard({ item }: { item: CaseStudy }) {
   return (
     <Tilt className="h-full">
       <article className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-white/[0.07] bg-surface p-7 transition-all duration-700 hover:border-white/[0.14] hover:bg-surface-2" style={{ boxShadow: '0 2px 24px rgba(0,0,0,0.3)' }}>
-        {/* Hover gradient */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
@@ -132,7 +131,6 @@ export function CaseStudies() {
       ref={root}
       className="relative scroll-mt-24 py-20 md:py-32"
     >
-      {/* Soft background pattern */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 dot-grid-sm opacity-10" />
         <span className="absolute top-1/4 left-1/3 h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.025),transparent_60%)]" />

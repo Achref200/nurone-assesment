@@ -7,7 +7,6 @@ import * as THREE from "three";
 import { SVGLoader } from "three/examples/jsm/loaders/SVGLoader.js";
 import type { Group, Mesh } from "three";
 
-/** The official NURONE glyph, extruded into a solid 3D mark. */
 const MARK_PATH =
   "M19.0628 13.0205C16.4909 13.0058 14.0327 12.1522 12.0109 10.7353C8.26913 8.11671 6.60466 4.61014 6.47098 -0.0390625C5.01471 0.00275568 3.43305 -0.0562818 0 -0.0218432V22.9757H6.3858C6.3858 20.2551 6.43194 17.6082 6.43194 14.7609C10.1832 18.0153 14.2586 19.6512 19.0959 19.6868C19.0959 17.4483 19.1018 15.2369 19.1018 13.0488H25.3492V7.51158H19.0427L19.0628 13.0205Z";
 
@@ -41,7 +40,6 @@ function LogoMark({ reduced }: { reduced: boolean }) {
 
   useFrame((state, delta) => {
     if (reduced || !group.current) return;
-    // Gentle idle bob + a whisper of mouse-driven tilt for life.
     const t = state.clock.elapsedTime;
     group.current.position.y = Math.sin(t * 0.9) * 0.6;
     const targetX = -state.pointer.y * 0.15;
@@ -68,12 +66,6 @@ function LogoMark({ reduced }: { reduced: boolean }) {
   );
 }
 
-/**
- * Immersive, drag-to-rotate 3D NURONE mark. Extruded from the brand glyph,
- * lit by brand-blue light-formers (a self-contained env map — no network),
- * and spun by OrbitControls. Reduced motion disables the idle spin/bob but
- * still allows dragging.
- */
 export function HeroLogo3D() {
   const [reduced, setReduced] = useState(false);
   const [visible, setVisible] = useState(true);
@@ -87,7 +79,7 @@ export function HeroLogo3D() {
     return () => mq.removeEventListener("change", set);
   }, []);
 
-  // Pause the render loop while the hero is scrolled off-screen.
+  // Pause the render loop while off-screen.
   useEffect(() => {
     const el = wrap.current;
     if (!el) return;
@@ -115,7 +107,6 @@ export function HeroLogo3D() {
 
         <LogoMark reduced={reduced} />
 
-        {/* Self-contained studio env map from brand-blue light-formers */}
         <Environment resolution={256}>
           <Lightformer intensity={2.4} position={[0, 4, -6]} scale={[12, 12, 1]} color="#557bff" />
           <Lightformer intensity={1.4} position={[-6, 2, 4]} scale={[8, 8, 1]} color="#a5b4fc" />

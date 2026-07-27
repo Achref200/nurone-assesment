@@ -26,8 +26,6 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const lastY = useRef(0);
 
-  // Scroll-direction aware: collapse when scrolling down past the fold and
-  // extend again on scroll-up. setState only fires in the async rAF callback.
   useEffect(() => {
     let ticking = false;
     const update = () => {
@@ -53,7 +51,6 @@ export function Navbar() {
     };
   }, []);
 
-  // Lock the page + wire Esc-to-close while the mobile sheet is open.
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     window.dispatchEvent(
@@ -97,7 +94,6 @@ export function Navbar() {
           <Logo />
         </Link>
 
-        {/* Collapsible link cluster — diminishes on scroll-down, extends on hover */}
         <motion.div
           initial={false}
           animate={{ width: expanded ? "auto" : 0, opacity: expanded ? 1 : 0 }}
@@ -158,7 +154,6 @@ export function Navbar() {
             transition={{ duration: 0.55, ease: EASE }}
             className="fixed inset-0 z-40 overflow-hidden bg-void lg:hidden"
           >
-            {/* ambient backdrop */}
             <span
               aria-hidden
               className="orb h-[26rem] w-[26rem] bg-[radial-gradient(circle,rgba(85,123,255,0.4),transparent_65%)]"
@@ -175,7 +170,6 @@ export function Navbar() {
             />
 
             <div className="relative flex h-[100dvh] flex-col px-6 pb-9 pt-6">
-              {/* Self-contained top bar — brand + the single, obvious close */}
               <div className="flex items-center justify-between">
                 <Link
                   href="#top"
@@ -200,7 +194,6 @@ export function Navbar() {
                 </button>
               </div>
 
-              {/* Nav links — oversized, staggered rise */}
               <motion.ul
                 className="flex flex-1 flex-col justify-center"
                 initial="hidden"
@@ -240,7 +233,6 @@ export function Navbar() {
                 ))}
               </motion.ul>
 
-              {/* Footer — CTA + socials */}
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}

@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-/* -------------------------------------------------------------------------- */
-/*  NURONE — Clean, Artistic, Futuristic Dark Design Tokens                   */
-/* -------------------------------------------------------------------------- */
-
 @theme {
   --color-void: #050711;
   --color-surface: #0a0e20;
@@ -130,11 +126,7 @@ html.lenis body {
   }
 }
 
-/* -------------------------------------------------------------------------- */
-/*  Artistic Patterns & Decorative Elements                                   */
-/* -------------------------------------------------------------------------- */
 
-/* Soft dot-grid background — very subtle artistic texture */
 body::before {
   content: "";
   position: fixed;
@@ -147,7 +139,7 @@ body::before {
   -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 20%, transparent 70%);
 }
 
-/* Grain overlay — adds subtle organic texture */
+
 .grain::after {
   content: "";
   position: fixed;
@@ -159,7 +151,7 @@ body::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Cursor - minimal dot only */
+
 html[data-cursor="on"],
 html[data-cursor="on"] a,
 html[data-cursor="on"] button {
@@ -182,7 +174,7 @@ html[data-cursor="on"] button {
   transition: opacity 0.2s ease;
 }
 
-/* Reveal — scroll-triggered fade + rise */
+
 .reveal {
   opacity: 0;
   transform: translate3d(var(--reveal-x, 0), var(--reveal-y, 22px), 0);
@@ -196,7 +188,7 @@ html[data-cursor="on"] button {
   transform: none;
 }
 
-/* Shine hover effect for buttons */
+
 .shine {
   position: relative;
   overflow: hidden;
@@ -219,7 +211,7 @@ html[data-cursor="on"] button {
   transform: translateX(120%);
 }
 
-/* Marquee infinite scroll */
+
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
@@ -233,25 +225,25 @@ html[data-cursor="on"] button {
   animation-play-state: paused;
 }
 
-/* Horizontal divider gradient */
+
 .hr-gradient {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06) 40%, rgba(255,255,255,0.06) 60%, transparent);
 }
 
-/* Stroke text utility */
+
 .stroke-text {
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.04);
   color: transparent;
 }
 
-/* Tabular numbers */
+
 .numeral {
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;
 }
 
-/* Link underline effect */
+
 .link-underline {
   position: relative;
 }
@@ -272,7 +264,7 @@ html[data-cursor="on"] button {
   transform-origin: left;
 }
 
-/* Overline utility */
+
 .overline {
   font-size: 0.62rem;
   letter-spacing: 0.28em;
@@ -281,7 +273,7 @@ html[data-cursor="on"] button {
   color: var(--color-muted);
 }
 
-/* Soft background patterns (reusable) */
+
 .dot-grid {
   background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
   background-size: 28px 28px;
@@ -297,11 +289,7 @@ html[data-cursor="on"] button {
   background-size: 48px 48px;
 }
 
-/* -------------------------------------------------------------------------- */
-/*  Artistic Animations                                                       */
-/* -------------------------------------------------------------------------- */
 
-/* Subtle pulse glow for accent elements */
 @keyframes pulse-glow {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 0.8; }
@@ -310,7 +298,7 @@ html[data-cursor="on"] button {
   animation: pulse-glow 4s ease-in-out infinite;
 }
 
-/* Subtle float animation */
+
 @keyframes gentle-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
@@ -319,7 +307,7 @@ html[data-cursor="on"] button {
   animation: gentle-float 6s ease-in-out infinite;
 }
 
-/* Ambient orb */
+
 .orb {
   position: absolute;
   border-radius: 9999px;
@@ -327,7 +315,7 @@ html[data-cursor="on"] button {
   filter: blur(100px);
 }
 
-/* Horizontal scroll rail */
+
 .hx-rail {
   position: relative;
   height: 2px;
@@ -343,7 +331,7 @@ html[data-cursor="on"] button {
   transform: scaleX(var(--hx, 0));
 }
 
-/* Scanline effect */
+
 .scanline {
   animation: scanline-move 8s linear infinite;
 }
@@ -354,7 +342,7 @@ html[data-cursor="on"] button {
   100% { transform: translateY(100vh); opacity: 0; }
 }
 
-/* Preloader */
+
 .preloader {
   position: fixed;
   inset: 0;
@@ -374,9 +362,7 @@ html[data-cursor="on"] button {
   transform-origin: left;
 }
 
-/* -------------------------------------------------------------------------- */
-/*  Artistic Card Hover — subtle border glow on hover                         */
-/* -------------------------------------------------------------------------- */
+
 .card-artistic {
   position: relative;
 }
@@ -400,9 +386,7 @@ html[data-cursor="on"] button {
   opacity: 1;
 }
 
-/* -------------------------------------------------------------------------- */
-/*  Reduced Motion                                                            */
-/* -------------------------------------------------------------------------- */
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -17,7 +17,6 @@ export function NewsletterForm() {
       setStatus("error");
       return;
     }
-    // Frontend-only demo: no data leaves the browser.
     setStatus("success");
     setEmail("");
   }

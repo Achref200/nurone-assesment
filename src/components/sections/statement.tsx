@@ -21,7 +21,6 @@ export function Statement() {
       ref={ref}
       className="relative overflow-hidden py-32 md:py-48"
     >
-      {/* Subtle ambient orb */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[32rem] w-[32rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.05),transparent_60%)]" />
       </div>

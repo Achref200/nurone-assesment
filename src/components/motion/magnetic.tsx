@@ -12,12 +12,6 @@ type MagneticProps = {
   className?: string;
 };
 
-/**
- * Magnetic hover: the wrapped element drifts a few pixels toward the cursor
- * while hovered, then eases back. Capped so it stays a subtle "someone
- * designed this" signal, never a toy. No-op under reduced motion / coarse
- * pointers.
- */
 export function Magnetic({
   children,
   strength = 0.3,

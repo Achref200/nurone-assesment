@@ -16,13 +16,11 @@ function LabCard({ lab }: { lab: Lab }) {
   const Icon = lab.icon;
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-surface p-7 md:p-9 transition-all duration-700 hover:border-white/[0.14] hover:bg-surface-2" style={{ boxShadow: '0 2px 24px rgba(0,0,0,0.3)' }}>
-      {/* Soft corner glow on hover */}
       <div
         aria-hidden
         className="pointer-events-none absolute -top-28 -right-28 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.09),transparent_70%)] opacity-0 transition-opacity duration-700 group-hover:opacity-100"
       />
 
-      {/* Stage tag */}
       <div className="flex items-center justify-between">
         <span className="overline text-muted/40">
           {lab.stage}
@@ -32,17 +30,14 @@ function LabCard({ lab }: { lab: Lab }) {
         </span>
       </div>
 
-      {/* Lab name */}
       <h3 className="mt-6 text-[1.35rem] font-bold text-ink tracking-[-0.02em] leading-[1.15]">
         {lab.name}
       </h3>
 
-      {/* Summary */}
       <p className="mt-3 text-[0.88rem] leading-[1.75] text-muted/60 flex-1">
         {lab.summary}
       </p>
 
-      {/* Audience — simple, clean bullets */}
       <ul className="mt-5 flex flex-col gap-1.5">
         {lab.audience.map((point) => (
           <li key={point} className="flex items-start gap-3 text-[0.8rem] text-muted/45 leading-[1.6]">
@@ -52,7 +47,6 @@ function LabCard({ lab }: { lab: Lab }) {
         ))}
       </ul>
 
-      {/* Entry point */}
       <div className="mt-6 pt-5 flex items-center justify-between">
         <span className="text-[0.68rem] tracking-[0.12em] uppercase text-muted/40">
           {lab.entry}
@@ -162,7 +156,6 @@ export function Labs() {
           : undefined
       }
     >
-      {/* Soft background pattern */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 line-grid opacity-20" />
         <span className="absolute top-1/3 left-1/4 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.03),transparent_60%)]" />

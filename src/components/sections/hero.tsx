@@ -46,18 +46,15 @@ export function Hero() {
       ref={ref}
       className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden pt-28 pb-16 md:pt-32 md:pb-20"
     >
-      {/* Background: subtle dot grid + ambient glow */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_70%_50%_at_50%_30%,black,transparent)]" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
         <span className="absolute h-[50rem] w-[50rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.08),transparent_60%)]" style={{ top: "-10rem", left: "50%", transform: "translateX(-50%)" }} />
       </div>
 
-      {/* Centered Vertical Layout */}
       <motion.div
         className="relative flex flex-col items-center text-center px-6"
         style={reduce ? undefined : { y: contentY, opacity: contentOpacity }}
       >
-        {/* Title */}
         <motion.div style={reduce ? undefined : { y: titleY }}>
           <Reveal>
             <h1 className="text-[clamp(2.6rem,7vw,5.8rem)] font-bold tracking-[-0.05em] text-ink leading-[0.9]">
@@ -72,21 +69,18 @@ export function Hero() {
           </Reveal>
         </motion.div>
 
-        {/* Subtitle */}
         <Reveal delay={0.2}>
           <p className="mt-6 max-w-md text-[0.88rem] leading-[1.75] text-muted/50 tracking-[-0.005em] font-normal">
             {hero.body}
           </p>
         </Reveal>
 
-        {/* Exclusivity note */}
         <Reveal delay={0.28}>
           <p className="mt-4 text-[0.72rem] tracking-[0.08em] text-accent/35 font-medium italic">
             {hero.note}
           </p>
         </Reveal>
 
-        {/* 3D Logo - the focal point, with generous breathing space */}
         <Reveal delay={0.3} y={40} className="relative mt-14 md:mt-20">
           <motion.div
             className="relative mx-auto aspect-square w-[18rem] max-w-[70vw] md:w-[26rem]"
@@ -102,7 +96,6 @@ export function Hero() {
           </motion.div>
         </Reveal>
 
-        {/* CTAs */}
         <Reveal delay={0.45}>
           <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:gap-5">
             <Magnetic>
@@ -129,7 +122,6 @@ export function Hero() {
           </div>
         </Reveal>
 
-        {/* Scroll hint */}
         <Reveal delay={0.6}>
           <div className="mt-20 flex flex-col items-center gap-2 opacity-30">
             <span className="text-[0.6rem] tracking-[0.3em] uppercase text-muted/50 font-medium">Scroll</span>

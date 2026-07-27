@@ -16,14 +16,12 @@ export function Pillars() {
 
   return (
     <section id="system" className="relative scroll-mt-24 py-28 md:py-40">
-      {/* Soft background pattern */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 dot-grid-sm opacity-30" />
         <span className="absolute top-1/4 right-0 h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.04),transparent_60%)]" />
         <span className="absolute bottom-0 left-0 h-[20rem] w-[20rem] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.03),transparent_60%)]" />
       </div>
       <div className="shell relative">
-        {/* Two-column header */}
         <div ref={headingRef} className="grid gap-12 md:grid-cols-[1fr_2fr] md:gap-20">
           <div className="flex flex-col justify-end pb-1">
             <p className="overline text-accent/60 mb-5">
@@ -51,7 +49,6 @@ export function Pillars() {
           </h2>
         </div>
 
-        {/* Cards — asymmetric, humanized, editorial layout */}
         <div className="mt-20 grid gap-5 md:grid-cols-12">
           {pillars.map((pillar, i) => {
             const Icon = pillar.icon;
@@ -66,13 +63,11 @@ export function Pillars() {
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
                 className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/[0.07] bg-surface p-7 md:p-8 transition-all duration-700 hover:border-white/[0.14] hover:bg-surface-2 ${span} ${height}`} style={{ boxShadow: '0 2px 24px rgba(0,0,0,0.3)' }}
               >
-                {/* Subtle corner accent */}
                 <div
                   aria-hidden
                   className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.1),transparent_70%)] opacity-0 transition-opacity duration-700 group-hover:opacity-100"
                 />
 
-                {/* Top: icon + index */}
                 <div className="flex items-start justify-between">
                   <div className="flex size-11 items-center justify-center rounded-xl border border-white/[0.07] bg-white/[0.02] transition-all duration-500 group-hover:border-accent/25 group-hover:bg-accent/5">
                     <Icon className="size-[18px] text-accent/55 group-hover:text-accent/75 transition-colors duration-500" />
@@ -82,17 +77,14 @@ export function Pillars() {
                   </span>
                 </div>
 
-                {/* Title */}
                 <h3 className="mt-7 text-[1.2rem] font-semibold text-ink tracking-[-0.02em] leading-[1.25]">
                   {pillar.title}
                 </h3>
 
-                {/* Description */}
                 <p className="mt-3 flex-1 text-[0.85rem] leading-[1.75] text-muted/55 tracking-[-0.005em]">
                   {pillar.description}
                 </p>
 
-                {/* Bottom metric */}
                 <div className="mt-6 flex items-end justify-between pt-5">
                   <span className="text-[0.65rem] uppercase tracking-[0.14em] text-white/[0.18]">
                     {pillar.metricLabel}

@@ -77,7 +77,6 @@ export function Testimonials() {
 
   return (
     <section id="voices" className="scroll-mt-24 py-28 md:py-40 relative">
-      {/* Soft background pattern */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <span className="absolute top-1/3 right-1/4 h-[20rem] w-[20rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.03),transparent_60%)]" />
       </div>
@@ -107,7 +106,6 @@ export function Testimonials() {
             onFocusCapture={() => setPaused(true)}
             onBlurCapture={() => setPaused(false)}
           >
-            {/* Quote icon */}
             <div className="mb-8">
               <span className="inline-flex size-11 items-center justify-center rounded-xl border border-white/[0.06] bg-white/[0.02] text-accent/40">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-5">
@@ -116,7 +114,6 @@ export function Testimonials() {
               </span>
             </div>
 
-            {/* Typewriter text area */}
             <div className="relative min-h-[14rem] md:min-h-[12rem]">
               <div
                 className="transition-all duration-300"
@@ -137,7 +134,6 @@ export function Testimonials() {
               </div>
             </div>
 
-            {/* Controls */}
             <div className="relative mt-12 flex items-center justify-between pt-8">
               <div className="flex items-center gap-2">
                 {testimonials.map((t, i) => (

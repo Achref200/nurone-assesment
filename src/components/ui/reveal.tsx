@@ -14,11 +14,6 @@ type RevealProps = {
   className?: string;
 };
 
-/**
- * Scroll-triggered fade + rise driven by IntersectionObserver toggling a CSS
- * class — the transition (incl. easing + stagger delay) lives in CSS, so no
- * per-frame JS. Runs once; reduced-motion falls back to visible via CSS.
- */
 export function Reveal({ children, delay = 0, y = 22, x = 0, className }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 

@@ -1,10 +1,5 @@
 import { cn } from "@/lib/utils";
 
-/**
- * NURONE brand lockup — the official symbol + wordmark, inlined so it inherits
- * `currentColor` (rendered as warm off-white ink on the dark canvas, and
- * re-colourable anywhere it's reused). Source: src/Nurone_logo.svg.
- */
 export function Logo({ className }: { className?: string }) {
   return (
     <span
@@ -30,9 +25,6 @@ export function Logo({ className }: { className?: string }) {
   );
 }
 
-/**
- * Glyph-only mark (the NURONE symbol) for compact/square contexts.
- */
 export function Mark({ className }: { className?: string }) {
   return (
     <svg

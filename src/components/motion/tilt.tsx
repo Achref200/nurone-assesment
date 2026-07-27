@@ -10,11 +10,6 @@ type TiltProps = {
   className?: string;
 };
 
-/**
- * Restrained 3D tilt: the card leans a few degrees toward the cursor, with a
- * faint pointer-following sheen. Capped, GPU-only, and a no-op under reduced
- * motion / coarse pointers.
- */
 export function Tilt({ children, max = 5, className }: TiltProps) {
   const ref = useRef<HTMLDivElement>(null);
 

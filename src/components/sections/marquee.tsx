@@ -21,13 +21,11 @@ export function Marquee() {
       aria-label="Shipped Systems Index"
       className="relative overflow-hidden py-6 md:py-8 select-none"
     >
-      {/* Subtle gradient fade at edges */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-transparent" />
         <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-void to-transparent" />
         <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-void to-transparent" />
       </div>
-      {/* Row 1: scrolling right-to-left */}
       <motion.div style={{ x: x1 }} className="flex whitespace-nowrap gap-8 items-center">
         {ITEMS.map((study, i) => (
           <span
@@ -49,7 +47,6 @@ export function Marquee() {
         ))}
       </motion.div>
 
-      {/* Row 2: scrolling left-to-right (reverse direction) */}
       <motion.div style={{ x: x2 }} className="flex whitespace-nowrap gap-8 items-center mt-4">
         {[...ITEMS].reverse().map((study, i) => (
           <span

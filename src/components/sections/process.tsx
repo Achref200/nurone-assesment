@@ -22,12 +22,10 @@ function StepRow({ step, index }: { step: (typeof processSteps)[number]; index: 
       style={{ opacity, x, scale }}
       className="relative grid gap-8 pl-16 py-12 border-b border-white/[0.04] last:border-0 md:grid-cols-[1fr_2fr] md:gap-16 md:pl-20"
     >
-      {/* Node */}
       <div className="absolute left-0 top-12 flex size-12 items-center justify-center rounded-2xl border border-white/[0.06] bg-white/[0.02] transition-colors duration-500 hover:border-accent/25 hover:bg-accent/5">
         <Icon className="size-4 text-accent/55" />
       </div>
 
-      {/* Index + Title */}
       <div className="flex flex-col justify-center">
         <span className="text-[0.6rem] font-medium tracking-[0.22em] uppercase text-muted/40">
           {String(index + 1).padStart(2, "0")}
@@ -37,7 +35,6 @@ function StepRow({ step, index }: { step: (typeof processSteps)[number]; index: 
         </h3>
       </div>
 
-      {/* Description */}
       <p className="text-[0.9rem] leading-[1.8] text-muted/65 tracking-[-0.005em]">
         {step.description}
       </p>
@@ -67,7 +64,6 @@ export function Process() {
       ref={ref}
       className="relative scroll-mt-24 overflow-hidden py-28 md:py-40"
     >
-      {/* Soft background pattern */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 dot-grid-sm opacity-20" />
         <span className="absolute bottom-1/4 right-1/4 h-[22rem] w-[22rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.03),transparent_60%)]" />

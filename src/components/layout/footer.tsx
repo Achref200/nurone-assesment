@@ -88,7 +88,6 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Oversized Studio Wordmark — subtle */}
         <div aria-hidden className="mt-16 select-none overflow-hidden">
           <div className="stroke-text font-display leading-none tracking-[-0.04em] text-white/[0.025] text-[19vw] md:text-[15.5vw] font-bold">
             NURONE

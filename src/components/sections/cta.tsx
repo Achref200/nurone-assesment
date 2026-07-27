@@ -19,13 +19,11 @@ export function Cta() {
       id="access"
       className="relative scroll-mt-24 overflow-hidden py-28 md:py-40"
     >
-      {/* Soft background pattern */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <span className="absolute bottom-0 right-0 h-[22rem] w-[22rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.04),transparent_60%)]" />
       </div>
       <div className="shell relative">
         <div className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-surface p-8 md:p-16" style={{ boxShadow: '0 2px 24px rgba(0,0,0,0.3)' }}>
-          {/* Subtle corner glow */}
           <div aria-hidden className="pointer-events-none absolute -top-36 -right-36 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.07),transparent_70%)]" />
 
           <div className="grid gap-14 lg:grid-cols-12 lg:items-start">

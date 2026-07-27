@@ -2,11 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-/**
- * Minimal cursor: a single small accent dot that tracks 1:1.
- * No trailing ring — cleaner, less "AI template" feel.
- * Only active on fine-pointer devices with motion allowed.
- */
 export function Cursor() {
   const dotRef = useRef<HTMLDivElement>(null);
 

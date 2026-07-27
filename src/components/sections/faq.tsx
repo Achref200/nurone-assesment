@@ -30,7 +30,6 @@ export function Faq() {
 
   return (
     <section id="faq" className="scroll-mt-24 py-28 md:py-40 relative">
-      {/* Soft background pattern */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 dot-grid-sm opacity-15" />
         <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.03),transparent_60%)]" />
@@ -62,7 +61,6 @@ export function Faq() {
           onMouseMove={handleMouseMove}
           className="group rounded-2xl border border-white/[0.07] bg-surface p-6 md:p-10 relative overflow-hidden" style={{ boxShadow: '0 2px 24px rgba(0,0,0,0.3)' }}
         >
-          {/* Cursor-following glow */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"

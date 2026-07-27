@@ -5,11 +5,6 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { Mark } from "@/components/brand/logo";
 
-/**
- * Cinematic intro: a mono counter races 000 → 100 while a rail fills, then the
- * whole panel wipes up to reveal the site. Shown once per session; skipped
- * entirely under reduced motion (content is simply visible).
- */
 export function Preloader() {
   const root = useRef<HTMLDivElement>(null);
   const countRef = useRef<HTMLSpanElement>(null);

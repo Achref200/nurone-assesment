@@ -13,12 +13,6 @@ type ScrambleProps = {
   trigger?: "view" | "hover";
 };
 
-/**
- * Mission-control "decode" effect: the label scrambles through random glyphs
- * and resolves left-to-right. `view` fires once on entry; `hover` re-runs on
- * pointer enter (typewriter feel on nav / links). SSR / reduced-motion render
- * the final text immediately.
- */
 export function TextScramble({
   text,
   className,
