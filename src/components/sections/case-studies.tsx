@@ -36,7 +36,7 @@ function StudyCard({ item }: { item: CaseStudy }) {
           </p>
         </div>
 
-        <div className="mt-7 flex items-end justify-between gap-4 border-t border-white/[0.04] pt-5">
+        <div className="mt-7 flex items-end justify-between gap-4 pt-5">
           <div>
             <div className="text-[1.5rem] font-bold text-ink/30 tracking-[-0.03em] group-hover:text-ink/60 transition-colors duration-500">
               {item.metric.value}

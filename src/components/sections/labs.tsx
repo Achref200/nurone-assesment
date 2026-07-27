@@ -53,7 +53,7 @@ function LabCard({ lab }: { lab: Lab }) {
       </ul>
 
       {/* Entry point */}
-      <div className="mt-6 border-t border-white/[0.04] pt-5 flex items-center justify-between">
+      <div className="mt-6 pt-5 flex items-center justify-between">
         <span className="text-[0.68rem] tracking-[0.12em] uppercase text-muted/35">
           {lab.entry}
         </span>
@@ -155,13 +155,18 @@ export function Labs() {
     <section
       id="labs"
       ref={root}
-      className="relative scroll-mt-24 py-20 md:py-32"
+      className="relative scroll-mt-24 pt-24 pb-20 md:py-32"
       style={
         mode === "deck"
           ? { height: `${(n - 1) * 90 + 116}vh` }
           : undefined
       }
     >
+      {/* Soft background pattern */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-0 line-grid opacity-20" />
+        <span className="absolute top-1/3 left-1/4 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.03),transparent_60%)]" />
+      </div>
       {mode === "deck" ? (
         <div className="sticky top-0 flex h-screen items-center overflow-hidden py-16">
           <div className="shell grid w-full items-center gap-12 lg:grid-cols-[0.85fr_1.15fr]">

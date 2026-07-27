@@ -134,7 +134,7 @@ export function Testimonials() {
             </div>
 
             {/* Controls */}
-            <div className="relative mt-12 flex items-center justify-between border-t border-white/[0.06] pt-8">
+            <div className="relative mt-12 flex items-center justify-between pt-8">
               <div className="flex items-center gap-2">
                 {testimonials.map((t, i) => (
                   <button

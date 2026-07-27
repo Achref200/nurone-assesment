@@ -16,6 +16,12 @@ export function Pillars() {
 
   return (
     <section id="system" className="relative scroll-mt-24 py-28 md:py-40">
+      {/* Soft background pattern */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-0 dot-grid-sm opacity-30" />
+        <span className="absolute top-1/4 right-0 h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.04),transparent_60%)]" />
+        <span className="absolute bottom-0 left-0 h-[20rem] w-[20rem] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.03),transparent_60%)]" />
+      </div>
       <div className="shell relative">
         {/* Two-column header */}
         <div ref={headingRef} className="grid gap-12 md:grid-cols-[1fr_2fr] md:gap-20">
@@ -87,7 +93,7 @@ export function Pillars() {
                 </p>
 
                 {/* Bottom metric */}
-                <div className="mt-6 flex items-end justify-between border-t border-white/[0.05] pt-5">
+                <div className="mt-6 flex items-end justify-between pt-5">
                   <span className="text-[0.65rem] uppercase tracking-[0.14em] text-white/[0.15]">
                     {pillar.metricLabel}
                   </span>

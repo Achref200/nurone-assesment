@@ -67,6 +67,11 @@ export function Process() {
       ref={ref}
       className="relative scroll-mt-24 overflow-hidden py-28 md:py-40"
     >
+      {/* Soft background pattern */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-0 dot-grid-sm opacity-20" />
+        <span className="absolute bottom-1/4 right-1/4 h-[22rem] w-[22rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.03),transparent_60%)]" />
+      </div>
       <div className="shell relative">
         <div ref={headingRef} className="mb-24 md:mb-32">
           <p className="overline text-muted/30 mb-8">

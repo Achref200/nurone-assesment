@@ -1,17 +1,14 @@
 # NURONE — Homepage Redesign
 
-A modern, editorial redesign of the [dev.nurone.io](https://dev.nurone.io) homepage, built as a
-responsive, production-grade Next.js frontend.
+A modern, futuristic redesign of the [dev.nurone.io](https://dev.nurone.io) homepage, built as a responsive, production-grade Next.js frontend for the NURONE UI/UX & Frontend Engineering Assessment.
 
 > **Live demo:** _add your deployment URL here (e.g. https://nurone-assessment.vercel.app)_
 
-NURONE is an AI-augmented operating team that helps founders turn ideas, broken MVPs, and stalled
-businesses into scalable products and revenue engines. This redesign reframes that story with a
-confident, human art direction and a rigorously structured, accessible frontend.
+NURONE is an AI-augmented operating team that helps founders turn ideas, broken MVPs, and stalled businesses into scalable products and revenue engines. This redesign reframes that story with a clean, futuristic, artistic art direction and a rigorously structured, accessible frontend.
 
 ---
 
-## Technologies used
+## Technologies
 
 | Area | Choice | Why |
 | --- | --- | --- |
@@ -19,49 +16,60 @@ confident, human art direction and a rigorously structured, accessible frontend.
 | Language | **TypeScript** | Type-safe content model and components |
 | Styling | **Tailwind CSS v4** (CSS-first `@theme`) | Design tokens live in CSS; fast, consistent, no config sprawl |
 | Animation | **Framer Motion** | Accessible, declarative scroll and disclosure motion |
+| Scroll Effects | **GSAP + ScrollTrigger** | Pinned sections, scrub-linked reveals, momentum scrolling |
+| Smooth Scroll | **Lenis** | Buttery, designed scroll feel; wired into GSAP ticker |
+| 3D | **React Three Fiber** | Interactive 3D logo in hero section |
 | Icons | **lucide-react** + inline SVG | Lightweight icons; brand/social marks hand-drawn as SVG |
-| Fonts | **Fraunces** + **Inter** (`next/font`) | Serif display for warmth, grotesque for UI clarity — self-hosted, zero layout shift |
+| Font | **Syne** (`next/font/google`) | Geometric, futuristic display typeface — self-hosted, zero layout shift |
 | Utilities | `clsx`, `tailwind-merge`, `class-variance-authority` | Ergonomic, conflict-free class composition |
 
 ---
 
 ## Design decisions
 
-The original site uses the now-ubiquitous "AI SaaS" aesthetic — near-black canvas, neon accent,
-glows, and gradient text. The redesign deliberately moves in the opposite direction to feel
-**crafted, premium, and human**.
+### Art direction — "Clean, clear, futuristic, artistic, humanized"
 
-### Art direction — "Editorial engineering"
-A warm, Swiss-influenced editorial system: a bone-paper canvas, espresso ink, and a single
-restrained ember accent. The look references design-studio and premium-fintech typography rather
-than template landing pages.
+The original site uses a common dark AI SaaS aesthetic. The redesign preserves the dark canvas but elevates it with:
+- **Futuristic luxury** feel using Syne's geometric letterforms
+- **Artistic patterns**: dot-grid backgrounds, ambient radial orbs, grain overlay
+- **Humanized interaction**: cursor-tracking dot, magnetic buttons, scroll-linked reveals
+- **Clean, not bombarded**: generous whitespace, clear hierarchy, restrained accent use
+
+### Color system
+- **Void** `#050711` — deep near-black canvas
+- **Surface** `#0a0e20` — elevated card background with subtle blue tint
+- **Surface 2** `#121833` — secondary elevation
+- **Accent** `#3b82f6` — electric blue for interactive elements and highlights
+- **Ink** `#f5f7fd` — primary text
+- **Muted** `#94a3b8` — secondary text
 
 ### Typography
-- **Fraunces** (an optical serif with real character) carries every headline and key numeral,
-  giving the page a hand-set, human quality. An **italic ember word** anchors each major statement.
-- **Inter** handles body copy and UI for maximum legibility.
-- Restraint on monospace/uppercase "eyebrows" — replaced with hairline ticks + small-caps labels.
+- **Syne** carries every headline and key numeral — geometric, bold, futuristic
+- Scroll-linked word-by-word reveal for section headings
+- Monospace `.overline` utility for section eyebrows (small, uppercase, tracked)
 
-### Color
-- `paper #EEEAE1` · `card #F7F4EE` · `ink #1B1813` · `muted #6C665B`
-- Accent **ember `#C1451D`**, used sparingly (numerals, links, the italic word, small marks).
-- Two **inverted ink sections** (the "Our bias" band and the closing CTA/footer) create tonal
-  rhythm and drama instead of relying on glows.
+### Motion & interaction
+- **Preloader**: Cinematic 000→100 counter with progress bar, skips for reduced motion
+- **Lenis smooth scroll**: Wired into GSAP ScrollTrigger for unified momentum
+- **Scroll-linked reveals**: Words fade in on scroll for section headings
+- **Typewriter testimonials**: Letter-by-letter quote display with blinking cursor
+- **Marquee ribbon**: Dual-row bidirectional partner logos, scroll-linked direction
+- **3D hero logo**: Interactive React Three Fiber model with cursor-following rotation
+- **Custom cursor**: Minimal accent dot on fine-pointer devices
 
-### Layout & hierarchy
-- A **12-column editorial hero** pairs an oversized headline with a numbered "operating index".
-- **Numbered sections** (`01 — The System`, `02`, `03`…), hairline rules, and generous negative
-  space give a magazine-like reading rhythm.
-- Case studies use a **feature card + "index of work" table** — a senior editorial pattern that
-  scans quickly and scales cleanly.
-- Subtle paper grain adds high-fidelity texture without noise.
+### Layout
+- **10-section homepage**: Hero → Marquee → Pillars → Statement → Labs → Case Studies → Process → Testimonials → FAQ → CTA
+- **Collapsible navbar**: Hides on scroll-down, reveals on scroll-up
+- **Responsive grids**: Asymmetric pillar cards (5/4/3 columns), stacked mobile
+- **Solid card backgrounds**: `bg-surface` with `box-shadow`, not transparent glass
 
-### Motion & accessibility
-- Scroll reveals and the FAQ disclosure use Framer Motion, and **all motion respects
-  `prefers-reduced-motion`**.
-- Semantic landmarks (`header`/`main`/`nav`/`footer`), an accessible accordion
-  (`aria-expanded` / `aria-controls` / `role="region"`), labelled form controls, visible focus
-  rings, and AA-minded contrast.
+### Accessibility
+- Semantic landmarks (`header`/`main`/`nav`/`footer`)
+- Accessible accordion (`aria-expanded` / `aria-controls` / `role="region"`)
+- `prefers-reduced-motion`: Preloader skipped, Lenis disabled, all animations reduced
+- Visible focus rings with accent color
+- Labelled form controls and interactive elements
+- AA-minded contrast ratios for text
 
 ---
 
@@ -69,23 +77,51 @@ than template landing pages.
 
 ```
 src/
-├─ app/
-│  ├─ layout.tsx        # Fonts, metadata, grain overlay
-│  ├─ page.tsx          # Homepage composition
-│  ├─ globals.css       # Design tokens (@theme) + base + utilities
-│  └─ icon.svg          # Brand favicon
-├─ components/
-│  ├─ brand/            # Logo + mark
-│  ├─ ui/               # Button, Reveal, SectionHeading (primitives)
-│  ├─ layout/           # Navbar, Footer, NewsletterForm
-│  └─ sections/         # Hero, Pillars, Statement, Labs, CaseStudies, Process, …
-└─ lib/
-   ├─ content.ts        # Single typed source of truth for all page content
-   └─ utils.ts          # `cn()` class helper
+├── app/
+│   ├── layout.tsx          # Fonts (Syne), metadata, grain overlay, JSON-LD
+│   ├── page.tsx            # Homepage composition (10 sections)
+│   ├── globals.css         # Design tokens (@theme), patterns, animations
+│   └── icon.svg            # Brand favicon
+├── components/
+│   ├── brand/
+│   │   └── logo.tsx        # Mark + Wordmark + StrokeText
+│   ├── layout/
+│   │   ├── navbar.tsx      # Sticky nav with collapse/expand + mobile menu
+│   │   ├── footer.tsx      # Footer with nav, socials, newsletter
+│   │   └── newsletter-form.tsx
+│   ├── motion/
+│   │   ├── cursor.tsx      # Minimal accent dot cursor
+│   │   ├── preloader.tsx   # Cinematic 000→100 intro
+│   │   ├── scroll-progress.tsx
+│   │   ├── smooth-scroll.tsx  # Lenis + GSAP integration
+│   │   ├── magnetic.tsx    # Magnetic hover effect
+│   │   ├── tilt.tsx        # Tilt hover effect
+│   │   ├── text-scramble.tsx
+│   │   └── count-up.tsx    # Animated counter
+│   ├── sections/
+│   │   ├── hero.tsx        # Vertical hero: title → subtitle → 3D logo → CTAs
+│   │   ├── hero-logo-3d.tsx  # React Three Fiber 3D logo
+│   │   ├── marquee.tsx     # Dual-row scroll-linked partner ribbon
+│   │   ├── pillars.tsx     # "The Problem We Solve" — asymmetric card grid
+│   │   ├── statement.tsx   # Core belief — scroll-linked word reveal
+│   │   ├── labs.tsx        # Lab System cards (static + deck scroll mode)
+│   │   ├── case-studies.tsx  # Production work cards, horizontal scroll
+│   │   ├── process.tsx     # "How it works" — 5-step process
+│   │   ├── testimonials.tsx  # Typewriter letter-by-letter quotes
+│   │   ├── faq.tsx         # Accordion FAQ with cursor-follow glow
+│   │   └── cta.tsx         # Request Access CTA
+│   └── ui/
+│       ├── button.tsx      # Variants: accent, solid, outline, ghost
+│       ├── section-heading.tsx  # Reusable heading with scroll-linked word reveal
+│       ├── reveal.tsx      # IntersectionObserver scroll-triggered fade+rise
+│       ├── scroll-text-reveal.tsx
+│       └── custom-icons.tsx  # Custom SVG icons for sections
+└── lib/
+    ├── content.ts          # Typed single source of truth for all page data
+    └── utils.ts            # cn() class helper
 ```
 
-Content is fully decoupled from presentation in [`src/lib/content.ts`](src/lib/content.ts), so copy
-and data can change without touching layout.
+Content is fully decoupled from presentation in `src/lib/content.ts`, so copy and data can change without touching layout.
 
 ---
 
@@ -111,32 +147,27 @@ The app statically prerenders and deploys to any Node/edge host with **zero conf
 
 **Vercel (recommended)**
 1. Push this repository to GitHub.
-2. Import it at [vercel.com/new](https://vercel.com/new) — the framework preset is detected
-   automatically.
+2. Import it at [vercel.com/new](https://vercel.com/new) — the framework preset is detected automatically.
 3. Deploy. No environment variables are required.
-
-> Optionally set `NEXT_PUBLIC_SITE_URL` and update `siteConfig.url` in
-> [`src/lib/content.ts`](src/lib/content.ts) so canonical/OG metadata point at your domain.
 
 ---
 
 ## Performance & accessibility
 
-- Homepage is **statically prerendered** — fast TTFB, cache-friendly.
-- Fonts are self-hosted via `next/font` with `display: swap` (no CLS, no third-party requests).
-- Hero artwork is pure SVG/CSS — no hero image payload.
-- Reduced-motion, semantic HTML, keyboard-navigable accordion, and labelled inputs throughout.
+- Homepage is **statically prerendered** — fast TTFB, cache-friendly
+- Fonts are self-hosted via `next/font` with `display: swap` (no CLS, no third-party requests)
+- 3D logo is lazy-loaded only in the hero viewport
+- All motion respects `prefers-reduced-motion` (preloader skipped, Lenis disabled, animations reduced)
+- Semantic HTML, keyboard-navigable accordion, visible focus rings, and labelled inputs throughout
+- Grain overlay and background patterns use `pointer-events: none` to avoid interaction interference
+- Custom cursor only activates on fine-pointer devices
 
 ---
 
 ## Assumptions
 
-- **Home page only** was in scope; nav/footer links point to in-page anchors (or `#`) as
-  placeholders rather than building secondary routes.
-- The newsletter form is a **frontend-only** demo (client-side validation + success state); no data
-  leaves the browser. Wiring a real provider is a drop-in.
-- Copy was adapted and lightly rewritten from the live site for clarity and hierarchy; product
-  facts, case studies, and testimonials are preserved.
-- Branding (type, color, spacing, layout) was intentionally redefined, as permitted by the brief,
-  while keeping a professional SaaS tone.
-```
+- **Home page only** was in scope; nav/footer links point to in-page anchors as placeholders
+- The newsletter form is a **frontend-only** demo (client-side validation + success state)
+- Copy was adapted from the live site for clarity and hierarchy; product facts, case studies, and testimonials are preserved
+- Branding (type, color, spacing, layout) was intentionally redesigned as permitted by the brief
+- The 3D logo uses a simplified geometric shape as placeholder (custom GLTF models can replace it)

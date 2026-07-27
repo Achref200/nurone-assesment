@@ -48,7 +48,7 @@ export function SectionHeading({
         </p>
       ) : null}
 
-      <h2 className="max-w-3xl text-[clamp(2rem,4.5vw,3.8rem)] font-bold leading-[0.95] tracking-[-0.04em] text-ink">
+      <h2 className="max-w-3xl text-[clamp(1.65rem,5vw,3.8rem)] font-bold leading-[0.95] tracking-[-0.04em] text-ink">
         {words.map((word, i) => {
           const start = i / words.length;
           const end = start + 1 / words.length;
